@@ -17,8 +17,10 @@ import frc.robot.OI;
  */
 public final class Globalvariables {
     public static boolean Seetarget;
+    public static boolean SwitchFlag;
     public Globalvariables(){
         Seetarget = false;
+        SwitchFlag = false;
     }    
 
 }

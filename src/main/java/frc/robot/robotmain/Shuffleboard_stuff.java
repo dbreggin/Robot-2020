@@ -9,7 +9,7 @@ import frc.robot.Robot;
 
 public final class Shuffleboard_stuff {
     public Shuffleboard_stuff(){
-        Shuffleboard_stuff1();
+    Shuffleboard_stuff1();
     if(Robot.oi.lv == 0){
         Robot.globalvariables.Seetarget = false;
     }else {
