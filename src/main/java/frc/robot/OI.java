@@ -33,13 +33,16 @@ private TalonSRX motor5;
 private TalonSRX motor6;
 //limelight
 public  NetworkTable  table;
-NetworkTableEntry tx = table.getEntry("tx");
-NetworkTableEntry ty = table.getEntry("ty");
-NetworkTableEntry ta = table.getEntry("ta");
+public NetworkTableEntry tx;
+public NetworkTableEntry ty;
+public NetworkTableEntry ta;
+public NetworkTableEntry tv;
+public double lx;
+public double ly;
+public double la;
+public double lv;
 //read values periodically
-double xoffset = tx.getDouble(0.0);
-double yoffset = ty.getDouble(0.0);
-double limelightarea = ta.getDouble(0.0);
+double limelightarea;
 public OI() {
     //2019 robot stuffffffff
     gamepad = new Joystick(Robotmap.gamepad);
@@ -56,5 +59,13 @@ public OI() {
     lmotor2.follow(lmotor1);
     lmotor3.follow(lmotor1);
     drive = new DifferentialDrive(rmotor1, lmotor1);
+    tx = table.getEntry("tx");
+    ty = table.getEntry("ty");
+    ta = table.getEntry("ta");
+    tv = table.getEntry("tv");
+    lx = tx.getDouble(0.0);
+    ly = ty.getDouble(0.0);
+    la = ta.getDouble(0.0);
+    lv = tv.getDouble(0.0);
     }
 }
