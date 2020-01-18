@@ -1,5 +1,7 @@
 package frc.robot.robotmain;
 import frc.robot.OI;
 
-public final class Joystick {
+public final class Buttoncontrols {
+
+
 }
