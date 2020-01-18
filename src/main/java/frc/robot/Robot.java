@@ -1,14 +1,37 @@
 package frc.robot;
+
+import org.ietf.jgss.Oid;
 import edu.wpi.first.wpilibj.TimedRobot;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.CommandScheduler;
 import frc.robot.OI;
+import frc.robot.Globalvariables;
+import frc.robot.robotmain.Autonomous;
+import frc.robot.Robotmap;
+import edu.wpi.first.wpilibj.Joystick;
+import frc.robot.robotmain.Joysticks;
+import frc.robot.robotmain.Buttoncontrols;
 
 public class Robot extends TimedRobot {
   private Command m_autonomousCommand;
+
+  public static OI oi;
+  public static Globalvariables globalvariables;
+  public static Autonomous autonomous;
+  public static Robotmap robotmap;
+  public static Joysticks joysticks;
+  public static Buttoncontrols buttoncontrols;
+  public double limelightX;
+  public double limelightY;
+  public double limelightArea;
+  public double limelightTarget;
+
   @Override public void robotInit() {
     //called when robot first initializes
-   // OI = new OI();
+    oi = new OI();
+    globalvariables = new Globalvariables();
+    robotmap = new Robotmap();
+    
   }
   @Override public void robotPeriodic() {
     CommandScheduler.getInstance().run();
@@ -21,19 +44,18 @@ public class Robot extends TimedRobot {
   }
   @Override public void autonomousInit() {
     //called when autonomous first initializes
-    //m_autonomousCommand = m_robotContainer.getAutonomousCommand();
-    if (m_autonomousCommand != null) {
-      m_autonomousCommand.schedule();
-    }
+    autonomous = new Autonomous();
+
   }
   @Override public void autonomousPeriodic() {
     //called during autonomous
   }
   @Override public void teleopInit() {
     //called when teleop first initializes
-    if (m_autonomousCommand != null) {
-      m_autonomousCommand.cancel();
-    }
+    joysticks = new Joysticks();
+    buttoncontrols = new Buttoncontrols();
+
+    
   }
   @Override public void teleopPeriodic() {
     //called during teleop - main function
