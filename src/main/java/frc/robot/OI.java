@@ -1,6 +1,9 @@
 package frc.robot;
 import edu.wpi.first.wpilibj.Joystick; 
 import com.ctre.phoenix.motorcontrol.can.TalonSRX;
+import edu.wpi.first.wpilibj.drive.DifferentialDrive;
+import com.revrobotics.CANSparkMax;
+import com.revrobotics.CANSparkMaxLowLevel.MotorType;
 //2019 robot stuffffffff
 import com.ctre.phoenix.motorcontrol.can.VictorSPX;
 import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
@@ -11,6 +14,7 @@ import edu.wpi.first.networktables.NetworkTableInstance;
 
 public final class OI {
 //2019 robot stuffffffff
+public CANSparkMax sparkyboy;
 public WPI_TalonSRX rmotor1;
 public VictorSPX rmotor2;
 public VictorSPX rmotor3;
