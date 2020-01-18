@@ -1,12 +1,12 @@
 package frc.robot;
-import edu.wpi.first.wpilibj.Joystick; 
-import com.ctre.phoenix.motorcontrol.can.TalonSRX;
+import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.drive.DifferentialDrive;
-import com.revrobotics.CANSparkMax;
-import com.revrobotics.CANSparkMaxLowLevel.MotorType;
+
+import com.ctre.phoenix.motorcontrol.can.TalonSRX;
 //2019 robot stuffffffff
 import com.ctre.phoenix.motorcontrol.can.VictorSPX;
 import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
+import edu.wpi.first.wpilibj.drive.DifferentialDrive;
 //limelight
 import edu.wpi.first.networktables.NetworkTable;
 import edu.wpi.first.networktables.NetworkTableEntry;
@@ -14,7 +14,6 @@ import edu.wpi.first.networktables.NetworkTableInstance;
 
 public final class OI {
 //2019 robot stuffffffff
-public CANSparkMax sparkyboy;
 public WPI_TalonSRX rmotor1;
 public VictorSPX rmotor2;
 public VictorSPX rmotor3;
@@ -24,6 +23,7 @@ public VictorSPX lmotor3;
 public Joystick gamepad;
 public Joystick rjoystick;
 public Joystick ljoystick;
+public DifferentialDrive drive;
 //Motors 
 private TalonSRX motor1;
 private TalonSRX motor2;
@@ -42,7 +42,7 @@ double yoffset = ty.getDouble(0.0);
 double limelightarea = ta.getDouble(0.0);
 public OI() {
     //2019 robot stuffffffff
-    gamepad = new Joystick(Robotmap.kJoystickPort);
+    gamepad = new Joystick(Robotmap.gamepad);
     ljoystick = new Joystick(Robotmap.lJoystickPort);
     rjoystick = new Joystick(Robotmap.rJoystickPort);
     rmotor1 = new WPI_TalonSRX(Robotmap.rMotor1Port);
@@ -55,5 +55,6 @@ public OI() {
     rmotor3.follow(rmotor1);
     lmotor2.follow(lmotor1);
     lmotor3.follow(lmotor1);
+    drive = new DifferentialDrive(rmotor1, lmotor1);
     }
 }
