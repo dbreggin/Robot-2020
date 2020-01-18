@@ -4,12 +4,12 @@ import frc.robot.Globalvariables;
 
 public final class Robotmap {
     //2019 robot stuffffffff
-    public static final int rMotor1Port = 1;    //1    //TALON SRX
-    public static final int rMotor2Port = 2;    //6    //VICTOR SPX
+    public static final int lMotor1Port = 2;    //1    //TALON SRX
+    public static final int rMotor2Port = 5;    //6    //VICTOR SPX
     public static final int rMotor3Port = 7;    //0    //VICTOR SPX
-    public static final int lMotor1Port = 5;    //2  //TALON SRX
+    public static final int rMotor1Port = 4;    //2  //TALON SRX
     public static final int lMotor2Port = 0;    //4   //VICTOR SPX
-    public static final int lMotor3Port = 6;    //7   //VICTOR SPX
+    public static final int lMotor3Port = 8;    //7   //VICTOR SPX
     
     //joystick Top=Top Bot=Bottom L=Left B=back close to driver F=Forward far from driver T=Top M=Middle B=bottom if second letter
     public static final int lJoystickPort = 0;
