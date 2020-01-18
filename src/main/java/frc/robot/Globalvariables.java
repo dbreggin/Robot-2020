@@ -16,4 +16,9 @@ import frc.robot.OI;
  * constants are needed, to reduce verbosity.
  */
 public final class Globalvariables {
+    public static boolean Seetarget;
+    public Globalvariables(){
+        Seetarget = false;
+    }    
+
 }
