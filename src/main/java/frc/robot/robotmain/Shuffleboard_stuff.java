@@ -9,9 +9,9 @@ import frc.robot.Robot;
 
 public final class Shuffleboard_stuff {
     public Shuffleboard_stuff(){
-    if(Robot.oi.limelightTarget == 0){
+    if(Robot.oi.lv == 0){
         Robot.globalvariables.Seetarget = false;
-    }else if (Robot.oi.limelightTarget == 1){
+    }else if (Robot.oi.lv == 1){
         Robot.globalvariables.Seetarget = true;
     }
 
