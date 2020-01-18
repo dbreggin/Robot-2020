@@ -9,15 +9,16 @@ import frc.robot.Robot;
 
 public final class Shuffleboard_stuff {
     public Shuffleboard_stuff(){
-    if(Robot.oi.limelightTarget == 0){
+        Shuffleboard_stuff1();
+    if(Robot.oi.lv == 0){
         Robot.globalvariables.Seetarget = false;
-    }else if (Robot.oi.limelightTarget == 1){
+    }else {
         Robot.globalvariables.Seetarget = true;
     }
 
     }
-    public void Shuffleboard_stuff(){
-        SmartDashboard.getNumber("Joystick Axises", Robot.oi.ljoystick.getRawAxis(Robot.robotmap.joyY));
-        SmartDashboard.getBoolean("See Target", Robot.globalvariables.Seetarget);
+    public void Shuffleboard_stuff1(){
+        SmartDashboard.putNumber("sA", Robot.oi.temp2);
+        SmartDashboard.putNumber("dA", Robot.oi.temp2);
     }
 }

@@ -1,28 +1,27 @@
 package frc.robot;
 
-import org.ietf.jgss.Oid;
 import edu.wpi.first.wpilibj.TimedRobot;
 import edu.wpi.first.wpilibj.drive.DifferentialDrive;
-import edu.wpi.first.wpilibj2.command.Command;
-import edu.wpi.first.wpilibj2.command.CommandScheduler;
-import frc.robot.OI;
-import frc.robot.Globalvariables;
+import frc.robot.*;
 import frc.robot.robotmain.Autonomous;
-import frc.robot.Robotmap;
 import edu.wpi.first.wpilibj.Joystick;
 import frc.robot.robotmain.Joystickcontrols;
 import frc.robot.robotmain.Buttoncontrols;
-import edu.wpi.first.wpilibj.drive.DifferentialDrive;
+import frc.robot.commands.*;
+import frc.robot.robotmain.*;
+
+import edu.wpi.first.wpilibj.VictorSP;
+import edu.wpi.first.wpilibj.Joystick;
 
 public class Robot extends TimedRobot {
-  private Command m_autonomousCommand;
-
   public static OI oi;
   public static Globalvariables globalvariables;
   public static Autonomous autonomous;
   public static Robotmap robotmap;
   public static Joystickcontrols joysticks;
   public static Buttoncontrols buttoncontrols;
+  public static Vision vision;
+  public static Shuffleboard_stuff shuffleboard;
   public double limelightX;
   public double limelightY;
   public double limelightArea;
@@ -33,11 +32,9 @@ public class Robot extends TimedRobot {
     //called when robot first initializes
     oi = new OI();
     globalvariables = new Globalvariables();
-    robotmap = new Robotmap();
-    
+    robotmap = new Robotmap();    
   }
   @Override public void robotPeriodic() {
-    CommandScheduler.getInstance().run();
   }
   @Override public void disabledInit() {
     //called when robot gets disabled
@@ -48,25 +45,22 @@ public class Robot extends TimedRobot {
   @Override public void autonomousInit() {
     //called when autonomous first initializes
     autonomous = new Autonomous();
-
   }
   @Override public void autonomousPeriodic() {
     //called during autonomous
   }
   @Override public void teleopInit() {
-    //called when teleop first initializes
-    joysticks = new Joystickcontrols();
-    buttoncontrols = new Buttoncontrols();
-
-    
+    //called when teleop first initializes    
   }
   @Override public void teleopPeriodic() {
     //called during teleop - main function
-    joysticks = new Joystickcontrols();
+    //joysticks = new Joystickcontrols();
+    //buttoncontrols = new Buttoncontrols();
+    vision = new Vision(5,0,.6);
+    shuffleboard = new Shuffleboard_stuff();
   }
   @Override public void testInit() {
     //called when test mode first initializes
-    CommandScheduler.getInstance().cancelAll();
   }
   @Override public void testPeriodic() {
     //called during test mode

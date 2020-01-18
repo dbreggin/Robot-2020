@@ -32,7 +32,7 @@ private TalonSRX motor4;
 private TalonSRX motor5;
 private TalonSRX motor6;
 //limelight
-public  NetworkTable  table;
+public NetworkTable table;
 public NetworkTableEntry tx;
 public NetworkTableEntry ty;
 public NetworkTableEntry ta;
@@ -41,8 +41,10 @@ public double lx;
 public double ly;
 public double la;
 public double lv;
+//misc
+public double temp1;
+public double temp2;
 //read values periodically
-double limelightarea;
 public OI() {
     //2019 robot stuffffffff
     gamepad = new Joystick(Robotmap.gamepad);
@@ -59,6 +61,7 @@ public OI() {
     lmotor2.follow(lmotor1);
     lmotor3.follow(lmotor1);
     drive = new DifferentialDrive(rmotor1, lmotor1);
+    table = NetworkTableInstance.getDefault().getTable("limelight");
     tx = table.getEntry("tx");
     ty = table.getEntry("ty");
     ta = table.getEntry("ta");
