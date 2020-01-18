@@ -18,7 +18,7 @@ public final class Shuffleboard_stuff {
 
     }
     public void Shuffleboard_stuff1(){
-        SmartDashboard.putNumber("sA", Robot.oi.temp2);
+        SmartDashboard.putNumber("sA", Robot.oi.temp1);
         SmartDashboard.putNumber("dA", Robot.oi.temp2);
     }
 }
