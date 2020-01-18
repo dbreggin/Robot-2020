@@ -9,7 +9,7 @@ import frc.robot.Globalvariables;
 import frc.robot.robotmain.Autonomous;
 import frc.robot.Robotmap;
 import edu.wpi.first.wpilibj.Joystick;
-import frc.robot.robotmain.Joysticks;
+import frc.robot.robotmain.Joystickcontrols;
 import frc.robot.robotmain.Buttoncontrols;
 
 public class Robot extends TimedRobot {
@@ -19,7 +19,7 @@ public class Robot extends TimedRobot {
   public static Globalvariables globalvariables;
   public static Autonomous autonomous;
   public static Robotmap robotmap;
-  public static Joysticks joysticks;
+  public static Joystickcontrols joysticks;
   public static Buttoncontrols buttoncontrols;
   public double limelightX;
   public double limelightY;
@@ -52,7 +52,7 @@ public class Robot extends TimedRobot {
   }
   @Override public void teleopInit() {
     //called when teleop first initializes
-    joysticks = new Joysticks();
+    joysticks = new Joystickcontrols();
     buttoncontrols = new Buttoncontrols();
 
     
