@@ -25,7 +25,7 @@ public final class Vision {
             }
             dA *= -scaler;
             sA = Robot.oi.lx / 20;
-            sA *= scaler;
+            sA *= -scaler;
             if(dA>1){
                 dA = 1;
             } else if (dA<-1){

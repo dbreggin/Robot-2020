@@ -14,7 +14,7 @@ public final class Robotmap {
     //joystick Top=Top Bot=Bottom L=Left B=back close to driver F=Forward far from driver T=Top M=Middle B=bottom if second letter
     public static final int lJoystickPort = 0;
     public static final int joyX = 0; 
-    public final int joyY = 1;
+    public static final int joyY = 1;
     public static final int rJoystickPort = 1;
     public static final int JoyTrigger = 1;
     public static final int JoyThumb = 2;
