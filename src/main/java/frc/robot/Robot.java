@@ -57,10 +57,10 @@ public class Robot extends TimedRobot {
     //called during teleop - main function
     //joysticks = new Joystickcontrols();
     //buttoncontrols = new Buttoncontrols();
-    vision = new Vision(5,0,.6); 
-   //oi.drive.tankDrive(oi.ljoystick.getRawAxis(1),oi.rjoystick.getRawAxis(1));
-//oi.lmotor1.set(ControlMode.PercentOutput, oi.ljoystick.getRawAxis(1));
-   // oi.lmotor2.set(ControlMode.PercentOutput, oi.rjoystick.getRawAxis(1));
+    vision = new Vision(1.28,0,1); 
+    //oi.drive.tankDrive(oi.ljoystick.getRawAxis(1),oi.rjoystick.getRawAxis(1));
+    //oi.lmotor1.set(ControlMode.PercentOutput, oi.ljoystick.getRawAxis(1));
+    // oi.lmotor2.set(ControlMode.PercentOutput, oi.rjoystick.getRawAxis(1));
 
    shuffleboard = new Shuffleboard_stuff();
   }

@@ -52,11 +52,11 @@ public OI() {
     ljoystick = new Joystick(Robotmap.lJoystickPort);
     rjoystick = new Joystick(Robotmap.rJoystickPort);
     rmotor1 = new WPI_TalonSRX(4);
-    rmotor2 = new VictorSPX(Robotmap.rMotor2Port);
-    rmotor3 = new VictorSPX(Robotmap.rMotor3Port);
+    rmotor2 = new VictorSPX(5);
+    rmotor3 = new VictorSPX(7);
     lmotor1 = new WPI_TalonSRX(2);
-    lmotor2 = new VictorSPX(Robotmap.lMotor2Port);
-    lmotor3 = new VictorSPX(Robotmap.lMotor3Port);
+    lmotor2 = new VictorSPX(0);
+    lmotor3 = new VictorSPX(8);
     rmotor2.follow(rmotor1);
     rmotor3.follow(rmotor1);
     lmotor2.follow(lmotor1);

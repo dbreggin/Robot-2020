@@ -16,28 +16,36 @@ public final class Vision {
         Robot.oi.la = Robot.oi.ta.getDouble(0.0);
         Robot.oi.lv = Robot.oi.tv.getDouble(0.0);
         if(Robot.oi.lv != 0.0){
-            if((Robot.oi.la-distance)*.2 < distance){
-                dA = (Robot.oi.la-distance)*.2;
-            } else if((distance-Robot.oi.la)*-.2 > distance){
-                dA = (distance-Robot.oi.la)*-.2;
-            } else {
-                dA = 1;
-            }
-            dA *= -scaler;
+            dA=(Robot.oi.la-distance)*1.05;
+            dA *= -1;
             sA = Robot.oi.lx / 20;
-            sA *= -scaler;
-            if(dA>1){
+            if(dA>1){  
                 dA = 1;
             } else if (dA<-1){
                 dA = -1;
+            } else if (dA<.5 && dA>.1){
+                dA=.5; 
+            } else if (dA>-.5 && dA<-.1){
+                dA=-.5;
+            } else if (dA>-.1 && dA<.1){
+                dA=0;
+                sA*=1.25;
             }
             if(sA>1){
                 sA = 1;
             } else if (sA<-1){
                 sA = -1;
+            } else if (sA<.5 && sA>.03){
+                sA=.5;
+            } else if (sA<-.5 && sA>-.03){
+                sA=-.5;
+            } else if (sA>-.1 && sA<.1){
+                sA=0;
             }
-            dA *= -scaler;
-            sA *= -scaler;
+            sA*=-1;
+            
+
+
             Robot.oi.temp1 = sA;
             Robot.oi.temp2 = dA;
             Robot.oi.drive.arcadeDrive(dA,sA);
@@ -45,5 +53,24 @@ public final class Vision {
             Robot.oi.drive.tankDrive(0,0);
         }
     }
+
+    // private void steerAdjust(double sA, double dA)
+    // {
+    //     if(dA>=0.1||dA<=-0.1)
+    //     {
+    //         return; 
+    //     }
+    //     else{
+    //         double sA2=Robot.oi.lx/5.0;
+    //         if(sA2>=0.5)
+    //         {
+    //             sA2=0.5;
+    //         }
+    //         else{
+    //             sA2=-0.5;
+    //         }
+    //         Robot.oi.drive.arcadeDrive(0, sA2);
+    //     }
+    // }
 }
 
