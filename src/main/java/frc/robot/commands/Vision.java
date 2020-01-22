@@ -36,6 +36,8 @@ public final class Vision {
             } else if (sA<-1){
                 sA = -1;
             }
+            dA *= -scaler;
+            sA *= -scaler;
             Robot.oi.temp1 = sA;
             Robot.oi.temp2 = dA;
             Robot.oi.drive.arcadeDrive(dA,sA);

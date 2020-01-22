@@ -56,9 +56,9 @@ public class Robot extends TimedRobot {
     //called during teleop - main function
     //joysticks = new Joystickcontrols();
     //buttoncontrols = new Buttoncontrols();
-   // vision = new Vision(5,0,.6);
-   oi.drive.tankDrive(oi.ljoystick.getRawAxis(robotmap.joyY),oi.rjoystick.getRawAxis(robotmap.joyY));
-    shuffleboard = new Shuffleboard_stuff();
+   vision = new Vision(5,0,.6);
+  //  oi.drive.tankDrive(oi.ljoystick.getRawAxis(robotmap.joyY),oi.rjoystick.getRawAxis(robotmap.joyY));
+  //   shuffleboard = new Shuffleboard_stuff();
   }
   @Override public void testInit() {
     //called when test mode first initializes
