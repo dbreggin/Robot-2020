@@ -26,6 +26,7 @@ public final class Globalvariables {
     };
     public static boolean vision;
     public static boolean driveType;
+    public static boolean reverse;
     public Globalvariables(){
         Seetarget = false;
         SwitchFlag = false;
@@ -33,6 +34,7 @@ public final class Globalvariables {
         UserControl = true;
         vision = false;
         driveType = false;
+        reverse = false;
     }    
 
 }

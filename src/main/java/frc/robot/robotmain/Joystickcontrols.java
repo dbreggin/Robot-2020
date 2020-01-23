@@ -35,12 +35,25 @@ public final class Joystickcontrols {
             Globalvariables.UserControl = true;
         }
         if(Globalvariables.UserControl){
-            if(Globalvariables.driveType){
-                Robot.oi.drive.arcadeDrive(-Robot.oi.rjoystick.getRawAxis(Robotmap.joyY), -Robot.oi.rjoystick.getRawAxis(Robotmap.joyX));
+            if(Robot.oi.ljoystick.getRawButton(Robotmap.JoyTrigger)){
+                if(Globalvariables.driveType){
+                    Robot.oi.drive.arcadeDrive(Robot.oi.rjoystick.getRawAxis(Robotmap.joyY), -Robot.oi.rjoystick.getRawAxis(Robotmap.joyX));
+                }
+                else{
+                    Robot.oi.drive.tankDrive(Robot.oi.ljoystick.getRawAxis(Robotmap.joyY), Robot.oi.rjoystick.getRawAxis(Robotmap.joyY));
+                }
             }
             else{
-                Robot.oi.drive.tankDrive(-Robot.oi.rjoystick.getRawAxis(Robotmap.joyY), -Robot.oi.ljoystick.getRawAxis(Robotmap.joyY));
+                if(Globalvariables.driveType){
+                    Robot.oi.drive.arcadeDrive(-Robot.oi.rjoystick.getRawAxis(Robotmap.joyY), -Robot.oi.rjoystick.getRawAxis(Robotmap.joyX));
+                }
+                else{
+                    Robot.oi.drive.tankDrive(-Robot.oi.rjoystick.getRawAxis(Robotmap.joyY), -Robot.oi.ljoystick.getRawAxis(Robotmap.joyY));
+                }   
             }
+
+
+           
         }
     }
 
