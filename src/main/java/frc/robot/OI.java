@@ -49,8 +49,8 @@ public double temp2;
 public OI() {
     //2019 robot stuffffffff
     gamepad = new Joystick(Robotmap.gamepad);
-    ljoystick = new Joystick(Robotmap.lJoystickPort);
-    rjoystick = new Joystick(Robotmap.rJoystickPort);
+    ljoystick = new Joystick(0);
+    rjoystick = new Joystick(1);
     rmotor1 = new WPI_TalonSRX(4);
     rmotor2 = new VictorSPX(5);
     rmotor3 = new VictorSPX(7);

@@ -19,12 +19,20 @@ public final class Globalvariables {
     public static boolean Seetarget;
     public static boolean SwitchFlag;
     public static boolean VisionFlag;
-    public static boolean DriveMode;
+    public static boolean UserControl;
+    public static boolean[] buttonDone = {
+        false,
+        false
+    };
+    public static boolean vision;
+    public static boolean driveType;
     public Globalvariables(){
         Seetarget = false;
         SwitchFlag = false;
         VisionFlag = false;
-        DriveMode = false;
+        UserControl = true;
+        vision = false;
+        driveType = false;
     }    
 
 }
