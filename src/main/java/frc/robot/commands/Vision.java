@@ -25,7 +25,7 @@ public final class Vision {
                 dA = -1;
             } else if (dA<.5 && dA>.1){
                 dA=.5; 
-            } else if (dA>-.5 && dA<-.1){
+            } else if (dA>-.5 && dA<-.06){
                 dA=-.5;
             } else if (dA>-.1 && dA<.1){
                 dA=0;
@@ -35,11 +35,11 @@ public final class Vision {
                 sA = 1;
             } else if (sA<-1){
                 sA = -1;
-            } else if (sA<.5 && sA>.03){
+            } else if (sA<.5 && sA>.016){
                 sA=.5;
-            } else if (sA<-.5 && sA>-.03){
+            } else if (sA<-.5 && sA>-.016){
                 sA=-.5;
-            } else if (sA>-.1 && sA<.1){
+            } else if (sA>-.035 && sA<.035){
                 sA=0;
             }
             sA*=-1;
