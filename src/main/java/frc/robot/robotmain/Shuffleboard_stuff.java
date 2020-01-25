@@ -5,6 +5,7 @@ import edu.wpi.first.wpilibj.shuffleboard.ShuffleboardComponent;
 import edu.wpi.first.wpilibj.shuffleboard.ShuffleboardContainer;
 import edu.wpi.first.wpilibj.shuffleboard.ShuffleboardLayout;
 import edu.wpi.first.wpilibj.shuffleboard.ShuffleboardTab;
+import frc.robot.Globalvariables;
 import frc.robot.Robot;
 
 public final class Shuffleboard_stuff {
@@ -19,7 +20,6 @@ public final class Shuffleboard_stuff {
     public void Shuffleboard_stuff1(){
         SmartDashboard.putNumber("sA", Robot.oi.temp1);
         SmartDashboard.putNumber("dA", Robot.oi.temp2);
-        SmartDashboard.putBoolean("Intake", Robot.oi.lineSensor.get());
-        SmartDashboard.putBoolean("Outake", Robot.oi.lineSensor.get());
+        SmartDashboard.putNumber("Ball Num", Globalvariables.ball_counter);
     }
 }

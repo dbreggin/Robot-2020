@@ -16,6 +16,10 @@ import frc.robot.OI;
  * constants are needed, to reduce verbosity.
  */
 public final class Globalvariables {
+    public static boolean[] lineloopflag ={
+        false,
+        false
+    };
     public static boolean Seetarget;
     public static boolean SwitchFlag;
     public static boolean VisionFlag;
@@ -36,7 +40,7 @@ public final class Globalvariables {
         vision = false;
         driveType = false;
         reverse = false;
-    
+        ball_counter = 3; //use slider to change
     }    
 
 }
