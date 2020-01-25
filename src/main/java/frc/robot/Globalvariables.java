@@ -27,6 +27,7 @@ public final class Globalvariables {
     public static boolean vision;
     public static boolean driveType;
     public static boolean reverse;
+    public static double linecounter;
     public Globalvariables(){
         Seetarget = false;
         SwitchFlag = false;
@@ -35,6 +36,7 @@ public final class Globalvariables {
         vision = false;
         driveType = false;
         reverse = false;
+    
     }    
 
 }

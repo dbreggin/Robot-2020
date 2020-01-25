@@ -14,11 +14,12 @@ public final class Shuffleboard_stuff {
         Robot.globalvariables.Seetarget = false;
     }else {
         Robot.globalvariables.Seetarget = true;
-    }
-
+        }
     }
     public void Shuffleboard_stuff1(){
         SmartDashboard.putNumber("sA", Robot.oi.temp1);
         SmartDashboard.putNumber("dA", Robot.oi.temp2);
+        SmartDashboard.putBoolean("Intake", Robot.oi.lineSensor.get());
+        SmartDashboard.putBoolean("Outake", Robot.oi.lineSensor.get());
     }
 }

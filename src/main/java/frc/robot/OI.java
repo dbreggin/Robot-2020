@@ -1,6 +1,7 @@
 package frc.robot;
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.drive.DifferentialDrive;
+import edu.wpi.first.wpilibj.DigitalInput;
 
 import com.ctre.phoenix.motorcontrol.can.TalonSRX;
 //2019 robot stuffffffff
@@ -45,6 +46,9 @@ public double lv;
 //misc
 public double temp1;
 public double temp2;
+
+public DigitalInput lineSensor;
+public DigitalInput lineSensor2;
 //read values periodically
 public OI() {
     //2019 robot stuffffffff
@@ -75,5 +79,9 @@ public OI() {
     ly = ty.getDouble(0.0);
     la = ta.getDouble(0.0);
     lv = tv.getDouble(0.0);
+
+    lineSensor = new DigitalInput(0);
+    lineSensor2 = new DigitalInput(1);
+
     }
 }
