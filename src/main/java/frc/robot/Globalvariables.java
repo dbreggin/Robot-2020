@@ -16,6 +16,7 @@ import frc.robot.OI;
  * constants are needed, to reduce verbosity.
  */
 public final class Globalvariables {
+    public static int ball_counter;
     public static boolean[] lineloopflag ={
         false,
         false
