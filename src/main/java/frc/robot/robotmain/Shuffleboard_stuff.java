@@ -21,5 +21,10 @@ public final class Shuffleboard_stuff {
         SmartDashboard.putNumber("sA", Robot.oi.temp1);
         SmartDashboard.putNumber("dA", Robot.oi.temp2);
         SmartDashboard.putNumber("Ball Num", Globalvariables.ball_counter);
+        SmartDashboard.putNumber("NAVX", Robot.oi.navx.getAngle());
+        SmartDashboard.putNumber("ALITUDE", Robot.oi.navx.getAltitude());
+        SmartDashboard.putNumber("BAR PRESSURE", Robot.oi.navx.getBarometricPressure());
+
+
     }
 }
