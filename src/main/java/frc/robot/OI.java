@@ -8,6 +8,8 @@ import com.ctre.phoenix.motorcontrol.can.TalonSRX;
 import com.ctre.phoenix.motorcontrol.FeedbackDevice;
 import com.ctre.phoenix.motorcontrol.can.VictorSPX;
 import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
+import com.kauailabs.navx.frc.AHRS;
+
 import edu.wpi.first.wpilibj.drive.DifferentialDrive;
 //limelight
 import edu.wpi.first.networktables.NetworkTable;
@@ -26,6 +28,7 @@ public Joystick gamepad;
 public Joystick rjoystick;
 public Joystick ljoystick;
 public DifferentialDrive drive;
+
 //Motors 
 private TalonSRX motor1;
 private TalonSRX motor2;
@@ -49,6 +52,8 @@ public double temp2;
 
 public DigitalInput lineSensor;
 public DigitalInput lineSensor2;
+public AHRS navx;
+
 //read values periodically
 public OI() {
     //2019 robot stuffffffff
@@ -82,6 +87,9 @@ public OI() {
 
     lineSensor = new DigitalInput(0);
     lineSensor2 = new DigitalInput(1);
+
+    navx = new AHRS();
+    
 
     }
 }

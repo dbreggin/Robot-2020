@@ -1,15 +1,28 @@
 package frc.robot.robotmain;
+import org.ejml.equation.Function;
+
 import frc.robot.Globalvariables;
 import frc.robot.OI;
 import frc.robot.Robot; 
 import frc.robot.Robotmap;
-
-import frc.robot.commands.Vision;
+import frc.robot.commands.AngleAdjust;
+import frc.robot.commands.Vision;;
 
 
 public final class Recursivecode{
+    public AngleAdjust angleadjust;
     public Recursivecode(){
         recursivecode();
+        angle_turn();
+    }
+    private void angle_turn(){
+        if(Globalvariables.angle_turn){
+            Globalvariables.UserControl = false;
+            Globalvariables.tA_flag = false;
+            angleadjust = new AngleAdjust();
+        }else{
+            Globalvariables.UserControl = true;
+        }
     }
     public void recursivecode(){
         //ball counter code
