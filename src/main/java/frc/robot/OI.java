@@ -2,6 +2,11 @@ package frc.robot;
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.drive.DifferentialDrive;
 import edu.wpi.first.wpilibj.DigitalInput;
+import com.revrobotics.CANSparkMax;
+import com.revrobotics.SparkMax;
+import com.revrobotics.CANPIDController;
+import com.revrobotics.CANSparkMaxLowLevel.MotorType;
+import com.revrobotics.CANEncoder;
 
 import com.ctre.phoenix.motorcontrol.can.TalonSRX;
 //2019 robot stuffffffff
@@ -30,6 +35,12 @@ public TalonSRX intake_motor;
 public TalonSRX cp_motor;
 public TalonSRX hopper_motor;
 public TalonSRX outake_motor;
+public CANSparkMax shooter_motor1;
+public CANSparkMax shooter_motor2;
+public CANPIDController shooterPIDcontroller1;
+public CANPIDController shooterPIDcontroller2;
+public CANEncoder shooter_encoder1;
+public CANEncoder shooter_encoder2;
 
 //Motors 
 private TalonSRX motor1;
@@ -62,18 +73,36 @@ public OI() {
     gamepad = new Joystick(Robotmap.gamepad);
     ljoystick = new Joystick(0);
     rjoystick = new Joystick(1);
-    rmotor1 = new WPI_TalonSRX(4);
-    rmotor2 = new VictorSPX(5);
-    rmotor3 = new VictorSPX(7);
-    lmotor1 = new WPI_TalonSRX(2);
-    lmotor2 = new VictorSPX(0);
-    lmotor3 = new VictorSPX(8);
+    rmotor1 = new WPI_TalonSRX(4);  //4
+    rmotor2 = new VictorSPX(5); //5
+    rmotor3 = new VictorSPX(7); //7
+    lmotor1 = new WPI_TalonSRX(2);  //2
+    lmotor2 = new VictorSPX(0); //0
+    lmotor3 = new VictorSPX(8); //8
     intake_motor = new TalonSRX(1);
     cp_motor = new TalonSRX(3);
     hopper_motor = new TalonSRX(6);
     outake_motor = new TalonSRX(9);
-    //Shootermotor = new Neomotor(?);
-    //Shootermotor2 = new Neomotor(?);
+    shooter_motor1 = new CANSparkMax(11, MotorType.kBrushless);
+    // shooter_motor2 = new CANSparkMax(15, MotorType.kBrushless);
+    shooterPIDcontroller1 = shooter_motor1.getPIDController();
+    //shooterPIDcontroller2 = shooter_motor2.getPIDController();
+    shooterPIDcontroller1.setP(5e-5);
+    shooterPIDcontroller1.setI(1e-6);
+    shooterPIDcontroller1.setD(0);
+    shooterPIDcontroller1.setIZone(0);
+    shooterPIDcontroller1.setFF(0);
+    shooterPIDcontroller1.setOutputRange(-1, 1);
+    /*
+    shooterPIDcontroller2.setP(5e-5);
+    shooterPIDcontroller2.setI(1e-6);
+    shooterPIDcontroller2.setD(0);
+    shooterPIDcontroller2.setIZone(0);
+    shooterPIDcontroller2.setFF(0);
+    shooterPIDcontroller2.setOutputRange(-1, 1);
+    */
+    shooter_encoder1 = shooter_motor1.getEncoder();
+    //shooter_encoder2 = shooter_motor2.getEncoder();
 
     rmotor2.follow(rmotor1);
     rmotor3.follow(rmotor1);

@@ -25,6 +25,7 @@ public final class Globalvariables {
     public static boolean SwitchFlag;
     public static boolean VisionFlag;
     public static boolean UserControl;
+    public static boolean Shootflag;
     public static boolean[] buttonDone = {
         false,
         false
@@ -41,6 +42,7 @@ public final class Globalvariables {
         vision = false;
         driveType = false;
         reverse = false;
+        Shootflag = false;
         ball_counter = 3; //use slider to change
     }    
 
