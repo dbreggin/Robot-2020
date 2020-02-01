@@ -3,7 +3,7 @@ import frc.robot.Globalvariables;
 import frc.robot.OI;
 import frc.robot.Robot; 
 import frc.robot.Robotmap;
-
+import com.ctre.phoenix.motorcontrol.ControlMode;
 import frc.robot.commands.Vision;
 
 
@@ -51,9 +51,8 @@ public final class Joystickcontrols {
                     Robot.oi.drive.tankDrive(-Robot.oi.rjoystick.getRawAxis(Robotmap.joyY), -Robot.oi.ljoystick.getRawAxis(Robotmap.joyY));
                 }   
             }
-
-
-           
+        Robot.oi.intake_motor.set(ControlMode.PercentOutput, Robot.oi.gamepad.getRawAxis(1));
+    
         }
     }
 

@@ -5,5 +5,5 @@ import frc.robot.commands.Identifyballs;
 import frc.robot.commands.Angleturn;
 
 public final class Autonomous {
-    var declare ("no good word")
+    // var declare ("no good word")
 }

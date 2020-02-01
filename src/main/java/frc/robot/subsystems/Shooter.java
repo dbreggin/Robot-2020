@@ -2,6 +2,12 @@ package frc.robot.subsystems;
 import frc.robot.Robot;
 import frc.robot.OI;
 import frc.robot.Globalvariables;
-public final class Shooter {
+public final class Shooter{ 
+    public shooter() {
+        if(robot){
 
+        }
+    }
 }
+
+  

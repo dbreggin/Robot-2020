@@ -26,6 +26,11 @@ public Joystick gamepad;
 public Joystick rjoystick;
 public Joystick ljoystick;
 public DifferentialDrive drive;
+public TalonSRX intake_motor;
+public TalonSRX cp_motor;
+public TalonSRX hopper_motor;
+public TalonSRX outake_motor;
+
 //Motors 
 private TalonSRX motor1;
 private TalonSRX motor2;
@@ -33,6 +38,8 @@ private TalonSRX motor3;
 private TalonSRX motor4;
 private TalonSRX motor5;
 private TalonSRX motor6;
+
+//private neo shootermotor;
 //limelight
 public NetworkTable table;
 public NetworkTableEntry tx;
@@ -61,6 +68,13 @@ public OI() {
     lmotor1 = new WPI_TalonSRX(2);
     lmotor2 = new VictorSPX(0);
     lmotor3 = new VictorSPX(8);
+    intake_motor = new TalonSRX(1);
+    cp_motor = new TalonSRX(3);
+    hopper_motor = new TalonSRX(6);
+    outake_motor = new TalonSRX(9);
+    //Shootermotor = new Neomotor(?);
+    //Shootermotor2 = new Neomotor(?);
+
     rmotor2.follow(rmotor1);
     rmotor3.follow(rmotor1);
     lmotor2.follow(lmotor1);
