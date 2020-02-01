@@ -7,12 +7,17 @@ import com.ctre.phoenix.motorcontrol.ControlMode;
 import com.revrobotics.ControlType;
 public final class Shooter{ 
     public Shooter() {
-    if(Robot.globalvariables.ball_counter>0 && Robot.globalvariables.ball_counter<6){
+    if(Globalvariables.ball_counter>0 && Globalvariables.ball_counter<6){
         Robot.oi.outake_motor.set(ControlMode.PercentOutput, (1));
         Robot.oi.intake_motor.set(ControlMode.PercentOutput, (1));
-        //Robot.oi.shooter_motor.set(ControlMode.PercentOutput, (1));
-        //Robot.oi.shooter_motor2.set(ControlMode.PercentOutput, (1));
-        } 
+        Robot.oi.shooterPIDcontroller1.setReference(5700, ControlType.kVelocity);
+        // Robot.oi.shooterPIDcontroller2.setReference(5700, ControlType.kVelocity);
+    } else{
+        Robot.oi.outake_motor.set(ControlMode.PercentOutput, (0));
+        Robot.oi.intake_motor.set(ControlMode.PercentOutput, (0));
+        Robot.oi.shooterPIDcontroller1.setReference(0, ControlType.kVelocity);
+        // Robot.oi.shooterPIDcontroller2.setReference(0, ControlType.kVelocity);
+    }
     }
 }
 
