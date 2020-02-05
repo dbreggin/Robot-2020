@@ -8,13 +8,10 @@ public final class Buttoncontrols {
     public static Vision vision;
     public static Shooter shooter;
     public Buttoncontrols() {
-        if(Robot.oi.ljoystick.getRawButton(Robotmap.JoyTrigger)){
-            vision = new Vision(1.28,0,1);
-        }
         if(Robot.oi.gamepad.getRawButton(Robotmap.Abutton)){
             shooter = new Shooter();
         }
-        if(Robot.oi.rjoystick.getRawButton(Robotmap.JoyTrigger)){
+        if(Robot.oi.ljoystick.getRawButton(Robotmap.JoyTrigger)){
             vision = new Vision(1.28,0,1);
         } else if(Globalvariables.Shootflag){
             shooter = new Shooter();

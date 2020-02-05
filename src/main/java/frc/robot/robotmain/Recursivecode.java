@@ -3,7 +3,7 @@ import frc.robot.Globalvariables;
 import frc.robot.OI;
 import frc.robot.Robot; 
 import frc.robot.Robotmap;
-
+import frc.robot.commands.LEDmode;
 import frc.robot.commands.Vision;
 
 
@@ -11,6 +11,7 @@ public final class Recursivecode{
     public Recursivecode(){
         recursivecode();
     }
+    LEDmode ledmode;
     public void recursivecode(){
         //ball counter code
         if(!Robot.oi.lineSensor.get() && !Globalvariables.lineloopflag[0]){
@@ -30,7 +31,8 @@ public final class Recursivecode{
         if(Globalvariables.ball_counter <= 0){
             Globalvariables.ball_counter = 0;
         } else if(Globalvariables.ball_counter >=5){
-            Globalvariables.ball_counter = 5;
+            Globalvariables.ball_counter = 5; 
         }
+        ledmode = new LEDmode();
     }
 }

@@ -13,11 +13,14 @@ import com.ctre.phoenix.motorcontrol.can.TalonSRX;
 import com.ctre.phoenix.motorcontrol.FeedbackDevice;
 import com.ctre.phoenix.motorcontrol.can.VictorSPX;
 import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
+import com.ctre.phoenix.motorcontrol.can.TalonFX;
+import com.ctre.phoenix.motorcontrol.TalonFXFeedbackDevice;
 import edu.wpi.first.wpilibj.drive.DifferentialDrive;
 //limelight
 import edu.wpi.first.networktables.NetworkTable;
 import edu.wpi.first.networktables.NetworkTableEntry;
 import edu.wpi.first.networktables.NetworkTableInstance;
+import edu.wpi.first.wpilibj.Talon;
 
 public final class OI {
 //2019 robot stuffffffff
@@ -41,6 +44,8 @@ public CANPIDController shooterPIDcontroller1;
 public CANPIDController shooterPIDcontroller2;
 public CANEncoder shooter_encoder1;
 public CANEncoder shooter_encoder2;
+public TalonFX drmotor1;
+public Talon e_boy;
 
 //Motors 
 private TalonSRX motor1;
@@ -50,7 +55,6 @@ private TalonSRX motor4;
 private TalonSRX motor5;
 private TalonSRX motor6;
 
-//private neo shootermotor;
 //limelight
 public NetworkTable table;
 public NetworkTableEntry tx;
@@ -84,9 +88,11 @@ public OI() {
     hopper_motor = new TalonSRX(6);
     outake_motor = new TalonSRX(9);
     shooter_motor1 = new CANSparkMax(11, MotorType.kBrushless);
-    // shooter_motor2 = new CANSparkMax(15, MotorType.kBrushless);
+    shooter_motor2 = new CANSparkMax(10, MotorType.kBrushless);
     shooterPIDcontroller1 = shooter_motor1.getPIDController();
     //shooterPIDcontroller2 = shooter_motor2.getPIDController();
+    drmotor1 = new TalonFX(15);
+    e_boy = new Talon(9);
     shooterPIDcontroller1.setP(5e-5);
     shooterPIDcontroller1.setI(1e-6);
     shooterPIDcontroller1.setD(0);

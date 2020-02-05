@@ -44,10 +44,12 @@ public final class Vision {
                 sA=0;
 
             }
-            if(dA>-.1 && dA<.1 && sA>-.035 && sA<.035){
-                Globalvariables.Shootflag = true;
+            if(dA>-.3 && dA<.3 && sA>-.1 && sA<.1){
+                // Globalvariables.Shootflag = true;
+                Globalvariables.LEDmode = 1;
             } else{
-                Globalvariables.Shootflag = false;
+                // Globalvariables.Shootflag = false;
+                Globalvariables.LEDmode = 6;
             }
             sA*=-1;
 
@@ -58,7 +60,7 @@ public final class Vision {
             Robot.oi.drive.arcadeDrive(dA,sA);
         } else{
             Robot.oi.drive.tankDrive(0,0);
-
+            Globalvariables.LEDmode = 2;
         }
     }
 
