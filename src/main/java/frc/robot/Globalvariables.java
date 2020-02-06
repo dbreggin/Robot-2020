@@ -27,16 +27,30 @@ public final class Globalvariables {
     public static boolean SwitchFlag;
     public static boolean VisionFlag;
     public static boolean UserControl;
-    public static boolean Shootflag;
     public static boolean[] buttonDone = {
+        false,
         false,
         false
     };
     public static boolean vision;
     public static boolean driveType;
+    public static boolean angle;
+    public static boolean check_flag;
+    public static boolean angle_turn;
+    public static double speed;
+    public static boolean tA_flag;
+    public static double tA;
     public static boolean reverse;
+    public static boolean Shootflag;
     public static double linecounter;
     public Globalvariables(){
+        check_flag = false;
+        Shootflag = false;
+        angle = false;
+        speed = 0.0;
+        tA = 0.0;
+        tA_flag = false;
+        angle_turn = false;
         Seetarget = false;
         SwitchFlag = false;
         VisionFlag = false;
@@ -44,7 +58,6 @@ public final class Globalvariables {
         vision = false;
         driveType = false;
         reverse = false;
-        Shootflag = false;
         ball_counter = 3; //use slider to change
     }    
 

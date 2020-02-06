@@ -58,7 +58,6 @@ public class Robot extends TimedRobot {
   }
   @Override public void teleopPeriodic() {
     //called during teleop - main function
-    //oi.shooter_motor1.set(.2);
     joysticks = new Joystickcontrols();
     recursivecode = new Recursivecode();
     buttoncontrols = new Buttoncontrols();

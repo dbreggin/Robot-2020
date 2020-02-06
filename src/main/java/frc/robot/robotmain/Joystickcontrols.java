@@ -1,4 +1,5 @@
 package frc.robot.robotmain;
+import frc.robot.AngleCall;
 import frc.robot.Globalvariables;
 import frc.robot.OI;
 import frc.robot.Robot; 
@@ -13,6 +14,7 @@ import frc.robot.commands.Vision;
 
 public final class Joystickcontrols {
     public Vision visionFunction;
+    public AngleCall angleFunction;
     public Joystickcontrols(){
     Joystickcontrol();
     }
@@ -30,6 +32,16 @@ public final class Joystickcontrols {
         }
         else if(!Robot.oi.rjoystick.getRawButton(Robotmap.JoyBotFT) && Globalvariables.buttonDone[1]){
             Globalvariables.buttonDone[1] = false;
+        }
+        if(Robot.oi.rjoystick.getRawButton(Robotmap.JoyBotBB) && !Globalvariables.buttonDone[2]){
+            Globalvariables.angle = true;
+            Globalvariables.buttonDone[2] = true;
+        }
+        else if(!Robot.oi.rjoystick.getRawButton(Robotmap.JoyBotBB) && Globalvariables.buttonDone[2]){
+            Globalvariables.buttonDone[2] = false;
+        }
+        if(Globalvariables.angle){
+            angleFunction = new AngleCall(90.0,0.0);
         }
         if(Globalvariables.vision){
             Globalvariables.UserControl = false;

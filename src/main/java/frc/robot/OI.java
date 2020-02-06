@@ -20,11 +20,18 @@ import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
 import com.ctre.phoenix.motorcontrol.can.TalonFX;
 import com.ctre.phoenix.motorcontrol.TalonFXFeedbackDevice;
 import edu.wpi.first.wpilibj.drive.DifferentialDrive;
+//import com.kauailabs.navx.frc.AHRS;
 //limelight
 import edu.wpi.first.networktables.NetworkTable;
 import edu.wpi.first.networktables.NetworkTableEntry;
 import edu.wpi.first.networktables.NetworkTableInstance;
 import edu.wpi.first.wpilibj.Talon;
+
+import com.revrobotics.CANEncoder;
+import com.revrobotics.CANPIDController;
+import com.revrobotics.CANSparkMax;
+import com.revrobotics.SparkMax;
+
 
 public final class OI {
 //2019 robot stuffffffff
@@ -58,7 +65,6 @@ private TalonSRX motor3;
 private TalonSRX motor4;
 private TalonSRX motor5;
 private TalonSRX motor6;
-
 //limelight
 public NetworkTable table;
 public NetworkTableEntry tx;
@@ -77,6 +83,8 @@ public NetworkTableEntry maxSpeed;
 public NetworkTableEntry LeDtest;
 public DigitalInput lineSensor;
 public DigitalInput lineSensor2;
+//public AHRS navx;
+
 //read values periodically
 public OI() {
     //2019 robot stuffffffff
@@ -91,7 +99,7 @@ public OI() {
     lmotor3 = new VictorSPX(8); //8
     intake_motor = new TalonSRX(1);
     cp_motor = new TalonSRX(3);
-    hopper_motor = new TalonSRX(6);
+    hopper_motor = new TalonSRX(6); 
     outake_motor = new TalonSRX(9);
     //shooter_motor1 = new CANSparkMax(11, MotorType.kBrushless);
     //shooter_motor2 = new CANSparkMax(10, MotorType.kBrushless);

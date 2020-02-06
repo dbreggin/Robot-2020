@@ -15,9 +15,9 @@ public final class Shuffleboard_stuff {
     public Shuffleboard_stuff(){
     Shuffleboard_stuff1();
     if(Robot.oi.lv == 0){
-        Robot.globalvariables.Seetarget = false;
+        Globalvariables.Seetarget = false;
     }else {
-        Robot.globalvariables.Seetarget = true;
+        Globalvariables.Seetarget = true;
         }
     }
     public void Shuffleboard_stuff1(){

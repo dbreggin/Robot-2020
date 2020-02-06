@@ -1,6 +1,5 @@
 package frc.robot.subsystems;
 import frc.robot.Robot;
-import frc.robot.Robotmap;
 import frc.robot.OI;
 import frc.robot.Globalvariables;
 import com.ctre.phoenix.motorcontrol.ControlMode;
@@ -21,4 +20,3 @@ public final class Shooter{
     }
 }
 
-  

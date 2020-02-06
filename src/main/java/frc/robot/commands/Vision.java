@@ -30,7 +30,6 @@ public final class Vision {
             } else if (dA>-.1 && dA<.1){
                 dA=0;
                 sA*=1.25;
-
             }
             if(sA>1){
                 sA = 1;
@@ -52,7 +51,7 @@ public final class Vision {
                 Globalvariables.LEDmode = 6;
             }
             sA*=-1;
-
+            
 
 
             Robot.oi.temp1 = sA;
