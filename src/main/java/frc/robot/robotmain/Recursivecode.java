@@ -33,6 +33,7 @@ public final class Recursivecode{
         } else if(Globalvariables.ball_counter >=5){
             Globalvariables.ball_counter = 5; 
         }
-        ledmode = new LEDmode();
+        //ledmode = new LEDmode();
+        Robot.oi.e_boy.set(Robot.oi.LeDtest.getDouble(1.0));
     }
 }

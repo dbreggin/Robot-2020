@@ -17,9 +17,9 @@ public final class Buttoncontrols {
             shooter = new Shooter();
         }
         if(Robot.oi.gamepad.getRawButton(Robotmap.Ybutton)){
-            Robot.oi.shooterPIDcontroller1.setReference(5700, ControlType.kVelocity);
+            //Robot.oi.shooterPIDcontroller1.setReference(5700, ControlType.kVelocity);
         } else {
-            Robot.oi.shooterPIDcontroller1.setReference(0, ControlType.kVelocity);
+            //Robot.oi.shooterPIDcontroller1.setReference(0, ControlType.kVelocity);
         }
     }
 }

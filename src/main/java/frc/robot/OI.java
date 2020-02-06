@@ -7,6 +7,10 @@ import com.revrobotics.SparkMax;
 import com.revrobotics.CANPIDController;
 import com.revrobotics.CANSparkMaxLowLevel.MotorType;
 import com.revrobotics.CANEncoder;
+import edu.wpi.first.wpilibj.shuffleboard.ShuffleboardTab;
+import edu.wpi.first.wpilibj.shuffleboard.Shuffleboard;
+import edu.wpi.first.wpilibj.shuffleboard.BuiltInWidgets;
+import java.util.Map;
 
 import com.ctre.phoenix.motorcontrol.can.TalonSRX;
 //2019 robot stuffffffff
@@ -38,13 +42,13 @@ public TalonSRX intake_motor;
 public TalonSRX cp_motor;
 public TalonSRX hopper_motor;
 public TalonSRX outake_motor;
-public CANSparkMax shooter_motor1;
-public CANSparkMax shooter_motor2;
-public CANPIDController shooterPIDcontroller1;
-public CANPIDController shooterPIDcontroller2;
-public CANEncoder shooter_encoder1;
-public CANEncoder shooter_encoder2;
-public TalonFX drmotor1;
+//public CANSparkMax shooter_motor1;
+//public CANSparkMax shooter_motor2;
+//public CANPIDController shooterPIDcontroller1;
+//public CANPIDController shooterPIDcontroller2;
+//public CANEncoder shooter_encoder1;
+//public CANEncoder shooter_encoder2;
+//public TalonFX drmotor1;
 public Talon e_boy;
 
 //Motors 
@@ -68,7 +72,9 @@ public double lv;
 //misc
 public double temp1;
 public double temp2;
-
+public ShuffleboardTab tab;
+public NetworkTableEntry maxSpeed;
+public NetworkTableEntry LeDtest;
 public DigitalInput lineSensor;
 public DigitalInput lineSensor2;
 //read values periodically
@@ -87,18 +93,20 @@ public OI() {
     cp_motor = new TalonSRX(3);
     hopper_motor = new TalonSRX(6);
     outake_motor = new TalonSRX(9);
-    shooter_motor1 = new CANSparkMax(11, MotorType.kBrushless);
-    shooter_motor2 = new CANSparkMax(10, MotorType.kBrushless);
-    shooterPIDcontroller1 = shooter_motor1.getPIDController();
+    //shooter_motor1 = new CANSparkMax(11, MotorType.kBrushless);
+    //shooter_motor2 = new CANSparkMax(10, MotorType.kBrushless);
+    //shooterPIDcontroller1 = shooter_motor1.getPIDController();
     //shooterPIDcontroller2 = shooter_motor2.getPIDController();
-    drmotor1 = new TalonFX(15);
+    //drmotor1 = new TalonFX(15);
     e_boy = new Talon(9);
+    /*
     shooterPIDcontroller1.setP(5e-5);
     shooterPIDcontroller1.setI(1e-6);
     shooterPIDcontroller1.setD(0);
     shooterPIDcontroller1.setIZone(0);
     shooterPIDcontroller1.setFF(0);
     shooterPIDcontroller1.setOutputRange(-1, 1);
+    */
     /*
     shooterPIDcontroller2.setP(5e-5);
     shooterPIDcontroller2.setI(1e-6);
@@ -107,7 +115,7 @@ public OI() {
     shooterPIDcontroller2.setFF(0);
     shooterPIDcontroller2.setOutputRange(-1, 1);
     */
-    shooter_encoder1 = shooter_motor1.getEncoder();
+    //shooter_encoder1 = shooter_motor1.getEncoder();
     //shooter_encoder2 = shooter_motor2.getEncoder();
 
     rmotor2.follow(rmotor1);
@@ -132,5 +140,8 @@ public OI() {
     lineSensor = new DigitalInput(0);
     lineSensor2 = new DigitalInput(1);
 
+    tab = Shuffleboard.getTab("SmartDashboard");
+    maxSpeed = tab.add("Max Speed", 1).withWidget(BuiltInWidgets.kNumberSlider).withProperties(Map.of("min",0,"max",1)).getEntry();
+    LeDtest = tab.add("HeavyMetalTest",1).withProperties(Map.of("min",-1,"max",1)).getEntry();
     }
 }

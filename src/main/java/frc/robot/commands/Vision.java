@@ -44,7 +44,7 @@ public final class Vision {
                 sA=0;
 
             }
-            if(dA>-.3 && dA<.3 && sA>-.1 && sA<.1){
+            if(dA>-.1 && dA<.1 && sA>-.035 && sA<.035){
                 // Globalvariables.Shootflag = true;
                 Globalvariables.LEDmode = 1;
             } else{

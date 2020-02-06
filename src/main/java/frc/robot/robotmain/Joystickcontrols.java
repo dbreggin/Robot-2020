@@ -4,6 +4,8 @@ import frc.robot.OI;
 import frc.robot.Robot; 
 import frc.robot.Robotmap;
 import com.ctre.phoenix.motorcontrol.ControlMode;
+import frc.robot.robotmain.Shuffleboard_stuff;
+
 
 import frc.robot.commands.LEDmode;
 import frc.robot.commands.Vision;
@@ -40,22 +42,22 @@ public final class Joystickcontrols {
             Globalvariables.LEDmode = 0;
             if(Robot.oi.ljoystick.getRawButton(Robotmap.JoyTrigger)){
                 if(Globalvariables.driveType){
-                    Robot.oi.drive.arcadeDrive(Robot.oi.rjoystick.getRawAxis(Robotmap.joyY), -Robot.oi.rjoystick.getRawAxis(Robotmap.joyX));
+                    Robot.oi.drive.arcadeDrive(Robot.oi.rjoystick.getRawAxis(Robotmap.joyY)*Robot.oi.maxSpeed.getDouble(1.0), -Robot.oi.rjoystick.getRawAxis(Robotmap.joyX)*Robot.oi.maxSpeed.getDouble(1.0));
                 }
                 else{
-                    Robot.oi.drive.tankDrive(Robot.oi.ljoystick.getRawAxis(Robotmap.joyY), Robot.oi.rjoystick.getRawAxis(Robotmap.joyY));
+                    Robot.oi.drive.tankDrive(Robot.oi.ljoystick.getRawAxis(Robotmap.joyY)*Robot.oi.maxSpeed.getDouble(1.0), Robot.oi.rjoystick.getRawAxis(Robotmap.joyY)*Robot.oi.maxSpeed.getDouble(1.0));
                 }
             }
             else{
                 if(Globalvariables.driveType){
-                    Robot.oi.drive.arcadeDrive(-Robot.oi.rjoystick.getRawAxis(Robotmap.joyY), -Robot.oi.rjoystick.getRawAxis(Robotmap.joyX));
+                    Robot.oi.drive.arcadeDrive(-Robot.oi.rjoystick.getRawAxis(Robotmap.joyY)*Robot.oi.maxSpeed.getDouble(1.0), -Robot.oi.rjoystick.getRawAxis(Robotmap.joyX)*Robot.oi.maxSpeed.getDouble(1.0));
                 }
                 else{
-                    Robot.oi.drive.tankDrive(-Robot.oi.rjoystick.getRawAxis(Robotmap.joyY), -Robot.oi.ljoystick.getRawAxis(Robotmap.joyY));
+                    Robot.oi.drive.tankDrive(-Robot.oi.rjoystick.getRawAxis(Robotmap.joyY)*Robot.oi.maxSpeed.getDouble(1.0), -Robot.oi.ljoystick.getRawAxis(Robotmap.joyY)*Robot.oi.maxSpeed.getDouble(1.0));
                 }   
             }
         // Robot.oi.intake_motor.set(ControlMode.PercentOutput, Robot.oi.gamepad.getRawAxis(1));
-        Robot.oi.drmotor1.set(ControlMode.PercentOutput, Robot.oi.gamepad.getRawAxis(1));
+        //Robot.oi.drmotor1.set(ControlMode.PercentOutput, Robot.oi.gamepad.getRawAxis(1));
         }
     }
 
