@@ -8,19 +8,21 @@ import com.ctre.phoenix.motorcontrol.can.TalonSRX;
 import com.ctre.phoenix.motorcontrol.FeedbackDevice;
 import com.ctre.phoenix.motorcontrol.can.VictorSPX;
 import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
-<<<<<<< HEAD
-import com.kauailabs.navx.frc.AHRS;
-
-=======
 import com.ctre.phoenix.motorcontrol.can.TalonFX;
 import com.ctre.phoenix.motorcontrol.TalonFXFeedbackDevice;
->>>>>>> c68eea07b7f2624606c931efb04ed74e36044489
 import edu.wpi.first.wpilibj.drive.DifferentialDrive;
+import com.kauailabs.navx.frc.AHRS;
 //limelight
 import edu.wpi.first.networktables.NetworkTable;
 import edu.wpi.first.networktables.NetworkTableEntry;
 import edu.wpi.first.networktables.NetworkTableInstance;
 import edu.wpi.first.wpilibj.Talon;
+
+import com.revrobotics.CANEncoder;
+import com.revrobotics.CANPIDController;
+import com.revrobotics.CANSparkMax;
+import com.revrobotics.SparkMax;
+
 
 public final class OI {
 //2019 robot stuffffffff
@@ -34,8 +36,6 @@ public Joystick gamepad;
 public Joystick rjoystick;
 public Joystick ljoystick;
 public DifferentialDrive drive;
-<<<<<<< HEAD
-=======
 public TalonSRX intake_motor;
 public TalonSRX cp_motor;
 public TalonSRX hopper_motor;
@@ -48,7 +48,6 @@ public CANEncoder shooter_encoder1;
 public CANEncoder shooter_encoder2;
 public TalonFX drmotor1;
 public Talon e_boy;
->>>>>>> c68eea07b7f2624606c931efb04ed74e36044489
 
 //Motors 
 private TalonSRX motor1;
@@ -57,10 +56,6 @@ private TalonSRX motor3;
 private TalonSRX motor4;
 private TalonSRX motor5;
 private TalonSRX motor6;
-<<<<<<< HEAD
-=======
-
->>>>>>> c68eea07b7f2624606c931efb04ed74e36044489
 //limelight
 public NetworkTable table;
 public NetworkTableEntry tx;
@@ -85,14 +80,6 @@ public OI() {
     gamepad = new Joystick(Robotmap.gamepad);
     ljoystick = new Joystick(0);
     rjoystick = new Joystick(1);
-<<<<<<< HEAD
-    rmotor1 = new WPI_TalonSRX(4);
-    rmotor2 = new VictorSPX(5);
-    rmotor3 = new VictorSPX(7);
-    lmotor1 = new WPI_TalonSRX(2);
-    lmotor2 = new VictorSPX(0);
-    lmotor3 = new VictorSPX(8);
-=======
     rmotor1 = new WPI_TalonSRX(4);  //4
     rmotor2 = new VictorSPX(5); //5
     rmotor3 = new VictorSPX(7); //7
@@ -101,11 +88,11 @@ public OI() {
     lmotor3 = new VictorSPX(8); //8
     intake_motor = new TalonSRX(1);
     cp_motor = new TalonSRX(3);
-    hopper_motor = new TalonSRX(6);
+    hopper_motor = new TalonSRX(6); 
     outake_motor = new TalonSRX(9);
-    shooter_motor1 = new CANSparkMax(11, MotorType.kBrushless);
-    shooter_motor2 = new CANSparkMax(10, MotorType.kBrushless);
-    shooterPIDcontroller1 = shooter_motor1.getPIDController();
+    //shooter_motor1 = new CANSparkMax(11, MotorType.kBrushless);
+    //shooter_motor2 = new CANSparkMax(10, MotorType.kBrushless);
+    //shooterPIDcontroller1 = shooter_motor1.getPIDController();
     //shooterPIDcontroller2 = shooter_motor2.getPIDController();
     drmotor1 = new TalonFX(15);
     e_boy = new Talon(9);
@@ -126,7 +113,6 @@ public OI() {
     shooter_encoder1 = shooter_motor1.getEncoder();
     //shooter_encoder2 = shooter_motor2.getEncoder();
 
->>>>>>> c68eea07b7f2624606c931efb04ed74e36044489
     rmotor2.follow(rmotor1);
     rmotor3.follow(rmotor1);
     lmotor2.follow(lmotor1);

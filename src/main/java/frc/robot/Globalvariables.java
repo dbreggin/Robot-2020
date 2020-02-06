@@ -41,9 +41,11 @@ public final class Globalvariables {
     public static boolean tA_flag;
     public static double tA;
     public static boolean reverse;
+    public static boolean Shootflag;
     public static double linecounter;
     public Globalvariables(){
         check_flag = false;
+        Shootflag = false;
         angle = false;
         speed = 0.0;
         tA = 0.0;
