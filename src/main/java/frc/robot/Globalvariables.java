@@ -17,6 +17,8 @@ import frc.robot.OI;
  */
 public final class Globalvariables {
     public static int ball_counter;
+    public static double LEDoffset=-.06;
+    public static int LEDmode = 12;
     public static boolean[] lineloopflag ={
         false,
         false

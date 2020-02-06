@@ -5,8 +5,13 @@ import frc.robot.Globalvariables;
 import frc.robot.OI;
 import frc.robot.Robot; 
 import frc.robot.Robotmap;
+<<<<<<< HEAD
 import frc.robot.commands.AngleAdjust;
 import frc.robot.commands.Vision;;
+=======
+import frc.robot.commands.LEDmode;
+import frc.robot.commands.Vision;
+>>>>>>> c68eea07b7f2624606c931efb04ed74e36044489
 
 
 public final class Recursivecode{
@@ -14,6 +19,7 @@ public final class Recursivecode{
     public Recursivecode(){
         recursivecode();
     }
+    LEDmode ledmode;
     public void recursivecode(){
         //ball counter code
         if(!Robot.oi.lineSensor.get() && !Globalvariables.lineloopflag[0]){
@@ -33,13 +39,17 @@ public final class Recursivecode{
         if(Globalvariables.ball_counter <= 0){
             Globalvariables.ball_counter = 0;
         } else if(Globalvariables.ball_counter >=5){
-            Globalvariables.ball_counter = 5;
+            Globalvariables.ball_counter = 5; 
         }
+<<<<<<< HEAD
         if(Globalvariables.angle_turn){
             Globalvariables.UserControl = false;
             angleadjust = new AngleAdjust();
         }else{
             Globalvariables.UserControl = true;
         }
+=======
+        ledmode = new LEDmode();
+>>>>>>> c68eea07b7f2624606c931efb04ed74e36044489
     }
 }
