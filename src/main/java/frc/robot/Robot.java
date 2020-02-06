@@ -60,7 +60,7 @@ public class Robot extends TimedRobot {
     //called during teleop - main function
     joysticks = new Joystickcontrols();
     recursivecode = new Recursivecode();
-    //buttoncontrols = new Buttoncontrols();
+    buttoncontrols = new Buttoncontrols();
     //vision = new Vision(1.28,0,1); 
     //oi.drive.tankDrive(oi.ljoystick.getRawAxis(1),oi.rjoystick.getRawAxis(1));
     //oi.lmotor1.set(ControlMode.PercentOutput, oi.ljoystick.getRawAxis(1));

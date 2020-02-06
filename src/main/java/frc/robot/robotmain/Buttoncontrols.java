@@ -9,5 +9,10 @@ public final class Buttoncontrols {
         if(Robot.oi.rjoystick.getRawButton(Robotmap.JoyTrigger)){
             vision = new Vision(5,0,.6);
         }
+        if(Robot.oi.rjoystick.getRawButton(Robotmap.JoyBotBB)){
+            angleCall = new AngleCall(90, 0);
+        } else {
+            Globalvariables.tA_flag = false;
+        }
     }
 }

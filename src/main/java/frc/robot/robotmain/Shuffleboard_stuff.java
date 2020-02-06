@@ -22,10 +22,11 @@ public final class Shuffleboard_stuff {
         SmartDashboard.putNumber("sA", Robot.oi.temp1);
         SmartDashboard.putNumber("dA", Robot.oi.temp2);
         SmartDashboard.putNumber("Ball Num", Globalvariables.ball_counter);
-        SmartDashboard.putBoolean("tA Flag", Globalvariables.tA_flag);
+        SmartDashboard.putBoolean("tA Flag", Globalvariables.angle_turn);
         SmartDashboard.putBoolean("User control", Globalvariables.UserControl);
         SmartDashboard.putBoolean("Check", Globalvariables.check_flag
         );
+        
 
 
     }

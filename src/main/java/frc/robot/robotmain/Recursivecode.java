@@ -13,16 +13,6 @@ public final class Recursivecode{
     public AngleAdjust angleadjust;
     public Recursivecode(){
         recursivecode();
-        angle_turn();
-    }
-    private void angle_turn(){
-        if(Globalvariables.angle_turn){
-            Globalvariables.UserControl = false;
-            Globalvariables.tA_flag = false;
-            angleadjust = new AngleAdjust();
-        }else{
-            Globalvariables.UserControl = true;
-        }
     }
     public void recursivecode(){
         //ball counter code
@@ -44,6 +34,12 @@ public final class Recursivecode{
             Globalvariables.ball_counter = 0;
         } else if(Globalvariables.ball_counter >=5){
             Globalvariables.ball_counter = 5;
+        }
+        if(Globalvariables.angle_turn){
+            Globalvariables.UserControl = false;
+            angleadjust = new AngleAdjust();
+        }else{
+            Globalvariables.UserControl = true;
         }
     }
 }
