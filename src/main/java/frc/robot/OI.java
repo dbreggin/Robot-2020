@@ -11,6 +11,7 @@ import edu.wpi.first.wpilibj.shuffleboard.ShuffleboardTab;
 import edu.wpi.first.wpilibj.shuffleboard.Shuffleboard;
 import edu.wpi.first.wpilibj.shuffleboard.BuiltInWidgets;
 import java.util.Map;
+import com.kauailabs.navx.frc.AHRS;
 
 import com.ctre.phoenix.motorcontrol.can.TalonSRX;
 //2019 robot stuffffffff
