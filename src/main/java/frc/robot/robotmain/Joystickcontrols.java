@@ -10,10 +10,12 @@ import frc.robot.robotmain.Shuffleboard_stuff;
 
 import frc.robot.commands.LEDmode;
 import frc.robot.commands.Vision;
+import frc.robot.commands.VisionRange;
 
 
 public final class Joystickcontrols {
-    public Vision visionFunction;
+    // public Vision visionFunction;
+    public VisionRange visionFunction;
     public AngleCall angleFunction;
     public Joystickcontrols(){
     Joystickcontrol();
@@ -45,7 +47,7 @@ public final class Joystickcontrols {
         }
         if(Globalvariables.vision){
             Globalvariables.UserControl = false;
-            visionFunction = new Vision(2.11,0,1);
+            visionFunction = new VisionRange(0.75, 0.4,0,1);
         }
         else{
             Globalvariables.UserControl = true;

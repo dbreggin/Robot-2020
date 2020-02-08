@@ -84,6 +84,7 @@ public NetworkTableEntry maxSpeed;
 public NetworkTableEntry LeDtest;
 public DigitalInput lineSensor;
 public DigitalInput lineSensor2;
+public AHRS navx;
 //public AHRS navx;
 
 //read values periodically
@@ -152,5 +153,8 @@ public OI() {
     tab = Shuffleboard.getTab("SmartDashboard");
     maxSpeed = tab.add("Max Speed", 1).withWidget(BuiltInWidgets.kNumberSlider).withProperties(Map.of("min",0,"max",1)).getEntry();
     LeDtest = tab.add("HeavyMetalTest",1).withProperties(Map.of("min",-1,"max",1)).getEntry();
+
+    navx = new AHRS();
+
     }
 }

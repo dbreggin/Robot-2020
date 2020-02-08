@@ -12,7 +12,7 @@ public final class Buttoncontrols {
             shooter = new Shooter();
         }
         if(Robot.oi.ljoystick.getRawButton(Robotmap.JoyTrigger)){
-            vision = new Vision(1.28,0,1);
+            vision = new Vision(1.28,0,1); //1.28=15feet 
         } else if(Globalvariables.Shootflag){
             shooter = new Shooter();
         }

@@ -5,7 +5,7 @@ public final class LEDmode {
     public LEDmode(){
         switch(Globalvariables.LEDmode){
             case 0://Aqua
-            Robot.oi.e_boy.set(.81+Globalvariables.LEDoffset);
+            Robot.oi.e_boy.set(.73);
             break;
             case 1://Limegreen
             Robot.oi.e_boy.set(.73+Globalvariables.LEDoffset);

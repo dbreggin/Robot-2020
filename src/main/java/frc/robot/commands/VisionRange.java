@@ -2,10 +2,10 @@ package frc.robot.commands;
 import frc.robot.*;
 import edu.wpi.first.networktables.NetworkTableInstance;
 
-public final class Vision {
+public final class VisionRange {
     double dA;
     double sA; 
-    public Vision(double distance,  int pipeline, double scaler) {
+    public VisionRange(double distance, double deviation, int pipeline, double scaler) {
         Robot.oi.table = NetworkTableInstance.getDefault().getTable("limelight");
         Robot.oi.tx = Robot.oi.table.getEntry("tx");
         Robot.oi.ty = Robot.oi.table.getEntry("ty");
@@ -16,6 +16,18 @@ public final class Vision {
         Robot.oi.la = Robot.oi.ta.getDouble(0.0);
         Robot.oi.lv = Robot.oi.tv.getDouble(0.0);
         if(Robot.oi.lv != 0.0){
+            // if(Robot.oi.la<distance-deviation || Robot.oi.la>distance+deviation){
+            //     sA = Robot.oi.lx / 20;
+            //     if(sA>1){
+            //         sA = 1;
+            //     } else if (sA<-1){
+            //         sA = -1;
+            //     }
+            //         sA*=-1;
+            //     Robot.oi.drive.arcadeDrive(0,sA);
+            //     Globalvariables.LEDmode=1;
+            // } else {
+            Globalvariables.LEDmode=5;
             dA=(Robot.oi.la-distance)*1.05;
             dA *= -1;
             sA = Robot.oi.lx / 20;
@@ -29,35 +41,45 @@ public final class Vision {
                 dA=-.5;
             } else if (dA>-.1 && dA<.1){
                 dA=0; 
-                sA*=1.25;
+                //sA*=1.25;
             }
-            if(sA>1){
-                sA = 1;
-            } else if (sA<-1){
-                sA = -1;
-            } else if (sA<.5 && sA>.016){
-                sA=.5;
-            } else if (sA<-.5 && sA>-.016){
-                sA=-.5;
-            } else if (sA>-.035 && sA<.035){
-                sA=0;
+            // if (sA<.5 && sA>.016){
+            //     sA=.5;
+            // } else if (sA<-.5 && sA>-.016){
+            //     sA=-.5;
+            // } else if (sA>-.035 && sA<.035){
+            //     sA=0;
 
-            }
+            // }
             if(dA>-.1 && dA<.1 && sA>-.035 && sA<.035){
                 // Globalvariables.Shootflag = true;
-                Globalvariables.LEDmode = 1;
+                // Globalvariables.LEDmode = 1;
             } else{
                 // Globalvariables.Shootflag = false;
-                Globalvariables.LEDmode = 6;
+                // Globalvariables.LEDmode = 6;
             }
             sA*=-1;
-            
-
-
+            if(Robot.oi.la-(deviation*2)<distance && Robot.oi.la+(deviation*2)>distance){
+                dA=0;
+                if(sA<0.2 && sA>-.2){
+                    sA*=4;
+                    Globalvariables.LEDmode = 10;
+                } else if((sA<.5 && sA >.3) || (sA>-.5&&sA<-.3)){
+                    sA*=1.5;
+                } else if((sA<.3 && sA >.2) || (sA>-.3&&sA<-.2)){
+                    sA*=2;
+                }
+            } 
+            if(sA>.5){
+                sA = .5;
+            } else if (sA<-.5){
+                sA = -.5;
+            }
             Robot.oi.temp1 = sA;
             Robot.oi.temp2 = dA;
             Robot.oi.drive.arcadeDrive(dA,sA);
-        } else{
+            // }
+          } else{
             Robot.oi.drive.tankDrive(0,0);
             Globalvariables.LEDmode = 2;
         }
