@@ -27,6 +27,8 @@ public final class Shuffleboard_stuff {
         // SmartDashboard.putNumber("NAVX", Robot.oi.navx.getAngle());
         // SmartDashboard.putNumber("ALITUDE", Robot.oi.navx.getAltitude());
         // SmartDashboard.putNumber("BAR PRESSURE", Robot.oi.navx.getBarometricPressure());
+        SmartDashboard.putNumber("lencoder", Robot.oi.lmotor1.getSelectedSensorPosition());
+        SmartDashboard.putNumber("rencoder", Robot.oi.rmotor1.getSelectedSensorPosition());
         SmartDashboard.putNumber("sliderTest", getMaxSpeed());
     }
     public double getMaxSpeed(){

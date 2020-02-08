@@ -16,5 +16,10 @@ public final class Buttoncontrols {
         } else if(Globalvariables.Shootflag){
             shooter = new Shooter();
         }
+        if(Robot.oi.rjoystick.getRawButton(Robotmap.JoyBotFB)){
+            Robot.oi.rmotor1.setSelectedSensorPosition(0, 0, 30);
+            Robot.oi.lmotor1.setSelectedSensorPosition(0, 0, 30);
+            Robot.oi.navx.reset();
+        }
     }     
 }

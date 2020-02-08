@@ -12,6 +12,7 @@ import edu.wpi.first.wpilibj.shuffleboard.Shuffleboard;
 import edu.wpi.first.wpilibj.shuffleboard.BuiltInWidgets;
 import java.util.Map;
 import com.kauailabs.navx.frc.AHRS;
+import com.ctre.phoenix.motorcontrol.FeedbackDevice;
 
 import com.ctre.phoenix.motorcontrol.can.TalonSRX;
 //2019 robot stuffffffff
@@ -127,6 +128,8 @@ public OI() {
     */
     //shooter_encoder1 = shooter_motor1.getEncoder();
     //shooter_encoder2 = shooter_motor2.getEncoder();
+    rmotor1.configSelectedFeedbackSensor(FeedbackDevice.QuadEncoder, 0, 30);
+    lmotor1.configSelectedFeedbackSensor(FeedbackDevice.QuadEncoder, 0, 30);
 
     rmotor2.follow(rmotor1);
     rmotor3.follow(rmotor1);

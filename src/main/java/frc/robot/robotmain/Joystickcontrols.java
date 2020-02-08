@@ -53,7 +53,7 @@ public final class Joystickcontrols {
             Globalvariables.UserControl = true;
         }
         if(Globalvariables.UserControl){
-            Globalvariables.LEDmode = 0;
+            Globalvariables.LEDmode = 22;
             if(Robot.oi.ljoystick.getRawButton(Robotmap.JoyTrigger)){
                 if(Globalvariables.driveType){
                     Robot.oi.drive.arcadeDrive(Robot.oi.rjoystick.getRawAxis(Robotmap.joyY)*Robot.oi.maxSpeed.getDouble(1.0), -Robot.oi.rjoystick.getRawAxis(Robotmap.joyX)*Robot.oi.maxSpeed.getDouble(1.0));

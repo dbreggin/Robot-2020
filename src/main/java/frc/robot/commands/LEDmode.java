@@ -70,8 +70,9 @@ public final class LEDmode {
             case 21://Black
             Robot.oi.e_boy.set(.99+Globalvariables.LEDoffset);
             break;
+            case 22://Komodo
+            Robot.oi.e_boy.set(.37);
+            break;
         }
-
     }
-
 }

@@ -46,10 +46,14 @@ public class Robot extends TimedRobot {
   }
   @Override public void autonomousInit() {
     //called when autonomous first initializes
-    autonomous = new Autonomous();
+    //autonomous = new Autonomous();
+    Robot.oi.rmotor1.setSelectedSensorPosition(0, 0, 30);
+    Robot.oi.lmotor1.setSelectedSensorPosition(0, 0, 30);
+    Robot.oi.navx.reset();
   }
   @Override public void autonomousPeriodic() {
     //called during autonomous
+    autonomous = new Autonomous();
     recursivecode = new Recursivecode();
   }
   @Override public void teleopInit() {
