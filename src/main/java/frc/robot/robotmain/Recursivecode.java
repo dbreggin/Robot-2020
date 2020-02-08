@@ -7,11 +7,8 @@ import frc.robot.Robot;
 import frc.robot.Robotmap;
 import frc.robot.commands.LEDmode;
 import frc.robot.commands.Vision;
-import frc.robot.commands.AngleAdjust;
-
 
 public final class Recursivecode{
-    public AngleAdjust angleadjust;
     public Recursivecode(){
         recursivecode();
     }
@@ -36,6 +33,9 @@ public final class Recursivecode{
             Globalvariables.ball_counter = 0;
         } else if(Globalvariables.ball_counter >=5){
             Globalvariables.ball_counter = 5; 
+        }
+        if(Globalvariables.turn2angle){
+            
         }
          ledmode = new LEDmode();
         // Robot.oi.e_boy.set(Robot.oi.LeDtest.getDouble(1.0));

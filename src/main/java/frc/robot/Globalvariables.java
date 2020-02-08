@@ -37,12 +37,15 @@ public final class Globalvariables {
     public static boolean angle;
     public static boolean check_flag;
     public static boolean angle_turn;
+    public static boolean angle_flag;
     public static double speed;
     public static boolean tA_flag;
     public static double tA;
     public static boolean reverse;
     public static boolean Shootflag;
     public static double linecounter;
+    public static boolean turn2angle;
+    public static double turn1angle;
     public Globalvariables(){
         check_flag = false;
         Shootflag = false;
@@ -51,6 +54,8 @@ public final class Globalvariables {
         tA = 0.0;
         tA_flag = false;
         angle_turn = false;
+        turn2angle = false;
+        turn1angle = (0.0);
         Seetarget = false;
         SwitchFlag = false;
         VisionFlag = false;
@@ -58,6 +63,7 @@ public final class Globalvariables {
         vision = false;
         driveType = false;
         reverse = false;
+        angle_flag = false;
         ball_counter = 3; //use slider to change
     }    
 

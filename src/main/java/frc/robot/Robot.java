@@ -11,6 +11,7 @@ import frc.robot.commands.*;
 import frc.robot.robotmain.*;
 import com.ctre.phoenix.motorcontrol.ControlMode;
 import frc.robot.robotmain.Recursivecode;
+// import jdk.nashorn.internal.objects.Global;
 import edu.wpi.first.wpilibj.VictorSP;
 import edu.wpi.first.wpilibj.Joystick;
 
@@ -23,6 +24,7 @@ public class Robot extends TimedRobot {
   public static Joystickcontrols joysticks;
   public static Buttoncontrols buttoncontrols;
   public static Vision vision;
+  public static AngleTurn angleTurn;
   public static Shuffleboard_stuff shuffleboard;
   public double limelightX;
   public double limelightY;
@@ -50,10 +52,19 @@ public class Robot extends TimedRobot {
     Robot.oi.rmotor1.setSelectedSensorPosition(0, 0, 30);
     Robot.oi.lmotor1.setSelectedSensorPosition(0, 0, 30);
     Robot.oi.navx.reset();
+    angleTurn = new AngleTurn(90, 0.5);
+    Globalvariables.turn2angle = true;
+    Globalvariables.turn1angle = 90;
+    Globalvariables.speed = .6;
   }
   @Override public void autonomousPeriodic() {
+    if(Globalvariables.turn2angle){
+      AngleTurn2 angleturn2 = new AngleTurn2();
+    } else {
+      oi.drive.arcadeDrive(0, 0);
+    }
     //called during autonomous
-    autonomous = new Autonomous();
+    // autonomous = new Autonomous();
     recursivecode = new Recursivecode();
   }
   @Override public void teleopInit() {
