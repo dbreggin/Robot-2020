@@ -7,6 +7,7 @@ public final class Vision {
     double sA; 
     public Vision(double distance,  int pipeline, double scaler) {
         Robot.oi.table = NetworkTableInstance.getDefault().getTable("limelight");
+        NetworkTableInstance.getDefault().getTable("limelight").getEntry("pipeline").setNumber(pipeline);
         Robot.oi.tx = Robot.oi.table.getEntry("tx");
         Robot.oi.ty = Robot.oi.table.getEntry("ty");
         Robot.oi.ta = Robot.oi.table.getEntry("ta");
@@ -18,7 +19,7 @@ public final class Vision {
         if(Robot.oi.lv != 0.0){
             dA=(Robot.oi.la-distance)*1.05;
             dA *= -1;
-            sA = Robot.oi.lx / 20;
+            sA = Robot.oi.lx / 17;
             if(dA>1){  
                 dA = 1;
             } else if (dA<-1){
@@ -43,19 +44,16 @@ public final class Vision {
                 sA=0;
 
             }
-            if(dA>-.1 && dA<.1 && sA>-.035 && sA<.035){
+            if(dA>-.1 && dA<.1 && sA>-.05 && sA<.05){
                 // Globalvariables.Shootflag = true;
-                Globalvariables.LEDmode = 1;
+                Globalvariables.LEDmode = 10;
+                Globalvariables.ball_counter++;
             } else{
                 // Globalvariables.Shootflag = false;
                 Globalvariables.LEDmode = 6;
             }
             sA*=-1;
-            
-
-
-            Robot.oi.temp1 = sA;
-            Robot.oi.temp2 = dA;
+            dA*=scaler;
             Robot.oi.drive.arcadeDrive(dA,sA);
         } else{
             Robot.oi.drive.tankDrive(0,0);

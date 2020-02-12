@@ -4,6 +4,7 @@ import frc.robot.Robot;
 import frc.robot.commands.Identifyballs;
 import frc.robot.commands.VisionRange;
 import frc.robot.Globalvariables;
+import frc.robot.commands.Vision;
 
 
 
@@ -12,29 +13,99 @@ import frc.robot.Globalvariables;
 
 public final class Autonomous {
     double sA; 
-    public VisionRange visionFunction;
-  public Autonomous(){
+    public VisionRange visionRangeFunction;
+    public Vision visionFunction;
+    public Autonomous(){
+    switch(Globalvariables.autonomous_stage){
+        case 0: 
+            Robot.oi.ta = Robot.oi.table.getEntry("ta");
+            Robot.oi.la = Robot.oi.ta.getDouble(0.0);
+            sA = Robot.oi.navx.getAngle()*.09;
+            if(Robot.oi.navx.getAngle()<1.75 && Robot.oi.navx.getAngle()>-1.75){
+                sA*=4.20;
+                Globalvariables.LEDmode=10;
+            } else {
+                Globalvariables.LEDmode=2;
+            }
 
-    sA = Robot.oi.navx.getAngle()*.09;
-    if(Robot.oi.navx.getAngle()<1.75 && Robot.oi.navx.getAngle()>-1.75){
-        sA*=4.20;
-        Globalvariables.LEDmode=10;
-    } else {
-        Globalvariables.LEDmode=2;
-    }
+            if(sA>1){
+                sA = 1;
+            } else if (sA<-1){
+                sA = -1;   
+            }                
+            //2430 = 5 feet
+            Robot.oi.drive.arcadeDrive(-.75, sA);
+            // if(Robot.oi.la != 0.0){
+            //     Globalvariables.autonomous_stage++;
+            // }
+            if(Robot.oi.rmotor1.getSelectedSensorPosition()<-2430*1){
+                Globalvariables.autonomous_stage++;
+            }
+            break;
+        case 1:
+            Robot.oi.drive.tankDrive(0, 0);
+            Globalvariables.autonomous_stage++;    
+            break;
+        case 2:
+            visionRangeFunction = new VisionRange(0.4, 0.4,0,1);
+            if(Globalvariables.ball_counter <=0 ){
+                Globalvariables.ball_counter = 0;
+                Globalvariables.autonomous_stage++;
+            }
+            break;
+        case 3:
+            sA = 140-Robot.oi.navx.getAngle()*.09;
+            if(Robot.oi.navx.getAngle()<100-2){
+                Robot.oi.drive.arcadeDrive(0, -.6);
+                Globalvariables.LEDmode=2;
+            } else if(Robot.oi.navx.getAngle()>100+2){
+                Robot.oi.drive.arcadeDrive(0, .6);
+                Globalvariables.LEDmode=2;
+            } else {
+                Robot.oi.drive.tankDrive(0, 0);
+                Globalvariables.LEDmode=10;
+                Globalvariables.autonomous_stage++;
+            }
+            break;
+        case 4:
+            visionFunction = new Vision(.7,3,.9);
+            if(Globalvariables.ball_counter >=5){
+                Globalvariables.ball_counter = 5;
+                Globalvariables.autonomous_stage++;
+            }
+            break;
+        case 5:
+            Robot.oi.drive.tankDrive(0, 0);
+            Globalvariables.autonomous_stage++;
+            break;
+        case 6:
+            if(Robot.oi.navx.getAngle()<0-2){
+                Robot.oi.drive.arcadeDrive(0, -.6);
+                Globalvariables.LEDmode=2;
+            } else if(Robot.oi.navx.getAngle()>0+2){
+                Robot.oi.drive.arcadeDrive(0, .6);
+                Globalvariables.LEDmode=2;
+            } else {
+                Robot.oi.drive.tankDrive(0, 0);
+                Globalvariables.LEDmode=10;
+                Globalvariables.autonomous_stage++;
+            }
+            break;
+        case 7:
+            visionRangeFunction = new VisionRange(0.4, 0.4,0,1);
+            if(Globalvariables.ball_counter<=0){
+                Globalvariables.ball_counter=0;
+                Globalvariables.autonomous_stage++;
+            }
+            break;
+        case 8:
+            Robot.oi.drive.tankDrive(0, 0);
+            Globalvariables.autonomous_stage++;
+            break;
+        default:
+            Robot.oi.drive.tankDrive(0, 0);
+            break;
 
-    if(sA>1){
-        sA = 1;
-    } else if (sA<-1){
-        sA = -1;
-    }
-    // sA*=-1;
-    //2430 = 5 feet
-    
-    if(Robot.oi.rmotor1.getSelectedSensorPosition() < 2430*6){
-        Robot.oi.drive.arcadeDrive(.6, sA);
-    }else{
-        visionFunction = new VisionRange(0.75, 0.4,0,1);
-    }
+    }   
   }
 }

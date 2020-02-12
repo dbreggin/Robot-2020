@@ -7,6 +7,7 @@ public final class VisionRange {
     double sA; 
     public VisionRange(double distance, double deviation, int pipeline, double scaler) {
         Robot.oi.table = NetworkTableInstance.getDefault().getTable("limelight");
+        NetworkTableInstance.getDefault().getTable("limelight").getEntry("pipeline").setNumber(pipeline);
         Robot.oi.tx = Robot.oi.table.getEntry("tx");
         Robot.oi.ty = Robot.oi.table.getEntry("ty");
         Robot.oi.ta = Robot.oi.table.getEntry("ta");
@@ -64,6 +65,7 @@ public final class VisionRange {
                 if(sA<0.2 && sA>-.2){
                     sA*=4;
                     Globalvariables.LEDmode = 10;
+                    Globalvariables.ball_counter--;
                 } else if((sA<.5 && sA >.3) || (sA>-.5&&sA<-.3)){
                     sA*=1.5;
                 } else if((sA<.3 && sA >.2) || (sA>-.3&&sA<-.2)){

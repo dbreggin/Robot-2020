@@ -46,6 +46,7 @@ public final class Globalvariables {
     public static double linecounter;
     public static boolean turn2angle;
     public static double turn1angle;
+    public static int autonomous_stage;
     public Globalvariables(){
         check_flag = false;
         Shootflag = false;
@@ -64,6 +65,7 @@ public final class Globalvariables {
         driveType = false;
         reverse = false;
         angle_flag = false;
+        autonomous_stage = 0;
         ball_counter = 3; //use slider to change
     }    
 

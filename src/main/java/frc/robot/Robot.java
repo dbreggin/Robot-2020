@@ -58,13 +58,13 @@ public class Robot extends TimedRobot {
     Globalvariables.speed = .6;
   }
   @Override public void autonomousPeriodic() {
-    if(Globalvariables.turn2angle){
-      AngleTurn2 angleturn2 = new AngleTurn2();
-    } else {
-      oi.drive.arcadeDrive(0, 0);
-    }
+    // if(Globalvariables.turn2angle){
+    //   AngleTurn2 angleturn2 = new AngleTurn2();
+    // } else {
+    //   oi.drive.arcadeDrive(0, 0);
+    // }
     //called during autonomous
-    // autonomous = new Autonomous();
+    autonomous = new Autonomous();
     recursivecode = new Recursivecode();
   }
   @Override public void teleopInit() {
