@@ -10,7 +10,11 @@ public final class Robotmap {
     public static final int rMotor1Port = 4;    //2  //TALON SRX
     public static final int lMotor2Port = 0;    //4   //VICTOR SPX
     public static final int lMotor3Port = 8;    //7   //VICTOR SPX
-    
+    // climber moters
+    public static final int cMotorRPort = 10;    //2  //TALON SRX
+    public static final int cMotorLPort = 11;    //2  //TALON SRX
+    public static final int cMotorbPort = 12;    //2  //TALON SRX
+
     //joystick Top=Top Bot=Bottom L=Left B=back close to driver F=Forward far from driver T=Top M=Middle B=bottom if second letter
     public static final int lJoystickPort = 0;
     public static final int joyX = 0; 

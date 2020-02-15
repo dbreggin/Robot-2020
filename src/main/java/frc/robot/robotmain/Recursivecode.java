@@ -39,5 +39,30 @@ public final class Recursivecode{
         }
          ledmode = new LEDmode();
         // Robot.oi.e_boy.set(Robot.oi.LeDtest.getDouble(1.0));
+        
+        // if(Globalvariables.automode_1flag == true){
+        //     Globalvariables.automode_2flag = false;
+        //     Globalvariables.automode_3flag = false;
+        //     Globalvariables.automode_4flag = false;
+        //     Globalvariables.automode = 0;
+        // }
+        // if(Globalvariables.automode_2flag == true){
+        //     Globalvariables.automode_1flag = false;
+        //     Globalvariables.automode_3flag = false;
+        //     Globalvariables.automode_4flag = false;
+        //     Globalvariables.automode = 1;
+        // }
+        // if(Globalvariables.automode_3flag == true){
+        //     Globalvariables.automode_1flag = false;
+        //     Globalvariables.automode_2flag = false;
+        //     Globalvariables.automode_4flag = false;
+        //     Globalvariables.automode = 2;
+        // }
+        // if(Globalvariables.automode_4flag == true){
+        //     Globalvariables.automode_1flag = false;
+        //     Globalvariables.automode_2flag = false;
+        //     Globalvariables.automode_3flag = false;
+        //     Globalvariables.automode = 3;
+        // }
     }
 }

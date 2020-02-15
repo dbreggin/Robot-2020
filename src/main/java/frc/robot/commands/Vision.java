@@ -19,7 +19,7 @@ public final class Vision {
         if(Robot.oi.lv != 0.0){
             dA=(Robot.oi.la-distance)*1.05;
             dA *= -1;
-            sA = Robot.oi.lx / 17;
+            sA = Robot.oi.lx / 24;
             if(dA>1){  
                 dA = 1;
             } else if (dA<-1){
@@ -42,7 +42,6 @@ public final class Vision {
                 sA=-.5;
             } else if (sA>-.035 && sA<.035){
                 sA=0;
-
             }
             if(dA>-.1 && dA<.1 && sA>-.05 && sA<.05){
                 // Globalvariables.Shootflag = true;

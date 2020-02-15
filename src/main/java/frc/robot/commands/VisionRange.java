@@ -67,16 +67,16 @@ public final class VisionRange {
                     Globalvariables.LEDmode = 10;
                     Globalvariables.ball_counter--;
                 } else if((sA<.5 && sA >.3) || (sA>-.5&&sA<-.3)){
-                    sA*=1.5;
-                } else if((sA<.3 && sA >.2) || (sA>-.3&&sA<-.2)){
                     sA*=2;
+                } else if((sA<.3 && sA >.2) || (sA>-.3&&sA<-.2)){
+                    sA*=3;
                 }
             } 
             if(sA>.5){
-                sA = .5;
+                sA = .5/sA;
             } else if (sA<-.5){
-                sA = -.5;
-            }
+                sA = -.5/sA;
+            }   
             Robot.oi.temp1 = sA;
             Robot.oi.temp2 = dA;
             Robot.oi.drive.arcadeDrive(dA,sA);

@@ -8,6 +8,7 @@ import com.revrobotics.CANPIDController;
 import com.revrobotics.CANSparkMaxLowLevel.MotorType;
 import com.revrobotics.CANEncoder;
 import edu.wpi.first.wpilibj.shuffleboard.ShuffleboardTab;
+import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.shuffleboard.Shuffleboard;
 import edu.wpi.first.wpilibj.shuffleboard.BuiltInWidgets;
 import java.util.Map;
@@ -22,6 +23,7 @@ import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
 import com.ctre.phoenix.motorcontrol.can.TalonFX;
 import com.ctre.phoenix.motorcontrol.TalonFXFeedbackDevice;
 import edu.wpi.first.wpilibj.drive.DifferentialDrive;
+
 //import com.kauailabs.navx.frc.AHRS;
 //limelight
 import edu.wpi.first.networktables.NetworkTable;
@@ -51,13 +53,18 @@ public TalonSRX intake_motor;
 public TalonSRX cp_motor;
 public TalonSRX hopper_motor;
 public TalonSRX outake_motor;
+public TalonSRX cl_lift;
+public TalonSRX cl_moveR;
+public TalonSRX cl_moveL;
 //public CANSparkMax shooter_motor1;
 //public CANSparkMax shooter_motor2;
 //public CANPIDController shooterPIDcontroller1;
 //public CANPIDController shooterPIDcontroller2;
 //public CANEncoder shooter_encoder1;
 //public CANEncoder shooter_encoder2;
-//public TalonFX drmotor1;
+
+//public TalonFX drmotor1; //FALCON TEST CODE
+
 public Talon e_boy;
 
 //Motors 
@@ -67,6 +74,7 @@ private TalonSRX motor3;
 private TalonSRX motor4;
 private TalonSRX motor5;
 private TalonSRX motor6;
+
 //limelight
 public NetworkTable table;
 public NetworkTableEntry tx;
@@ -77,12 +85,14 @@ public double lx;
 public double ly;
 public double la;
 public double lv;
+public SendableChooser<Void> ballcount;
 //misc
 public double temp1;
 public double temp2;
 public ShuffleboardTab tab;
 public NetworkTableEntry maxSpeed;
 public NetworkTableEntry LeDtest;
+public NetworkTableEntry ballNumber;
 public DigitalInput lineSensor;
 public DigitalInput lineSensor2;
 public AHRS navx;
@@ -104,12 +114,19 @@ public OI() {
     cp_motor = new TalonSRX(3);
     hopper_motor = new TalonSRX(6); 
     outake_motor = new TalonSRX(9);
+    cl_moveL = new TalonSRX(11);
+    cl_moveR = new TalonSRX(10);
+    cl_lift = new TalonSRX(12);
     //shooter_motor1 = new CANSparkMax(11, MotorType.kBrushless);
     //shooter_motor2 = new CANSparkMax(10, MotorType.kBrushless);
     //shooterPIDcontroller1 = shooter_motor1.getPIDController();
     //shooterPIDcontroller2 = shooter_motor2.getPIDController();
-    //drmotor1 = new TalonFX(15);
+
+    //drmotor1 = new TalonFX(15); //FALCON TEST CODE
+
+    
     e_boy = new Talon(9);
+    ballcount = new SendableChooser<Void>();
     /*
     shooterPIDcontroller1.setP(5e-5);
     shooterPIDcontroller1.setI(1e-6);
@@ -135,6 +152,7 @@ public OI() {
     rmotor3.follow(rmotor1);
     lmotor2.follow(lmotor1);
     lmotor3.follow(lmotor1);
+    cl_moveL.follow(cl_moveR);
 
     rmotor1.configSelectedFeedbackSensor(FeedbackDevice.QuadEncoder,0,30);
     lmotor1.configSelectedFeedbackSensor(FeedbackDevice.QuadEncoder,0,30);

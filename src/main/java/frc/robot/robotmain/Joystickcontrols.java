@@ -21,6 +21,10 @@ public final class Joystickcontrols {
     Joystickcontrol();
     }
     public void Joystickcontrol(){
+        //FALCON TEST CODE 
+        //Robot.oi.drmotor1.set(ControlMode.PercentOutput, (1));
+
+
         if(Robot.oi.rjoystick.getRawButton(Robotmap.JoyTrigger) && !Globalvariables.buttonDone[0]){
             Globalvariables.vision = !Globalvariables.vision;
             Globalvariables.buttonDone[0] = true;
@@ -73,6 +77,23 @@ public final class Joystickcontrols {
         // Robot.oi.intake_motor.set(ControlMode.PercentOutput, Robot.oi.gamepad.getRawAxis(1));
         //Robot.oi.drmotor1.set(ControlMode.PercentOutput, Robot.oi.gamepad.getRawAxis(1));
         }
+        
+        if(Robot.oi.gamepad.getRawAxis(Robotmap.LeftY) > 0){
+            Robot.oi.cl_lift.set(ControlMode.PercentOutput, (1));
+        }else if(Robot.oi.gamepad.getRawAxis(Robotmap.LeftY) < 0){
+            Robot.oi.cl_lift.set(ControlMode.PercentOutput, (-1));
+        }else{
+            Robot.oi.cl_lift.set(ControlMode.PercentOutput, (0));
+        }
+
+        if(Robot.oi.gamepad.getRawAxis(Robotmap.LeftX) > 0){
+            Robot.oi.cl_moveR.set(ControlMode.PercentOutput, (1));
+        }else if(Robot.oi.gamepad.getRawAxis(Robotmap.LeftX) < 0){
+            Robot.oi.cl_moveR.set(ControlMode.PercentOutput, (-1));
+        }else{
+            Robot.oi.cl_moveR.set(ControlMode.PercentOutput, (0));
+        }       
+        
     }
 
 }
