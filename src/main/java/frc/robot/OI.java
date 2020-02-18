@@ -9,6 +9,7 @@ import com.revrobotics.CANSparkMaxLowLevel.MotorType;
 import com.revrobotics.CANEncoder;
 import edu.wpi.first.wpilibj.shuffleboard.ShuffleboardTab;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj.shuffleboard.Shuffleboard;
 import edu.wpi.first.wpilibj.shuffleboard.BuiltInWidgets;
 import java.util.Map;
@@ -43,6 +44,7 @@ public WPI_TalonSRX rmotor1;
 public VictorSPX rmotor2;
 public VictorSPX rmotor3;
 public WPI_TalonSRX lmotor1;
+public TalonFX testmotor;
 public VictorSPX lmotor2;
 public VictorSPX lmotor3;
 public Joystick gamepad;
@@ -85,7 +87,7 @@ public double lx;
 public double ly;
 public double la;
 public double lv;
-public SendableChooser<Void> ballcount;
+public SendableChooser<Integer> ballcount;
 //misc
 public double temp1;
 public double temp2;
@@ -117,16 +119,20 @@ public OI() {
     cl_moveL = new TalonSRX(11);
     cl_moveR = new TalonSRX(10);
     cl_lift = new TalonSRX(12);
+    testmotor = new TalonFX(15);
     //shooter_motor1 = new CANSparkMax(11, MotorType.kBrushless);
     //shooter_motor2 = new CANSparkMax(10, MotorType.kBrushless);
     //shooterPIDcontroller1 = shooter_motor1.getPIDController();
     //shooterPIDcontroller2 = shooter_motor2.getPIDController();
-
     //drmotor1 = new TalonFX(15); //FALCON TEST CODE
-
-    
     e_boy = new Talon(9);
-    ballcount = new SendableChooser<Void>();
+    ballcount = new SendableChooser<Integer>();
+    ballcount.addOption("1 Ball", 1);
+    ballcount.addOption("2 Balls", 2);
+    ballcount.setDefaultOption("3 Balls", 3);
+    ballcount.addOption("4 Balls", 4);
+    ballcount.addOption("5 Balls", 5);
+    SmartDashboard.putData("Ball Counter", ballcount);
     /*
     shooterPIDcontroller1.setP(5e-5);
     shooterPIDcontroller1.setI(1e-6);

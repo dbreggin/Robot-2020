@@ -7,6 +7,7 @@ import frc.robot.Robot;
 import frc.robot.Robotmap;
 import frc.robot.commands.LEDmode;
 import frc.robot.commands.Vision;
+import com.ctre.phoenix.motorcontrol.ControlMode;
 
 public final class Recursivecode{
     public Recursivecode(){
@@ -38,6 +39,7 @@ public final class Recursivecode{
             
         }
          ledmode = new LEDmode();
+        //  Robot.oi.testmotor.set(ControlMode.PercentOutput, (1));
         // Robot.oi.e_boy.set(Robot.oi.LeDtest.getDouble(1.0));
         
         // if(Globalvariables.automode_1flag == true){
