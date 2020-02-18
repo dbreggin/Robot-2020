@@ -30,17 +30,8 @@ public final class Shuffleboard_stuff {
         SmartDashboard.putNumber("lencoder", Robot.oi.lmotor1.getSelectedSensorPosition());
         SmartDashboard.putNumber("rencoder", Robot.oi.rmotor1.getSelectedSensorPosition());
         SmartDashboard.putNumber("Max Speed", getMaxSpeed());
-        // SmartDashboard.putBoolean("Automode 1",Globalvariables.automode_1flag);
-        // SmartDashboard.putBoolean("Automode 2",Globalvariables.automode_2flag);
-        // SmartDashboard.putBoolean("Automode 3",Globalvariables.automode_3flag);
-        // SmartDashboard.putBoolean("Automode 4",Globalvariables.automode_4flag);
-        // SmartDashboard.putNumber("AUTOMODE", Globalvariables.automode);
-      //  Robot.oi.ballcount.addOption("name", ballCount());
-       }
+    }
     public double getMaxSpeed(){
         return Robot.oi.maxSpeed.getDouble(1.0);
-    }
-    public double getballNumber(){
-        return Robot.oi.ballNumber.getDouble(1.0);
     }
 }
