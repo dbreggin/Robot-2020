@@ -206,8 +206,8 @@ public OI() {
 
     tab = Shuffleboard.getTab("SmartDashboard");
     maxSpeed = tab.add("Max Speed", 1).withWidget(BuiltInWidgets.kNumberSlider).withProperties(Map.of("min",0,"max",1)).getEntry();
-    revolverintakeSpeed = tab.add("Intake Speed", 1).withWidget(BuiltInWidgets.kNumberSlider).withProperties(Map.of("min",2000,"max",5700)).getEntry();
-    shooterSpeed = tab.add("Shooter Speed", 1).withWidget(BuiltInWidgets.kNumberSlider).withProperties(Map.of("min",2000,"max",5700)).getEntry();
+    revolverintakeSpeed = tab.add("Intake Speed", 1).withWidget(BuiltInWidgets.kNumberSlider).withProperties(Map.of("min",2000,"max",5676)).getEntry();
+    shooterSpeed = tab.add("Shooter Speed", 1).withWidget(BuiltInWidgets.kNumberSlider).withProperties(Map.of("min",2000,"max",5676)).getEntry();
     LeDtest = tab.add("HeavyMetalTest",1).withProperties(Map.of("min",-1,"max",1)).getEntry();
 
     navx = new AHRS();
