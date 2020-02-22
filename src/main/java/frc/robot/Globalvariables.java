@@ -34,6 +34,7 @@ public final class Globalvariables {
     };
     public static boolean vision;
     public static boolean driveType;
+    public static double revolverintakevarible;
     public static boolean angle;
     public static boolean check_flag;
     public static boolean angle_turn;
@@ -47,8 +48,9 @@ public final class Globalvariables {
     public static boolean turn2angle;
     public static double turn1angle;
     public static int autonomous_stage;
-    public static int automode;
+    public static double automode;
     public Globalvariables(){
+        revolverintakevarible = 0;
         check_flag = false;
         Shootflag = false;
         angle = false;

@@ -6,6 +6,7 @@ import frc.robot.Robot;
 import frc.robot.Robotmap;
 import com.ctre.phoenix.motorcontrol.ControlMode;
 import frc.robot.robotmain.Shuffleboard_stuff;
+import com.revrobotics.ControlType;
 
 
 import frc.robot.commands.LEDmode;
@@ -21,6 +22,14 @@ public final class Joystickcontrols {
     Joystickcontrol();
     }
     public void Joystickcontrol(){
+        Robot.oi.revolver.set(Robot.oi.gamepad.getRawAxis(Robotmap.LeftY));
+        Robot.oi.hopper.set(Robot.oi.gamepad.getRawAxis(Robotmap.RightY));
+        if(Robot.oi.gamepad.getRawButton(Robotmap.Abutton)){
+            Robot.oi.shooterPIDcontroller1.setReference(Robot.shuffleboard.getshooterSpeed(), ControlType.kVelocity);
+            Robot.oi.shooterPIDcontroller2.setReference(-Robot.shuffleboard.getshooterSpeed(), ControlType.kVelocity);
+         //   Robot.oi.shooterintakePID.setReference(Robot.shuffleboard.getrevolverintakeSpeed(), ControlType.kVelocity);
+        }
+
         //FALCON TEST CODE 
         //Robot.oi.drmotor1.set(ControlMode.PercentOutput, (1));
 
@@ -77,22 +86,23 @@ public final class Joystickcontrols {
         // Robot.oi.intake_motor.set(ControlMode.PercentOutput, Robot.oi.gamepad.getRawAxis(1));
         //Robot.oi.drmotor1.set(ControlMode.PercentOutput, Robot.oi.gamepad.getRawAxis(1));
         }
-        
-        if(Robot.oi.gamepad.getRawAxis(Robotmap.LeftY) > 0){
-            Robot.oi.cl_lift.set(ControlMode.PercentOutput, (1));
-        }else if(Robot.oi.gamepad.getRawAxis(Robotmap.LeftY) < 0){
-            Robot.oi.cl_lift.set(ControlMode.PercentOutput, (-1));
-        }else{
-            Robot.oi.cl_lift.set(ControlMode.PercentOutput, (0));
-        }
+        /* LIft STUFFFFF */
+        // if(Robot.oi.gamepad.getRawAxis(Robotmap.LeftY) > 0){
+        //     Robot.oi.cl_lift.set(ControlMode.PercentOutput, (1));
+        // }else if(Robot.oi.gamepad.getRawAxis(Robotmap.LeftY) < 0){
+        //     Robot.oi.cl_lift.set(ControlMode.PercentOutput, (-1));
+        // }else{
+        //     Robot.oi.cl_lift.set(ControlMode.PercentOutput, (0));
+        // }
 
-        if(Robot.oi.gamepad.getRawAxis(Robotmap.LeftX) > 0){
-            Robot.oi.cl_moveR.set(ControlMode.PercentOutput, (1));
-        }else if(Robot.oi.gamepad.getRawAxis(Robotmap.LeftX) < 0){
-            Robot.oi.cl_moveR.set(ControlMode.PercentOutput, (-1));
-        }else{
-            Robot.oi.cl_moveR.set(ControlMode.PercentOutput, (0));
-        }       
+        /******* CLIMB STUFF *********/
+        // if(Robot.oi.gamepad.getRawAxis(Robotmap.LeftX) > 0){
+        //     Robot.oi.cl_moveR.set(ControlMode.PercentOutput, (1));
+        // }else if(Robot.oi.gamepad.getRawAxis(Robotmap.LeftX) < 0){
+        //     Robot.oi.cl_moveR.set(ControlMode.PercentOutput, (-1));
+        // }else{
+        //     Robot.oi.cl_moveR.set(ControlMode.PercentOutput, (0));
+        // }       
         
     }
 

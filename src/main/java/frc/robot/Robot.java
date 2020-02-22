@@ -2,6 +2,7 @@ package frc.robot;
 
 import edu.wpi.first.wpilibj.TimedRobot;
 import edu.wpi.first.wpilibj.drive.DifferentialDrive;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import frc.robot.*;
 import frc.robot.robotmain.Autonomous;
 import edu.wpi.first.wpilibj.Joystick;
@@ -48,7 +49,7 @@ public class Robot extends TimedRobot {
   }
   @Override public void autonomousInit() {
     //called when autonomous first initializes
-    //autonomous = new Autonomous();
+    autonomous = new Autonomous();
     Robot.oi.rmotor1.setSelectedSensorPosition(0, 0, 30);
     Robot.oi.lmotor1.setSelectedSensorPosition(0, 0, 30);
     Robot.oi.navx.reset();
@@ -56,6 +57,7 @@ public class Robot extends TimedRobot {
     Globalvariables.turn2angle = true;
     Globalvariables.turn1angle = 90;
     Globalvariables.speed = .6;
+    Globalvariables.automode = Robot.oi.automode.getSelected();
   }
   @Override public void autonomousPeriodic() {
     // if(Globalvariables.turn2angle){
@@ -65,6 +67,10 @@ public class Robot extends TimedRobot {
     // }
     //called during autonomous
     autonomous = new Autonomous();
+    SmartDashboard.putNumber("Automode", Globalvariables.automode);
+    SmartDashboard.putBoolean("CHEKC FLAG", Globalvariables.check_flag);
+    SmartDashboard.putNumber("Encoder 1", Robot.oi.rmotor1.getSelectedSensorPosition());
+    SmartDashboard.putNumber("Encoder 2", Robot.oi.lmotor1.getSelectedSensorPosition());
     recursivecode = new Recursivecode();
   }
   @Override public void teleopInit() {

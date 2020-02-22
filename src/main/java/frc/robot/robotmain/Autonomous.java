@@ -107,17 +107,8 @@ public final class Autonomous {
         //MOVE ALLIENCE PARTNER OFF LINE, SHOOT, COLLECT NEW BALLS 
         if(Globalvariables.automode == 1){
             switch(Globalvariables.autonomous_stage){
+                ///DRIVE STRAIGHT FOR 5 FT
                 case 0: 
-                     //2430 = 5 feet
-                    if(Robot.oi.rmotor1.getSelectedSensorPosition()<-2430*1){
-                        Robot.oi.drive.arcadeDrive(-.75, -.75);
-                    }else{
-                        Globalvariables.autonomous_stage++;
-                    }
-                    break;
-                case 1:
-                    Robot.oi.ta = Robot.oi.table.getEntry("ta");
-                    Robot.oi.la = Robot.oi.ta.getDouble(0.0);
                     sA = Robot.oi.navx.getAngle()*.09;
                     if(Robot.oi.navx.getAngle()<1.75 && Robot.oi.navx.getAngle()>-1.75){
                         sA*=4.20;
@@ -131,9 +122,17 @@ public final class Autonomous {
                     } else if (sA<-1){
                         sA = -1;   
                     }                
-                    Robot.oi.drive.arcadeDrive(0, sA);
-                    Globalvariables.autonomous_stage++;
+                    //2430 = 5 feet
+                    Robot.oi.drive.arcadeDrive(-.75, sA);
+                    // if(Robot.oi.la != 0.0){
+                    //     Globalvariables.autonomous_stage++;
+                    // }
+                    if(Robot.oi.rmotor1.getSelectedSensorPosition()<-2430*1){
+                        Globalvariables.autonomous_stage++;
+                    }
                     break;
+                case 1:
+
                 case 2:
                     Robot.oi.drive.tankDrive(0, 0);
                     Globalvariables.autonomous_stage++;
@@ -179,7 +178,7 @@ public final class Autonomous {
             switch(Globalvariables.autonomous_stage){
                 case 0: 
                     if(Robot.oi.rmotor1.getSelectedSensorPosition()<-2430*1){
-                        Robot.oi.drive.arcadeDrive(-.75, -.75);
+                        Robot.oi.drive.arcadeDrive(-.75, 0);
                     }else{
                         Globalvariables.autonomous_stage++;
                     }
@@ -225,22 +224,28 @@ public final class Autonomous {
             }
         }
         //MOVE OFF LINE AND END IT ALL
-        if(Globalvariables.automode == 2){
-            switch(Globalvariables.autonomous_stage){
-                case 0: 
-                    if(Robot.oi.rmotor1.getSelectedSensorPosition()<-2430*1){
-                        Robot.oi.drive.arcadeDrive(-.75, -.75);
+        if(Globalvariables.automode == 3){
+            // switch(Globalvariables.autonomous_stage){
+            //     case 0: 
+                    if(Robot.oi.rmotor1.getSelectedSensorPosition()>-2430*5){
+                        Robot.oi.drive.arcadeDrive(-.75, 0);
                     }else{
+                        Robot.oi.drive.tankDrive(0, 0);
                         Globalvariables.autonomous_stage++;
                     }
-                    break;
-                default:
-                Robot.oi.drive.tankDrive(0, 0);
-                break;
-            }
+                    // break;
+                // default:
+                // Robot.oi.drive.tankDrive(0, 0);
+                // break;
+            // }
         }
-    }
+        if(Globalvariables.automode == 4){
+                    Globalvariables.LEDmode = 1;
+            }
+    }  
 }
+
+
 
 
 

@@ -9,8 +9,6 @@ public final class Shooter{
     if(Globalvariables.ball_counter>0 && Globalvariables.ball_counter<6){
         Robot.oi.outake_motor.set(ControlMode.PercentOutput, (1));
         Robot.oi.intake_motor.set(ControlMode.PercentOutput, (1));
-        //Robot.oi.shooterPIDcontroller1.setReference(5700, ControlType.kVelocity);
-        // Robot.oi.shooterPIDcontroller2.setReference(5700, ControlType.kVelocity);
     } else{
         Robot.oi.outake_motor.set(ControlMode.PercentOutput, (0));
         Robot.oi.intake_motor.set(ControlMode.PercentOutput, (0));

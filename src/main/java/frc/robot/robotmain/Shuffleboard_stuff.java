@@ -20,9 +20,6 @@ public final class Shuffleboard_stuff {
         Globalvariables.Seetarget = true;
         }
     }
-    //public Void ballCount(){
-
-   // }
     public void Shuffleboard_stuff1(){
         SmartDashboard.putNumber("sA", Robot.oi.temp1);
         SmartDashboard.putNumber("dA", Robot.oi.temp2);
@@ -30,8 +27,24 @@ public final class Shuffleboard_stuff {
         SmartDashboard.putNumber("lencoder", Robot.oi.lmotor1.getSelectedSensorPosition());
         SmartDashboard.putNumber("rencoder", Robot.oi.rmotor1.getSelectedSensorPosition());
         SmartDashboard.putNumber("Max Speed", getMaxSpeed());
+        SmartDashboard.putNumber("Intake Revolver", getrevolverintakeSpeed());
+        SmartDashboard.putNumber("SPEEED RPM", getshooterSpeed());
+        SmartDashboard.putNumber("key", getautomodeNumber());
+        // SmartDashboard.putBoolean("CHEKC FLAG", Globalvariables.check_flag);
     }
     public double getMaxSpeed(){
         return Robot.oi.maxSpeed.getDouble(1.0);
+    }
+    public double getrevolverintakeSpeed(){
+        return Robot.oi.revolverintakeSpeed.getDouble(3000.0);
+    }
+    public double getshooterSpeed(){
+        return Robot.oi.shooterSpeed.getDouble(3000.0);
+    }
+    public int getballNumber(){
+        return Robot.oi.ballcount.getSelected();
+    }
+    public int getautomodeNumber(){
+        return Robot.oi.automode.getSelected();
     }
 }
