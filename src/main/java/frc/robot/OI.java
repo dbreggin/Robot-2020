@@ -105,17 +105,17 @@ public SpeedControllerGroup rdrive;
 public OI() {
     //2020 Robot stuffffffff
     /* Falcons */
-    motor1 = new WPI_TalonFX(21);
-    motor2 = new WPI_TalonFX(22);
-    motor3 = new WPI_TalonFX(23);
-    motor4 = new WPI_TalonFX(24);
+    motor1 = new WPI_TalonFX(12);
+    motor2 = new WPI_TalonFX(13);
+    motor3 = new WPI_TalonFX(15);
+    motor4 = new WPI_TalonFX(11);
     ldrive = new SpeedControllerGroup(motor1, motor2);
     rdrive = new SpeedControllerGroup(motor3, motor4);
-    revolver = new WPI_TalonSRX(27);
-    hopper = new WPI_TalonSRX(29);
-    // shooter_motor1 = new CANSparkMax(2, MotorType.kBrushless);
-    // shooter_motor2 = new CANSparkMax(10, MotorType.kBrushless);
-    // shooter_intake = new CANSparkMax(12, MotorType.kBrushless); ///////////////////change 
+    revolver = new WPI_TalonSRX(1);
+    hopper = new WPI_TalonSRX(3);
+    shooter_motor1 = new CANSparkMax(14, MotorType.kBrushless);
+    shooter_motor2 = new CANSparkMax(11, MotorType.kBrushless);
+    shooter_intake = new CANSparkMax(12, MotorType.kBrushless);
     // shooterPIDcontroller1 = shooter_motor1.getPIDController();
     // shooterPIDcontroller2 = shooter_motor2.getPIDController();
     // shooterintakePID = shooter_intake.getPIDController();
@@ -134,8 +134,6 @@ public OI() {
     // lmotor3 = new VictorSPX(8); //8
     intake_motor = new TalonSRX(1);
     cp_motor = new TalonSRX(3);
-    hopper_motor = new TalonSRX(6); 
-    outake_motor = new TalonSRX(9);
     cl_moveL = new TalonSRX(11);
     cl_moveR = new TalonSRX(10);
     cl_lift = new TalonSRX(12);

@@ -13,8 +13,6 @@ public final class Buttoncontrols {
 
 
 
-
-
         
         // if(Robot.oi.gamepad.getRawButton(Robotmap.Abutton)){
         //     shooter = new Shooter();

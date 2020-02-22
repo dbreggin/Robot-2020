@@ -24,8 +24,8 @@ public final class Shuffleboard_stuff {
         SmartDashboard.putNumber("sA", Robot.oi.temp1);
         SmartDashboard.putNumber("dA", Robot.oi.temp2);
         SmartDashboard.putNumber("Ball Num", Globalvariables.ball_counter);
-        SmartDashboard.putNumber("lencoder", Robot.oi.lmotor1.getSelectedSensorPosition());
-        SmartDashboard.putNumber("rencoder", Robot.oi.rmotor1.getSelectedSensorPosition());
+    //    SmartDashboard.putNumber("lencoder", Robot.oi.lmotor1.getSelectedSensorPosition());
+      //  SmartDashboard.putNumber("rencoder", Robot.oi.rmotor1.getSelectedSensorPosition());
         SmartDashboard.putNumber("Max Speed", getMaxSpeed());
         SmartDashboard.putNumber("Intake Revolver", getrevolverintakeSpeed());
         SmartDashboard.putNumber("SPEEED RPM", getshooterSpeed());

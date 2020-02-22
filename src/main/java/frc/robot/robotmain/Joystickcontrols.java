@@ -22,25 +22,32 @@ public final class Joystickcontrols {
     Joystickcontrol();
     }
     public void Joystickcontrol(){
+        //intake and revolver code
         Robot.oi.revolver.set(Robot.oi.gamepad.getRawAxis(Robotmap.LeftY));
         Robot.oi.hopper.set(Robot.oi.gamepad.getRawAxis(Robotmap.RightY));
+        //shooter and outtake code 
         if(Robot.oi.gamepad.getRawButton(Robotmap.Abutton)){
-            Robot.oi.shooterPIDcontroller1.setReference(Robot.shuffleboard.getshooterSpeed(), ControlType.kVelocity);
-            Robot.oi.shooterPIDcontroller2.setReference(-Robot.shuffleboard.getshooterSpeed(), ControlType.kVelocity);
+            Robot.oi.shooterPIDcontroller1.setReference(3000, ControlType.kVelocity);
+            Robot.oi.shooterPIDcontroller2.setReference(-3000, ControlType.kVelocity);
          //   Robot.oi.shooterintakePID.setReference(Robot.shuffleboard.getrevolverintakeSpeed(), ControlType.kVelocity);
+        }else{
+            //Robot.oi.shooter_motor1.set(0);
+            //Robot.oi.shooter_motor2.set(0);
         }
-
         //FALCON TEST CODE 
         //Robot.oi.drmotor1.set(ControlMode.PercentOutput, (1));
 
 
-        if(Robot.oi.rjoystick.getRawButton(Robotmap.JoyTrigger) && !Globalvariables.buttonDone[0]){
-            Globalvariables.vision = !Globalvariables.vision;
-            Globalvariables.buttonDone[0] = true;
-        }
-        else if(!Robot.oi.rjoystick.getRawButton(Robotmap.JoyTrigger) && Globalvariables.buttonDone[0]){
-            Globalvariables.buttonDone[0] = false;
-        }
+        // if(Robot.oi.rjoystick.getRawButton(Robotmap.JoyTrigger) && !Globalvariables.buttonDone[0]){
+        //     Globalvariables.vision = !Globalvariables.vision;
+        //     Globalvariables.buttonDone[0] = true;
+        // }
+        // else if(!Robot.oi.rjoystick.getRawButton(Robotmap.JoyTrigger) && Globalvariables.buttonDone[0]){
+        //     Globalvariables.buttonDone[0] = false;
+        // }
+
+
+        //arcade or tank drive button flag
         if(Robot.oi.rjoystick.getRawButton(Robotmap.JoyBotFT) && !Globalvariables.buttonDone[1]){
             Globalvariables.driveType = !Globalvariables.driveType;
             Globalvariables.buttonDone[1] = true;
@@ -48,6 +55,7 @@ public final class Joystickcontrols {
         else if(!Robot.oi.rjoystick.getRawButton(Robotmap.JoyBotFT) && Globalvariables.buttonDone[1]){
             Globalvariables.buttonDone[1] = false;
         }
+        //vision code
         if(Robot.oi.rjoystick.getRawButton(Robotmap.JoyBotBB) && !Globalvariables.buttonDone[2]){
             Globalvariables.angle = true;
             Globalvariables.buttonDone[2] = true;
@@ -65,6 +73,7 @@ public final class Joystickcontrols {
         else{
             Globalvariables.UserControl = true;
         }
+        //reverse direction
         if(Globalvariables.UserControl){
             Globalvariables.LEDmode = 22;
             if(Robot.oi.ljoystick.getRawButton(Robotmap.JoyTrigger)){
