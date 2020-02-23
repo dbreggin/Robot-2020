@@ -27,6 +27,7 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import com.revrobotics.CANSparkMax;
 import com.revrobotics.CANSparkMaxLowLevel.MotorType;
 import com.revrobotics.CANPIDController;
+import com.revrobotics.CANEncoder;
 
 
 public final class OI {
@@ -56,8 +57,8 @@ public CANSparkMax shooter_intake;
 public CANPIDController shooterPIDcontroller1;
 public CANPIDController shooterPIDcontroller2;
 public CANPIDController shooterintakePID;
-//public CANEncoder shooter_encoder1;
-//public CANEncoder shooter_encoder2;
+public CANEncoder shooter_encoder1;
+public CANEncoder shooter_encoder2;
 
 //public TalonFX drmotor1; //FALCON TEST CODE
 
@@ -158,24 +159,20 @@ public OI() {
     automode.addOption("Automode 5", 4);
     SmartDashboard.putData("Automode 1", automode);
 
-    /*
     shooterPIDcontroller1.setP(5e-5);
     shooterPIDcontroller1.setI(1e-6);
     shooterPIDcontroller1.setD(0);
     shooterPIDcontroller1.setIZone(0);
     shooterPIDcontroller1.setFF(0);
     shooterPIDcontroller1.setOutputRange(-1, 1);
-    */
-    /*
     shooterPIDcontroller2.setP(5e-5);
     shooterPIDcontroller2.setI(1e-6);
     shooterPIDcontroller2.setD(0);
     shooterPIDcontroller2.setIZone(0);
     shooterPIDcontroller2.setFF(0);
     shooterPIDcontroller2.setOutputRange(-1, 1);
-    */
-    //shooter_encoder1 = shooter_motor1.getEncoder();
-    //shooter_encoder2 = shooter_motor2.getEncoder();
+    shooter_encoder1 = shooter_motor1.getEncoder();
+    shooter_encoder2 = shooter_motor2.getEncoder();
     //rmotor1.configSelectedFeedbackSensor(FeedbackDevice.QuadEncoder, 0, 30);
     //lmotor1.configSelectedFeedbackSensor(FeedbackDevice.QuadEncoder, 0, 30);
 
