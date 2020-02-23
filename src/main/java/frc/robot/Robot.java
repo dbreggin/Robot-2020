@@ -3,8 +3,7 @@ package frc.robot;
 import edu.wpi.first.wpilibj.TimedRobot;
 import edu.wpi.first.wpilibj.drive.DifferentialDrive;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
-import frc.robot.*;
-import frc.robot.robotmain.Autonomous;
+//import frc.robot.robotmain.Autonomous;
 import edu.wpi.first.wpilibj.Joystick;
 import frc.robot.robotmain.Joystickcontrols;
 import frc.robot.robotmain.Buttoncontrols;
@@ -20,7 +19,7 @@ public class Robot extends TimedRobot {
   public static OI oi;
   public static Globalvariables globalvariables;
   public static Recursivecode recursivecode;
-  public static Autonomous autonomous;
+  //public static Autonomous autonomous;
   public static Robotmap robotmap;
   public static Joystickcontrols joysticks;
   public static Buttoncontrols buttoncontrols;
@@ -49,7 +48,7 @@ public class Robot extends TimedRobot {
   }
   @Override public void autonomousInit() {
     //called when autonomous first initializes
-    autonomous = new Autonomous();
+    //autonomous = new Autonomous();
     Robot.oi.rmotor1.setSelectedSensorPosition(0, 0, 30);
     Robot.oi.lmotor1.setSelectedSensorPosition(0, 0, 30);
     Robot.oi.navx.reset();
@@ -66,7 +65,7 @@ public class Robot extends TimedRobot {
     //   oi.drive.arcadeDrive(0, 0);
     // }
     //called during autonomous
-    autonomous = new Autonomous();
+    //autonomous = new Autonomous();
     SmartDashboard.putNumber("Automode", Globalvariables.automode);
     SmartDashboard.putBoolean("CHEKC FLAG", Globalvariables.check_flag);
     SmartDashboard.putNumber("Encoder 1", Robot.oi.rmotor1.getSelectedSensorPosition());

@@ -116,8 +116,8 @@ public OI() {
     shooter_motor1 = new CANSparkMax(14, MotorType.kBrushless);
     shooter_motor2 = new CANSparkMax(11, MotorType.kBrushless);
     shooter_intake = new CANSparkMax(12, MotorType.kBrushless);
-    // shooterPIDcontroller1 = shooter_motor1.getPIDController();
-    // shooterPIDcontroller2 = shooter_motor2.getPIDController();
+    shooterPIDcontroller1 = shooter_motor1.getPIDController();
+    shooterPIDcontroller2 = shooter_motor2.getPIDController();
     // shooterintakePID = shooter_intake.getPIDController();
 
 
