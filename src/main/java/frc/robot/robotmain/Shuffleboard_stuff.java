@@ -30,7 +30,10 @@ public final class Shuffleboard_stuff {
         SmartDashboard.putNumber("Intake Revolver", getrevolverintakeSpeed());
         SmartDashboard.putNumber("SPEEED RPM", getshooterSpeed());
         SmartDashboard.putNumber("key", getautomodeNumber());
-        // SmartDashboard.putBoolean("CHEKC FLAG", Globalvariables.check_flag);
+        SmartDashboard.putBoolean("CHEKC FLAG", Globalvariables.check_flag);
+        SmartDashboard.putBoolean("User Control", Globalvariables.UserControl);
+        SmartDashboard.putNumber("SHOOOTER REALPLEAM ARJUN GOD MODE", Robot.oi.shooter_encoder1.getVelocity());
+        SmartDashboard.putNumber("TIMER", Robot.oi.shotclock_timer.get());
     }
     public double getMaxSpeed(){
         return Robot.oi.maxSpeed.getDouble(1.0);

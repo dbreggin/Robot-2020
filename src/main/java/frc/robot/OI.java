@@ -28,7 +28,7 @@ import com.revrobotics.CANSparkMax;
 import com.revrobotics.CANSparkMaxLowLevel.MotorType;
 import com.revrobotics.CANPIDController;
 import com.revrobotics.CANEncoder;
-
+import edu.wpi.first.wpilibj.Timer;
 
 public final class OI {
 //2019 robot stuffffffff
@@ -99,6 +99,9 @@ public DigitalInput lineSensor2;
 public AHRS navx;
 public SpeedControllerGroup ldrive;
 public SpeedControllerGroup rdrive;
+public Timer shotclock_timer;
+public Timer intake_timer;
+public Timer anitclog_timer;
 
 //public AHRS navx;
 
@@ -119,25 +122,17 @@ public OI() {
     shooter_intake = new CANSparkMax(12, MotorType.kBrushless);
     shooterPIDcontroller1 = shooter_motor1.getPIDController();
     shooterPIDcontroller2 = shooter_motor2.getPIDController();
-    // shooterintakePID = shooter_intake.getPIDController();
-
-
-
-    //2019 robot stuffffffff
-    gamepad = new Joystick(Robotmap.gamepad);
-    ljoystick = new Joystick(0);
-    rjoystick = new Joystick(1);
-    // rmotor1 = new WPI_TalonSRX(4);  //4
-    // rmotor2 = new VictorSPX(5); //5
-    // rmotor3 = new VictorSPX(7); //7
-    // lmotor1 = new WPI_TalonSRX(2);  //2
-    // lmotor2 = new VictorSPX(0); //0
-    // lmotor3 = new VictorSPX(8); //8
-    intake_motor = new TalonSRX(1);
+    shooterintakePID = shooter_intake.getPIDController();
     cp_motor = new TalonSRX(3);
     cl_moveL = new TalonSRX(11);
     cl_moveR = new TalonSRX(10);
     cl_lift = new TalonSRX(12);
+
+
+    //Gamepad and 
+    gamepad = new Joystick(Robotmap.gamepad);
+    ljoystick = new Joystick(0);
+    rjoystick = new Joystick(1);
     testmotor = new TalonFX(15);
 
 
@@ -171,6 +166,13 @@ public OI() {
     shooterPIDcontroller2.setIZone(0);
     shooterPIDcontroller2.setFF(0);
     shooterPIDcontroller2.setOutputRange(-1, 1);
+    shooterintakePID.setP(5e-5);
+    shooterintakePID.setI(1e-6);
+    shooterintakePID.setD(0);
+    shooterintakePID.setIZone(0);
+    shooterintakePID.setFF(0);
+    shooterintakePID.setOutputRange(-1, 1);
+    
     shooter_encoder1 = shooter_motor1.getEncoder();
     shooter_encoder2 = shooter_motor2.getEncoder();
     //rmotor1.configSelectedFeedbackSensor(FeedbackDevice.QuadEncoder, 0, 30);
@@ -206,6 +208,10 @@ public OI() {
     LeDtest = tab.add("HeavyMetalTest",1).withProperties(Map.of("min",-1,"max",1)).getEntry();
 
     navx = new AHRS();
+
+    shotclock_timer = new Timer();
+    intake_timer = new Timer();
+    anitclog_timer = new Timer();
 
     }
 }

@@ -51,7 +51,8 @@ public final class Vision {
                 // Globalvariables.Shootflag = false;
                 Globalvariables.LEDmode = 6;
             }
-            sA*=-1;
+            sA*=-.75;
+            dA*= -.9;
             dA*=scaler;
             Robot.oi.drive.arcadeDrive(dA,sA);
         } else{

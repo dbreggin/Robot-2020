@@ -49,8 +49,16 @@ public final class Globalvariables {
     public static double turn1angle;
     public static int autonomous_stage;
     public static double automode;
+    public boolean intake_flag;
+    public boolean intaketimer_flag;
+    public boolean anticlog_flag;
+    public boolean anticlogtimer_flag;
     public Globalvariables(){
+        anticlogtimer_flag = false;
+        anticlog_flag = false;
         revolverintakevarible = 0;
+        intaketimer_flag = false;
+        intake_flag = false;
         check_flag = false;
         Shootflag = false;
         angle = false;
