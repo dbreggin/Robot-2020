@@ -65,7 +65,7 @@ public final class Autonomous {
                     }
                     break;
                 case 4:
-                    visionFunction = new Vision(.7,3,.9);
+                    visionFunction = new Vision(.7,3,.9,0);
                     break;
                 case 5:
                     Robot.oi.drive.tankDrive(0, 0);
@@ -197,7 +197,7 @@ public final class Autonomous {
                     }
                     break;
                 case 3:
-                    visionFunction = new Vision(.7,3,.9);
+                    visionFunction = new Vision(.7,3,.9,0);
                     if(Globalvariables.ball_counter >=5){
                         Globalvariables.ball_counter = 5;
                         Globalvariables.autonomous_stage++;

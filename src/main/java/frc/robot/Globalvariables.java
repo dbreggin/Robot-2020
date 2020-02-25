@@ -53,7 +53,9 @@ public final class Globalvariables {
     public boolean intaketimer_flag;
     public boolean anticlog_flag;
     public boolean anticlogtimer_flag;
+    public boolean shooter_lineup;
     public Globalvariables(){
+        shooter_lineup= false;
         anticlogtimer_flag = false;
         anticlog_flag = false;
         revolverintakevarible = 0;

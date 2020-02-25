@@ -26,37 +26,37 @@ public final class Joystickcontrols {
     Joystickcontrol();
     }
     public void Joystickcontrol(){
-        
-
-
-
         // Robot.oi.shooter_motor1.set(Robot.oi.gamepad.getRawAxis(Robotmap.LeftY));
         // Robot.oi.shooter_motor2.set(-Robot.oi.gamepad.getRawAxis(Robotmap.LeftY));
         // Robot.oi.shooter_intake.set(-Robot.oi.gamepad.getRawAxis(Robotmap.LeftY));
         Robot.oi.hopper.set(Robot.oi.gamepad.getRawAxis(Robotmap.RightY));
         if(Robot.oi.gamepad.getRawButton(1)){
+            vision = new Vision(.975,0,1.0, -3);
+            Globalvariables.UserControl = false;
             // Robot.oi.shooter_motor1.set(.9);
             // Robot.oi.shooter_motor2.set(-.9);
             // Robot.oi.shooter_intake.set(-.75);
             Robot.oi.shooterPIDcontroller1.setReference(Robot.shuffleboard.getshooterSpeed(), ControlType.kVelocity);
             Robot.oi.shooterPIDcontroller2.setReference(-Robot.shuffleboard.getshooterSpeed(), ControlType.kVelocity);
-           if(Robot.oi.shooter_encoder1.getVelocity() + 50 > Robot.shuffleboard.getshooterSpeed() && Robot.oi.shooter_encoder1.getVelocity() - 50 < Robot.shuffleboard.getshooterSpeed()){
+           if(Robot.oi.shooter_encoder1.getVelocity() + 100 > Robot.shuffleboard.getshooterSpeed() && Robot.oi.shooter_encoder1.getVelocity() - 300 < Robot.shuffleboard.getshooterSpeed()){
+
                 if(!Robot.globalvariables.intake_flag){
                     Robot.oi.shotclock_timer.start();
                     Robot.globalvariables.intake_flag = true;
                 }
-                if(Robot.oi.shotclock_timer.get() > 1){
-                    Robot.globalvariables.anticlogtimer_flag = false;
-                    Robot.oi.anitclog_timer.reset();
-                    Robot.oi.shooter_intake.set(-.9);
-                    if(!Robot.globalvariables.intaketimer_flag){
-                        Robot.oi.intake_timer.start();
-                        Robot.globalvariables.intaketimer_flag = true;
-                    }
-                    if(Robot.oi.intake_timer.get() > .75){
-                        Robot.oi.revolver.set(.4);
-                    }
-                    
+                if(Robot.oi.shotclock_timer.get() > .5){
+                    if(Robot.globalvariables.shooter_lineup){
+                        Robot.globalvariables.anticlogtimer_flag = false;
+                        Robot.oi.anitclog_timer.reset();
+                        Robot.oi.shooter_intake.set(-.9);
+                        if(!Robot.globalvariables.intaketimer_flag){
+                            Robot.oi.intake_timer.start();
+                            Robot.globalvariables.intaketimer_flag = true;
+                        }
+                        if(Robot.oi.intake_timer.get() > .1){
+                            Robot.oi.revolver.set(.4);
+                        }
+                    }   
                 }else{
                     Robot.oi.shooter_intake.set(0);
                     Robot.oi.revolver.set(0);
@@ -77,6 +77,7 @@ public final class Joystickcontrols {
         }else if(Robot.oi.gamepad.getRawButton(4)){
             Robot.oi.shooter_intake.set(.5);
         }else{
+            Globalvariables.UserControl = true; 
             Robot.oi.shooter_motor1.set(0);
             Robot.oi.shooter_motor2.set(0);
             Robot.oi.shooter_intake.set(0);
@@ -85,13 +86,6 @@ public final class Joystickcontrols {
         
 
         //FALCON TEST CODE 
-        if(Robot.oi.rjoystick.getRawButton(Robotmap.JoyTrigger) && !Globalvariables.buttonDone[0]){
-            Globalvariables.vision = !Globalvariables.vision;
-            Globalvariables.buttonDone[0] = true;
-        }
-        else if(!Robot.oi.rjoystick.getRawButton(Robotmap.JoyTrigger) && Globalvariables.buttonDone[0]){
-            Globalvariables.buttonDone[0] = false;
-        }
         if(Robot.oi.rjoystick.getRawButton(Robotmap.JoyBotFT) && !Globalvariables.buttonDone[1]){
             Globalvariables.driveType = !Globalvariables.driveType;
             Globalvariables.buttonDone[1] = true;
@@ -106,18 +100,12 @@ public final class Joystickcontrols {
         else if(!Robot.oi.rjoystick.getRawButton(Robotmap.JoyBotBB) && Globalvariables.buttonDone[2]){
             Globalvariables.buttonDone[2] = false;
         }
-        if(Globalvariables.angle){
-            angleFunction = new AngleCall(90.0,0.0);
-        }
-        if(Globalvariables.vision){
-            //Globalvariables.check_flag = true;
-            Globalvariables.UserControl = false;
-            vision = new Vision(.975,0,1.0);
-            //visionFunction = new VisionRange(0.75, 0.4,0,1);
-        }
-        else{
-            Globalvariables.UserControl = true;
-        }
+        // if(Globalvariables.angle){
+        //     angleFunction = new AngleCall(90.0,0.0);
+        // }
+        //     //visionFunction = new VisionRange(0.75, 0.4,0,1);
+        
+
         if(Globalvariables.UserControl){
             if(Robot.oi.ljoystick.getRawButton(Robotmap.JoyTrigger)){
                 Robot.oi.drive.tankDrive(-Robot.oi.ljoystick.getRawAxis(Robotmap.joyY)*Robot.oi.maxSpeed.getDouble(1.0),-Robot.oi.rjoystick.getRawAxis(Robotmap.joyY)*Robot.oi.maxSpeed.getDouble(1.0));   
