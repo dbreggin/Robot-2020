@@ -35,7 +35,7 @@ public final class Autonomous {
                     // if(Robot.oi.la != 0.0){
                     //     Globalvariables.autonomous_stage++;
                     // }
-                    if(Robot.oi.rmotor1.getSelectedSensorPosition()<- 1){
+                    if(Robot.oi.motor1.getSelectedSensorPosition()<- 1){
                         Globalvariables.autonomous_stage++;
                     }
                     break;
@@ -105,7 +105,7 @@ public final class Autonomous {
             switch(Globalvariables.autonomous_stage){
                 case 0: 
                      //2430 = 5 feet
-                    if(Robot.oi.rmotor1.getSelectedSensorPosition()<-2430*1){
+                    if(Robot.oi.motor1.getSelectedSensorPosition()<-2430*1){
                         Robot.oi.drive.arcadeDrive(-.75, -.75);
                     }else{
                         Globalvariables.autonomous_stage++;
@@ -173,7 +173,7 @@ public final class Autonomous {
         if(Globalvariables.automode == 2){
             switch(Globalvariables.autonomous_stage){
                 case 0: 
-                    if(Robot.oi.rmotor1.getSelectedSensorPosition()<-2430*1){
+                    if(Robot.oi.motor1.getSelectedSensorPosition()<-2430*1){
                         Robot.oi.drive.arcadeDrive(-.75, -.75);
                     }else{
                         Globalvariables.autonomous_stage++;
@@ -223,7 +223,7 @@ public final class Autonomous {
         if(Globalvariables.automode == 2){
             switch(Globalvariables.autonomous_stage){
                 case 0: 
-                    if(Robot.oi.rmotor1.getSelectedSensorPosition()<-2430*1){
+                    if(Robot.oi.motor1.getSelectedSensorPosition()<-2430*1){
                         Robot.oi.drive.arcadeDrive(-.75, -.75);
                     }else{
                         Globalvariables.autonomous_stage++;

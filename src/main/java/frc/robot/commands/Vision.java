@@ -2,6 +2,7 @@ package frc.robot.commands;
 import frc.robot.*;
 import edu.wpi.first.networktables.NetworkTableInstance;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
+import com.ctre.phoenix.motorcontrol.ControlMode;
 
 public final class Vision {
     double dA;
@@ -47,10 +48,11 @@ public final class Vision {
                 Robot.globalvariables.shooter_lineup = true;
                 sA = 0;
             }
+            Robot.oi.drive.tankDrive(0,0);
 
-
-
-
+            Robot.oi.motor1.set(ControlMode.Velocity,3);
+            Robot.oi.motor3.set(ControlMode.Velocity,-3);
+            
 
 
 

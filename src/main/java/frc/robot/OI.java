@@ -32,13 +32,13 @@ import edu.wpi.first.wpilibj.Timer;
 
 public final class OI {
 //2019 robot stuffffffff
-public WPI_TalonSRX rmotor1;
-public VictorSPX rmotor2;
-public VictorSPX rmotor3;
-public WPI_TalonSRX lmotor1;
-public TalonFX testmotor;
-public VictorSPX lmotor2;
-public VictorSPX lmotor3;
+// public WPI_TalonSRX rmotor1;
+// public VictorSPX rmotor2;
+// public VictorSPX rmotor3;
+// public WPI_TalonSRX lmotor1;
+// public TalonFX testmotor;
+// public VictorSPX lmotor2;
+// public VictorSPX lmotor3;
 public Joystick gamepad;
 public Joystick rjoystick;
 public Joystick ljoystick;
@@ -65,10 +65,10 @@ public CANEncoder shooter_encoder2;
 public Talon e_boy;
 
 //Motors 
-private WPI_TalonFX motor1;
-private WPI_TalonFX motor2;
-private WPI_TalonFX motor3;
-private WPI_TalonFX motor4;
+public final WPI_TalonFX motor1;
+private final WPI_TalonFX motor2;
+public final WPI_TalonFX motor3;
+private final WPI_TalonFX motor4;
 public WPI_TalonSRX revolver;
 public WPI_TalonSRX hopper;
 
@@ -113,8 +113,10 @@ public OI() {
     motor2 = new WPI_TalonFX(13);
     motor3 = new WPI_TalonFX(15);
     motor4 = new WPI_TalonFX(11);
-    ldrive = new SpeedControllerGroup(motor1, motor2);
-    rdrive = new SpeedControllerGroup(motor3, motor4);
+    motor2.follow(motor1);
+    motor4.follow(motor3);
+    //ldrive = new SpeedControllerGroup(motor1, motor2);
+    //rdrive = new SpeedControllerGroup(motor3, motor4);
     revolver = new WPI_TalonSRX(1);
     hopper = new WPI_TalonSRX(3);
     shooter_motor1 = new CANSparkMax(14, MotorType.kBrushless);
@@ -133,7 +135,6 @@ public OI() {
     gamepad = new Joystick(Robotmap.gamepad);
     ljoystick = new Joystick(0);
     rjoystick = new Joystick(1);
-    testmotor = new TalonFX(15);
 
 
     //drmotor1 = new TalonFX(15); //FALCON TEST CODE
@@ -187,7 +188,7 @@ public OI() {
     //rmotor1.configSelectedFeedbackSensor(FeedbackDevice.QuadEncoder,0,30);
     //lmotor1.configSelectedFeedbackSensor(FeedbackDevice.QuadEncoder,0,30);
 
-    drive = new DifferentialDrive(rdrive, ldrive);
+    drive = new DifferentialDrive(motor1, motor3);
     table = NetworkTableInstance.getDefault().getTable("limelight");
     tx = table.getEntry("tx");
     ty = table.getEntry("ty");

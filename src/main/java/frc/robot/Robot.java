@@ -49,8 +49,8 @@ public class Robot extends TimedRobot {
   @Override public void autonomousInit() {
     //called when autonomous first initializes
     //autonomous = new Autonomous();
-    Robot.oi.rmotor1.setSelectedSensorPosition(0, 0, 30);
-    Robot.oi.lmotor1.setSelectedSensorPosition(0, 0, 30);
+    Robot.oi.motor3.setSelectedSensorPosition(0, 0, 30);
+    Robot.oi.motor1.setSelectedSensorPosition(0, 0, 30);
     Robot.oi.navx.reset();
     angleTurn = new AngleTurn(90, 0.5);
     Globalvariables.turn2angle = true;
@@ -68,8 +68,8 @@ public class Robot extends TimedRobot {
     autonomous = new Autonomous();
     SmartDashboard.putNumber("Automode", Globalvariables.automode);
     SmartDashboard.putBoolean("CHEKC FLAG", Globalvariables.check_flag);
-    SmartDashboard.putNumber("Encoder 1", Robot.oi.rmotor1.getSelectedSensorPosition());
-    SmartDashboard.putNumber("Encoder 2", Robot.oi.lmotor1.getSelectedSensorPosition());
+    SmartDashboard.putNumber("Encoder 1", Robot.oi.motor3.getSelectedSensorPosition());
+    SmartDashboard.putNumber("Encoder 2", Robot.oi.motor1.getSelectedSensorPosition());
     recursivecode = new Recursivecode();
   }
   @Override public void teleopInit() {
