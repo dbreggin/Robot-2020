@@ -34,6 +34,10 @@ public final class Shuffleboard_stuff {
         SmartDashboard.putBoolean("User Control", Globalvariables.UserControl);
         SmartDashboard.putNumber("SHOOOTER REALPLEAM ARJUN GOD MODE", Robot.oi.shooter_encoder1.getVelocity());
         SmartDashboard.putNumber("TIMER", Robot.oi.shotclock_timer.get());
+        SmartDashboard.putNumber("FALCONencoder", Robot.oi.drive_encoder1.getPosition());
+        SmartDashboard.putNumber("FALCONencoder2", Robot.oi.drive_encoder3.getPosition());
+        SmartDashboard.putNumber("swivlepos", Robot.oi.swivle.getAngle());
+        SmartDashboard.putNumber("swivlepos", Robot.oi.swivle.get());
     }
     public double getMaxSpeed(){
         return Robot.oi.maxSpeed.getDouble(1.0);

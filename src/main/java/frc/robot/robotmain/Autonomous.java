@@ -219,11 +219,11 @@ public final class Autonomous {
                     break;
             }
         }
-        //MOVE OFF LINE AND END IT ALL
-        if(Globalvariables.automode == 2){
+        //MOVE OFF LINE AND END IT ALL ummmm you ok bud?
+        if(Globalvariables.automode == 3){
             switch(Globalvariables.autonomous_stage){
                 case 0: 
-                    if(Robot.oi.motor1.getSelectedSensorPosition()<-2430*1){
+                    if(Robot.oi.drive_encoder1.getPosition()<-2430*1){
                         Robot.oi.drive.arcadeDrive(-.75, -.75);
                     }else{
                         Globalvariables.autonomous_stage++;
@@ -233,9 +233,62 @@ public final class Autonomous {
                 Robot.oi.drive.tankDrive(0, 0);
                 break;
             }
+            //WHATEVER WE NEED
+        if(Globalvariables.automode == 4){
+            switch(Globalvariables.autonomous_stage){
+                case 0:
+                }
+            }
+        }
+    }
+    void headingStraight(double speed, double distance, double angle){
+        Robot.oi.ta = Robot.oi.table.getEntry("ta");
+        Robot.oi.la = Robot.oi.ta.getDouble(0.0);
+        sA = Robot.oi.navx.getAngle()*.09;
+        if(Robot.oi.navx.getAngle()<angle && Robot.oi.navx.getAngle()>-angle){
+            sA*=4.20;
+            Globalvariables.LEDmode=10;
+        } else {
+            Globalvariables.LEDmode=2;
+        }
+
+        if(sA>1){
+            sA = 1;
+        } else if (sA<-1){
+            sA = -1;   
+        }                
+        //2430 = 5 feet
+        Robot.oi.drive.arcadeDrive(speed, sA);
+        // if(Robot.oi.la != 0.0){
+        //     Globalvariables.autonomous_stage++;
+        // }
+        if(Robot.oi.motor1.getSelectedSensorPosition()<- 1){
+            Globalvariables.autonomous_stage++;
+        }
+    }
+    void turnAngle(double angle){
+        sA = 140-Robot.oi.navx.getAngle()*.09;
+        if(Robot.oi.navx.getAngle()<angle-2){
+            Robot.oi.drive.arcadeDrive(0, -.6);
+            Globalvariables.LEDmode=2;
+        } else if(Robot.oi.navx.getAngle()>angle+2){
+            Robot.oi.drive.arcadeDrive(0, .6);
+            Globalvariables.LEDmode=2;
+        } else {
+            Robot.oi.drive.tankDrive(0, 0);
+            Globalvariables.LEDmode=10;
+            Globalvariables.autonomous_stage++;
+        }
+    }
+    void swivle(double angle){
+        if (Robot.oi.swivle.getAngle() < angle){
+            Robot.oi.swivle.set(.3);
+        }else if(Robot.oi.swivle.getAngle() > angle){
+            Robot.oi.swivle.set(-.3);
         }
     }
 }
+
 
 
 

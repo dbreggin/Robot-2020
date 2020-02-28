@@ -9,6 +9,12 @@ import com.ctre.phoenix.motorcontrol.can.WPI_TalonFX;
 import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
 import com.kauailabs.navx.frc.AHRS;
 
+//Falcon Encoders
+import com.ctre.phoenix.sensors.CANCoder;
+import com.ctre.phoenix.sensors.CANCoderConfiguration;
+import com.ctre.phoenix.sensors.CANCoderFaults;
+import com.ctre.phoenix.sensors.CANCoderStickyFaults;
+
 //import com.kauailabs.navx.frc.AHRS;
 //limelight
 import edu.wpi.first.networktables.NetworkTable;
@@ -16,6 +22,7 @@ import edu.wpi.first.networktables.NetworkTableEntry;
 import edu.wpi.first.networktables.NetworkTableInstance;
 import edu.wpi.first.wpilibj.DigitalInput;
 import edu.wpi.first.wpilibj.Joystick;
+import edu.wpi.first.wpilibj.Servo;
 import edu.wpi.first.wpilibj.SpeedControllerGroup;
 import edu.wpi.first.wpilibj.Talon;
 import edu.wpi.first.wpilibj.drive.DifferentialDrive;
@@ -59,9 +66,14 @@ public CANPIDController shooterPIDcontroller2;
 public CANPIDController shooterintakePID;
 public CANEncoder shooter_encoder1;
 public CANEncoder shooter_encoder2;
+public CANCoder drive_encoder1;
+public CANCoder drive_encoder2;
+public CANCoder drive_encoder3;
+public CANCoder drive_encoder4;
+
 
 //public TalonFX drmotor1; //FALCON TEST CODE
-
+ 
 public Talon e_boy;
 
 //Motors 
@@ -71,6 +83,7 @@ public final WPI_TalonFX motor3;
 private final WPI_TalonFX motor4;
 public WPI_TalonSRX revolver;
 public WPI_TalonSRX hopper;
+public Servo swivle;
 
 
 //limelight
@@ -103,6 +116,7 @@ public Timer shotclock_timer;
 public Timer intake_timer;
 public Timer anitclog_timer;
 
+
 //public AHRS navx;
 
 //read values periodically
@@ -125,10 +139,16 @@ public OI() {
     shooterPIDcontroller1 = shooter_motor1.getPIDController();
     shooterPIDcontroller2 = shooter_motor2.getPIDController();
     shooterintakePID = shooter_intake.getPIDController();
-    cp_motor = new TalonSRX(3);
+    cp_motor = new TalonSRX(9);
     cl_moveL = new TalonSRX(11);
     cl_moveR = new TalonSRX(10);
     cl_lift = new TalonSRX(12);
+    drive_encoder1 = new CANCoder(12);
+    drive_encoder2 = new CANCoder(13);
+    drive_encoder3 = new CANCoder(15);
+    drive_encoder4 = new CANCoder(11);
+    swivle = new Servo(0);
+
 
 
     //Gamepad and 
@@ -148,10 +168,10 @@ public OI() {
     SmartDashboard.putData("Ball Counter", ballcount);
 
     automode = new SendableChooser<Integer>();
-    automode.setDefaultOption("Automode 1", 0);
-    automode.addOption("Push,shoot,collect", 1);
-    automode.addOption("Automode 3", 2);
-    automode.addOption("Automode 4", 3);
+    automode.setDefaultOption("MOVE BACK, TURN TO BALL, TURN TO TARGET, SHOOT AT TARGET", 0);
+    automode.addOption("MOVE ALLIENCE PARTNER OFF LINE, SHOOT, COLLECT NEW BALLS", 1);
+    automode.addOption("GO OFF LINE,COLLECT BALLS 2 ,SHOOT CYCLE", 2);
+    automode.addOption("MOVE OFF LINE AND END IT ALL", 3);
     automode.addOption("Automode 5", 4);
     SmartDashboard.putData("Automode 1", automode);
 
