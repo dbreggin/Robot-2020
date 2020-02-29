@@ -14,47 +14,59 @@ public final class Autonomous {
     public Autonomous(){
         switch(Globalvariables.autonomous_stage){
             case 0:
-
                 //1 foot = 9464.56 on left
                 if(Robot.oi.motor1.getSelectedSensorPosition(0) > -9464.7*5){
                     Robot.oi.drive.tankDrive(-.5, -.5);
-                } else {
+                }else {
                     visionFunction = new Vision(.975,0,1.0, -3);
-            Robot.oi.shooterPIDcontroller1.setReference(2425, ControlType.kVelocity);
-            Robot.oi.shooterPIDcontroller2.setReference(-2425, ControlType.kVelocity);
-           if(Robot.oi.shooter_encoder1.getVelocity() + 500 > 2425 && Robot.oi.shooter_encoder1.getVelocity() - 500 < 2425
-           ){
-                if(!Robot.globalvariables.intake_flag){
-                    Robot.oi.Limelight_timer.start();
-                    Robot.oi.shotclock_timer.start();
-                    Robot.globalvariables.intake_flag = true;
-                }
-                if(Robot.oi.shotclock_timer.get() > .5){
-                    if(Robot.globalvariables.shooter_lineup){
-                        Robot.globalvariables.anticlogtimer_flag = false;
-                        Robot.oi.anitclog_timer.reset();
-                        Robot.globalvariables.RPM_good = true;
-                        Robot.oi.shooter_intake.set(-.9);
-                        if(!Robot.globalvariables.intaketimer_flag){
-                            Robot.oi.intake_timer.start();
-                            Robot.globalvariables.intaketimer_flag = true;
+                    Robot.oi.shooterPIDcontroller1.setReference(2425, ControlType.kVelocity);
+                    Robot.oi.shooterPIDcontroller2.setReference(-2425, ControlType.kVelocity);
+                    if(Robot.oi.shooter_encoder1.getVelocity() + 500 > 2425 && Robot.oi.shooter_encoder1.getVelocity() - 500 < 2425){
+                        if(!Robot.globalvariables.intake_flag){
+                            Robot.oi.Limelight_timer.start();
+                            Robot.oi.shotclock_timer.start();
+                            Robot.globalvariables.intake_flag = true;
                         }
-                        if(Robot.oi.intake_timer.get() > .1){
-                            Robot.oi.revolver.set(.3);
+                        if(Robot.oi.shotclock_timer.get() > .5){
+                            if(Robot.globalvariables.shooter_lineup){
+                                Robot.globalvariables.anticlogtimer_flag = false;
+                                Robot.oi.anitclog_timer.reset();
+                                Robot.globalvariables.RPM_good = true;
+                                Robot.oi.shooter_intake.set(-.9);
+                                if(!Robot.globalvariables.intaketimer_flag){
+                                    Robot.oi.intake_timer.start();
+                                    Robot.globalvariables.intaketimer_flag = true;
+                                }
+                                if(Robot.oi.intake_timer.get() > .1){
+                                    Robot.oi.revolver.set(.3);
+                                }
+                            }   
+                        }else{
+                            Robot.globalvariables.RPM_good = false;
+                            Robot.oi.shooter_intake.set(0);
+                            Robot.oi.revolver.set(0);
                         }
-                    }   
-                }else{
-                    Robot.globalvariables.RPM_good = false;
-                    Robot.oi.shooter_intake.set(0);
-                    Robot.oi.revolver.set(0);
+            }else{
+                if(!Robot.globalvariables.anticlogtimer_flag){
+                        Robot.oi.anitclog_timer.start();
+                        Robot.globalvariables.anticlogtimer_flag = true; 
                 }
-           }else{
-               if(!Robot.globalvariables.anticlogtimer_flag){
-                    Robot.oi.anitclog_timer.start();
-                    Robot.globalvariables.anticlogtimer_flag = true; 
-               }
             }
         }
+        
+            if(Globalvariables.ball_counter ==0){
+                Robot.oi.shooterPIDcontroller1.setReference(0, ControlType.kVelocity);
+                Robot.oi.shooterPIDcontroller2.setReference(0, ControlType.kVelocity);
+                Robot.oi.shooter_intake.set(0);
+                Robot.oi.revolver.set(0);
+                Globalvariables.autonomous_stage ++;
+            }
+            
+            break;
+        case 1:
+            Robot.oi.drive.tankDrive(0, 0);
+
+        
     ////////MOVE BACK, TURN TO BALL, TURN TO TARGET, SHOOT AT TARGET/////////////
     /*
     if(Globalvariables.automode == 0){

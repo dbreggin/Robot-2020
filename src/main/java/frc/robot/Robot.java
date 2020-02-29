@@ -56,6 +56,7 @@ public class Robot extends TimedRobot {
     Globalvariables.turn2angle = true;
     Globalvariables.turn1angle = 90;
     Globalvariables.speed = .6;
+    Globalvariables.ball_counter = Robot.oi.ballcount.getSelected();
     // Globalvariables.automode = Robot.oi.automode.getSelected();
   }
   @Override public void autonomousPeriodic() {
