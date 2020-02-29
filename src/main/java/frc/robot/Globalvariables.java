@@ -16,6 +16,7 @@ import frc.robot.OI;
  * constants are needed, to reduce verbosity.
  */
 public final class Globalvariables {
+    public static boolean driveDirection;
     public static int ball_counter;
     public static double LEDoffset=-.06;
     public static int LEDmode = 22;
@@ -55,8 +56,10 @@ public final class Globalvariables {
     public boolean anticlogtimer_flag;
     public boolean shooter_lineup;
     public boolean RPM_good;
+    public boolean flip_flag;
     public Globalvariables(){
         RPM_good = false;
+        driveDirection = false;
         shooter_lineup= false;
         anticlogtimer_flag = false;
         anticlog_flag = false;
@@ -80,7 +83,8 @@ public final class Globalvariables {
         driveType = false;
         reverse = false;
         angle_flag = false;
-        automode = 0;
+        automode = 0;        
+        flip_flag = false;
         ball_counter = 3;
         autonomous_stage = 0; //use slider to change
 
