@@ -16,10 +16,10 @@ public final class Robotmap {
     public static final int cMotorbPort = 12;    //2  //TALON SRX
 
     //joystick Top=Top Bot=Bottom L=Left B=back close to driver F=Forward far from driver T=Top M=Middle B=bottom if second letter
-    public static final int lJoystickPort = 0;
+    public static final int lJoystickPort = 1;
     public static final int joyX = 0; 
     public static final int joyY = 1;
-    public static final int rJoystickPort = 1;
+    public static final int rJoystickPort = 0;
     public static final int JoyTrigger = 1;
     public static final int JoyThumb = 2;
     public static final int JoyTopL = 5;
