@@ -33,9 +33,10 @@ public final class Shuffleboard_stuff {
         SmartDashboard.putNumber("SPEEED RPM", getshooterSpeed());
         SmartDashboard.putNumber("key", getautomodeNumber());
         SmartDashboard.putNumber("Servo ANGLLEEE", Robot.oi.swivle.getAngle());
-        SmartDashboard.putNumber("Navx Z", Robot.oi.navx.getRawMagZ());
-        SmartDashboard.putNumber("Navx Y", Robot.oi.navx.getRawMagY());
-        SmartDashboard.putNumber("Navx X", Robot.oi.navx.getRawMagX());
+        SmartDashboard.putNumber("Navx Roll", Robot.oi.navx.getRoll());
+        SmartDashboard.putNumber("Navx Pitch", Robot.oi.navx.getPitch());
+        SmartDashboard.putNumber("Navx Yaw", Robot.oi.navx.getYaw());
+        SmartDashboard.putNumber("Navx Rotating", Robot.oi.navx.getRawGyroY());
         SmartDashboard.putBoolean("User Control", Globalvariables.UserControl);
         SmartDashboard.putNumber("SHOOOTER REALPLEAM ARJUN GOD MODE", Robot.oi.shooter_encoder1.getVelocity());
         SmartDashboard.putNumber("TIMER", Robot.oi.shotclock_timer.get());

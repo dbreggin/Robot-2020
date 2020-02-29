@@ -56,21 +56,14 @@ public class Robot extends TimedRobot {
     Globalvariables.turn2angle = true;
     Globalvariables.turn1angle = 90;
     Globalvariables.speed = .6;
-    Globalvariables.automode = Robot.oi.automode.getSelected();
+    // Globalvariables.automode = Robot.oi.automode.getSelected();
   }
   @Override public void autonomousPeriodic() {
-    // if(Globalvariables.turn2angle){
-    //   AngleTurn2 angleturn2 = new AngleTurn2();
-    // } else {
-    //   oi.drive.arcadeDrive(0, 0);
-    // }
     //called during autonomous
     autonomous = new Autonomous();
-    SmartDashboard.putNumber("Automode", Globalvariables.automode);
-    SmartDashboard.putBoolean("CHEKC FLAG", Globalvariables.check_flag);
-    SmartDashboard.putNumber("Encoder 1", Robot.oi.motor3.getSelectedSensorPosition());
-    SmartDashboard.putNumber("Encoder 2", Robot.oi.motor1.getSelectedSensorPosition());
     recursivecode = new Recursivecode();
+    SmartDashboard.putNumber("FALCONencoder", Robot.oi.motor1.getSelectedSensorPosition(0));
+
   }
   @Override public void teleopInit() {
     recursivecode = new Recursivecode();

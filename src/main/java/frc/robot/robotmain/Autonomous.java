@@ -5,13 +5,58 @@ import frc.robot.commands.Identifyballs;
 import frc.robot.commands.VisionRange;
 import frc.robot.Globalvariables;
 import frc.robot.commands.Vision;
+import com.revrobotics.ControlType;
 //import frc.robot.commands.Angleturn;
 public final class Autonomous {
     double sA; 
     public VisionRange visionRangeFunction;
     public Vision visionFunction;
     public Autonomous(){
+        switch(Globalvariables.autonomous_stage){
+            case 0:
+
+                //1 foot = 9464.56 on left
+                if(Robot.oi.motor1.getSelectedSensorPosition(0) > -9464.7*5){
+                    Robot.oi.drive.tankDrive(-.5, -.5);
+                } else {
+                    visionFunction = new Vision(.975,0,1.0, -3);
+            Robot.oi.shooterPIDcontroller1.setReference(2425, ControlType.kVelocity);
+            Robot.oi.shooterPIDcontroller2.setReference(-2425, ControlType.kVelocity);
+           if(Robot.oi.shooter_encoder1.getVelocity() + 500 > 2425 && Robot.oi.shooter_encoder1.getVelocity() - 500 < 2425
+           ){
+                if(!Robot.globalvariables.intake_flag){
+                    Robot.oi.Limelight_timer.start();
+                    Robot.oi.shotclock_timer.start();
+                    Robot.globalvariables.intake_flag = true;
+                }
+                if(Robot.oi.shotclock_timer.get() > .5){
+                    if(Robot.globalvariables.shooter_lineup){
+                        Robot.globalvariables.anticlogtimer_flag = false;
+                        Robot.oi.anitclog_timer.reset();
+                        Robot.globalvariables.RPM_good = true;
+                        Robot.oi.shooter_intake.set(-.9);
+                        if(!Robot.globalvariables.intaketimer_flag){
+                            Robot.oi.intake_timer.start();
+                            Robot.globalvariables.intaketimer_flag = true;
+                        }
+                        if(Robot.oi.intake_timer.get() > .1){
+                            Robot.oi.revolver.set(.3);
+                        }
+                    }   
+                }else{
+                    Robot.globalvariables.RPM_good = false;
+                    Robot.oi.shooter_intake.set(0);
+                    Robot.oi.revolver.set(0);
+                }
+           }else{
+               if(!Robot.globalvariables.anticlogtimer_flag){
+                    Robot.oi.anitclog_timer.start();
+                    Robot.globalvariables.anticlogtimer_flag = true; 
+               }
+            }
+        }
     ////////MOVE BACK, TURN TO BALL, TURN TO TARGET, SHOOT AT TARGET/////////////
+    /*
     if(Globalvariables.automode == 0){
             switch(Globalvariables.autonomous_stage){
                 case 0: 
@@ -241,6 +286,7 @@ public final class Autonomous {
             }
         }
     }
+    }
     //1 foot = 9464.56 on left, -9366.14 on right 
     void headingStraight(double speed, double distance, double angle){
         Robot.oi.ta = Robot.oi.table.getEntry("ta");
@@ -288,8 +334,10 @@ public final class Autonomous {
             Robot.oi.swivle.set(-.3);
         }
     }
+    */
+        }
+    }
 }
-
 
 
 
