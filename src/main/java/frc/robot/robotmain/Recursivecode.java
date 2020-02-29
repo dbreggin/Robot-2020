@@ -16,6 +16,9 @@ public final class Recursivecode{
     LEDmode ledmode;
     public void recursivecode(){
         //ball counter code
+
+
+
         if(!Robot.oi.lineSensor.get() && !Globalvariables.lineloopflag[0]){
             Globalvariables.lineloopflag[0] = true;
             Globalvariables.ball_counter++;

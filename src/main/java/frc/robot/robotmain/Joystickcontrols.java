@@ -22,77 +22,28 @@ public final class Joystickcontrols {
     public VisionRange visionFunction;
     public Vision vision;
     public AngleCall angleFunction;
+
     
     public Joystickcontrols(){
     Joystickcontrol();
     }
     public void Joystickcontrol(){
-        if(Robot.oi.gamepad.getRawButtonPressed(5)){
-            Robot.oi.swivle.setAngle(41);
+    
+        if(Robot.oi.gamepad.getRawButton(4)){
+             //Ball_intake();
+        }else{
         }
-        if (Robot.oi.gamepad.getRawButtonPressed(6)) {
-            Robot.oi.swivle.setAngle(180);
-        }
-        Robot.oi.revolver.set(Robot.oi.gamepad.getRawAxis(1));
-        Robot.oi.shooter_intake.set(-Robot.oi.gamepad.getRawAxis(1));
         // Robot.oi.shooter_motor1.set(Robot.oi.gamepad.getRawAxis(Robotmap.LeftY));
         // Robot.oi.shooter_motor2.set(-Robot.oi.gamepad.getRawAxis(Robotmap.LeftY));
         // Robot.oi.shooter_intake.set(-Robot.oi.gamepad.getRawAxis(Robotmap.LeftY));
         Robot.oi.hopper.set(Robot.oi.gamepad.getRawAxis(1));
         if(Robot.oi.gamepad.getRawButton(1)){
-            vision = new Vision(.975,0,1.0, -3);
-            Globalvariables.UserControl = false;
-            Robot.oi.shooterPIDcontroller1.setReference(Robot.shuffleboard.getshooterSpeed(), ControlType.kVelocity);
-            Robot.oi.shooterPIDcontroller2.setReference(-Robot.shuffleboard.getshooterSpeed(), ControlType.kVelocity);
-           if(Robot.oi.shooter_encoder1.getVelocity() + 500 > Robot.shuffleboard.getshooterSpeed() && Robot.oi.shooter_encoder1.getVelocity() - 500 < Robot.shuffleboard.getshooterSpeed()){
-                if(!Robot.globalvariables.intake_flag){
-                    Robot.oi.Limelight_timer.start();
-                    Robot.oi.shotclock_timer.start();
-                    Robot.globalvariables.intake_flag = true;
-                }
-                if(Robot.oi.shotclock_timer.get() > .5){
-                    if(Robot.globalvariables.shooter_lineup){
-                        Robot.globalvariables.anticlogtimer_flag = false;
-                        Robot.oi.anitclog_timer.reset();
-                        Robot.globalvariables.RPM_good = true;
-                        Robot.oi.shooter_intake.set(-.9);
-                        if(!Robot.globalvariables.intaketimer_flag){
-                            Robot.oi.intake_timer.start();
-                            Robot.globalvariables.intaketimer_flag = true;
-                        }
-                        if(Robot.oi.intake_timer.get() > .1){
-                            Robot.oi.revolver.set(.4);
-                        }
-                    }   
-                }else{
-                    Robot.globalvariables.RPM_good = false;
-                    Robot.oi.shooter_intake.set(0);
-                    Robot.oi.revolver.set(0);
-                }
-           }else{
-               if(!Robot.globalvariables.anticlogtimer_flag){
-                    Robot.oi.anitclog_timer.start();
-                    Robot.globalvariables.anticlogtimer_flag = true; 
-               }
-               if(Robot.oi.anitclog_timer.get() < .25){
-                    Robot.oi.shooter_intake.set(.25);
-                }
-                Robot.oi.shotclock_timer.reset();
-                Robot.oi.intake_timer.reset();
-                Robot.globalvariables.intaketimer_flag = false;
-                Robot.globalvariables.intake_flag = false;
-           }
-        }else if(Robot.oi.gamepad.getRawButton(4)){
-            Robot.oi.shooter_intake.set(.5);
-        }else{
-            Robot.globalvariables.RPM_good = false;
-            Robot.oi.Limelight_timer.reset();
-            Globalvariables.UserControl = true; 
-            Robot.oi.shooter_motor1.set(0);
-            Robot.oi.shooter_motor2.set(0);
-            //Robot.oi.shooter_intake.set(0);
-            //Robot.oi.revolver.set(0);
-        }
+            //Shooter_cycle();
+        }else if(!Robot.oi.gamepad.getRawButton(1)){
+            //Shooter_reset();
+        } 
+        
+        
         
 
         //FALCON TEST CODE 
@@ -161,7 +112,96 @@ public final class Joystickcontrols {
         // }else{
         //     Robot.oi.cl_moveR.set(ControlMode.PercentOutput, (0));
         // }       
-        
+    
     }
+    public void Ball_intake(){
+       // Robot.oi.swivle.setAngle(41);
+        Globalvariables.UserControl = false;
+        if(Robot.globalvariables.ball_stage_count == 0){
+            vision = new Vision(.6,3,1,0);
+        }else if(Robot.globalvariables.ball_stage_count == 1){
+            Robot.oi.drive.tankDrive(.6,.6);
+            if(!Robot.globalvariables.ball_pickedup){
+                Robot.globalvariables.origonal_ball = Globalvariables.ball_counter;
+                Robot.globalvariables.ball_pickedup = true;
+            }
+            if(Globalvariables.ball_counter > Robot.globalvariables.origonal_ball || Robot.oi.ball_timer.get() > .5){
+                Robot.globalvariables.ball_pickedup = true;
+                Robot.oi.revolver.set(.3);
+                Robot.globalvariables.ball_stage_count ++;
+            }else{
+                Robot.oi.ball_timer.stop();
+                Robot.globalvariables.ball_pickedup = false;
+                Robot.globalvariables.ball_stage_count ++;
+            }
+        }else if(Robot.globalvariables.ball_stage_count == 2){
+            Robot.oi.drive.tankDrive(0,0);
+            Robot.oi.ball_timer.reset();
+            Robot.globalvariables.ball_reset = true;
+            Robot.globalvariables.ball_stage_count = 0;
 
+        }
+        if(Robot.globalvariables.shooter_lineup){
+            if(!Robot.globalvariables.ball_reset){
+                Robot.oi.ball_timer.start();
+            }else{
+                Robot.oi.ball_timer.reset();
+            }
+            Robot.globalvariables.ball_stage_count ++;
+        }
+    }
+    public void Shooter_cycle(){
+       // Robot.oi.swivle.setAngle(180);
+        vision = new Vision(.975,0,1.0, -3);
+        Globalvariables.UserControl = false;
+        Robot.oi.shooterPIDcontroller1.setReference(Robot.shuffleboard.getshooterSpeed(), ControlType.kVelocity);
+        Robot.oi.shooterPIDcontroller2.setReference(-Robot.shuffleboard.getshooterSpeed(), ControlType.kVelocity);
+        if(Robot.oi.shooter_encoder1.getVelocity() + 500 > Robot.shuffleboard.getshooterSpeed() && Robot.oi.shooter_encoder1.getVelocity() - 500 < Robot.shuffleboard.getshooterSpeed()){
+            if(!Robot.globalvariables.intake_flag){
+                Robot.oi.Limelight_timer.start();
+                Robot.oi.shotclock_timer.start();
+                Robot.globalvariables.intake_flag = true;
+            }
+            if(Robot.oi.shotclock_timer.get() > .5){
+                if(Robot.globalvariables.shooter_lineup){
+                    Robot.globalvariables.anticlogtimer_flag = false;
+                    Robot.oi.anitclog_timer.reset();
+                    Robot.globalvariables.RPM_good = true;
+                   // Robot.oi.shooter_intake.set(-.9);
+                    if(!Robot.globalvariables.intaketimer_flag){
+                        Robot.oi.intake_timer.start();
+                        Robot.globalvariables.intaketimer_flag = true;
+                    }
+                    if(Robot.oi.intake_timer.get() > .1){
+                     //   Robot.oi.revolver.set(.4);
+                    }
+                }   
+            }else{
+                Robot.globalvariables.RPM_good = false;
+                Robot.oi.shooter_intake.set(0);
+                Robot.oi.revolver.set(0);
+            }
+        }else{
+            if(!Robot.globalvariables.anticlogtimer_flag){
+                Robot.oi.anitclog_timer.start();
+                Robot.globalvariables.anticlogtimer_flag = true; 
+            }
+            if(Robot.oi.anitclog_timer.get() < .25){
+                Robot.oi.shooter_intake.set(.25);
+            }
+
+        }
+    }public void Shooter_reset(){
+        Robot.oi.shotclock_timer.reset();
+        Robot.oi.intake_timer.reset();
+        Robot.globalvariables.intaketimer_flag = false;
+        Robot.globalvariables.intake_flag = false;
+        Robot.globalvariables.RPM_good = false;
+        Robot.oi.Limelight_timer.reset();
+        Globalvariables.UserControl = true; 
+        Robot.oi.shooter_motor1.set(0);
+        Robot.oi.shooter_motor2.set(0);
+        Robot.oi.shooter_intake.set(0);
+        Robot.oi.revolver.set(0);
+    }
 }

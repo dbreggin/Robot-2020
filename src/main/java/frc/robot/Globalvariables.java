@@ -55,7 +55,14 @@ public final class Globalvariables {
     public boolean anticlogtimer_flag;
     public boolean shooter_lineup;
     public boolean RPM_good;
+    public boolean ball_pickedup;
+    public double origonal_ball;
+    public int ball_stage_count;
+    public boolean ball_reset;
     public Globalvariables(){
+        ball_reset = false;
+        origonal_ball = 0;
+        ball_stage_count = 0;
         RPM_good = false;
         shooter_lineup= false;
         anticlogtimer_flag = false;
