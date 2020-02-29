@@ -26,8 +26,7 @@ public final class Joystickcontrols {
     Joystickcontrol();
     }
     public void Joystickcontrol(){
-        Robot.oi.revolver.set(Robot.oi.gamepad.getRawAxis(Robotmap.LeftY) / 2);
-        Robot.oi.shooter_intake.set(Robot.oi.gamepad.getRawAxis(Robotmap.LeftY) / 2);
+   
         // Robot.oi.shooter_motor1.set(Robot.oi.gamepad.getRawAxis(Robotmap.LeftY));
         // Robot.oi.shooter_motor2.set(-Robot.oi.gamepad.getRawAxis(Robotmap.LeftY));
         // Robot.oi.shooter_intake.set(-Robot.oi.gamepad.getRawAxis(Robotmap.LeftY));
@@ -35,14 +34,11 @@ public final class Joystickcontrols {
         if(Robot.oi.gamepad.getRawButton(1)){
             vision = new Vision(.975,0,1.0, -3);
             Globalvariables.UserControl = false;
-            // Robot.oi.shooter_motor1.set(.9);
-            // Robot.oi.shooter_motor2.set(-.9);
-            // Robot.oi.shooter_intake.set(-.75);
             Robot.oi.shooterPIDcontroller1.setReference(Robot.shuffleboard.getshooterSpeed(), ControlType.kVelocity);
             Robot.oi.shooterPIDcontroller2.setReference(-Robot.shuffleboard.getshooterSpeed(), ControlType.kVelocity);
-           if(Robot.oi.shooter_encoder1.getVelocity() + 100 > Robot.shuffleboard.getshooterSpeed() && Robot.oi.shooter_encoder1.getVelocity() - 300 < Robot.shuffleboard.getshooterSpeed()){
-
+           if(Robot.oi.shooter_encoder1.getVelocity() + 500 > Robot.shuffleboard.getshooterSpeed() && Robot.oi.shooter_encoder1.getVelocity() - 500 < Robot.shuffleboard.getshooterSpeed()){
                 if(!Robot.globalvariables.intake_flag){
+                    Robot.oi.Limelight_timer.start();
                     Robot.oi.shotclock_timer.start();
                     Robot.globalvariables.intake_flag = true;
                 }
@@ -50,18 +46,20 @@ public final class Joystickcontrols {
                     if(Robot.globalvariables.shooter_lineup){
                         Robot.globalvariables.anticlogtimer_flag = false;
                         Robot.oi.anitclog_timer.reset();
-                        // Robot.oi.shooter_intake.set(-.9);
+                        Robot.globalvariables.RPM_good = true;
+                        Robot.oi.shooter_intake.set(-.9);
                         if(!Robot.globalvariables.intaketimer_flag){
                             Robot.oi.intake_timer.start();
                             Robot.globalvariables.intaketimer_flag = true;
                         }
                         if(Robot.oi.intake_timer.get() > .1){
-                            // Robot.oi.revolver.set(.4);
+                            Robot.oi.revolver.set(.4);
                         }
                     }   
                 }else{
-                    // Robot.oi.shooter_intake.set(0);
-                    // Robot.oi.revolver.set(0);
+                    Robot.globalvariables.RPM_good = false;
+                    Robot.oi.shooter_intake.set(0);
+                    Robot.oi.revolver.set(0);
                 }
            }else{
                if(!Robot.globalvariables.anticlogtimer_flag){
@@ -69,7 +67,7 @@ public final class Joystickcontrols {
                     Robot.globalvariables.anticlogtimer_flag = true; 
                }
                if(Robot.oi.anitclog_timer.get() < .25){
-                // Robot.oi.shooter_intake.set(.25);
+                    Robot.oi.shooter_intake.set(.25);
                 }
                 Robot.oi.shotclock_timer.reset();
                 Robot.oi.intake_timer.reset();
@@ -77,8 +75,10 @@ public final class Joystickcontrols {
                 Robot.globalvariables.intake_flag = false;
            }
         }else if(Robot.oi.gamepad.getRawButton(4)){
-            // Robot.oi.shooter_intake.set(.5);
+            Robot.oi.shooter_intake.set(.5);
         }else{
+            Robot.globalvariables.RPM_good = false;
+            Robot.oi.Limelight_timer.reset();
             Globalvariables.UserControl = true; 
             Robot.oi.shooter_motor1.set(0);
             Robot.oi.shooter_motor2.set(0);

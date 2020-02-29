@@ -241,6 +241,7 @@ public final class Autonomous {
             }
         }
     }
+    //1 foot = 9464.56 on left, -9366.14 on right 
     void headingStraight(double speed, double distance, double angle){
         Robot.oi.ta = Robot.oi.table.getEntry("ta");
         Robot.oi.la = Robot.oi.ta.getDouble(0.0);

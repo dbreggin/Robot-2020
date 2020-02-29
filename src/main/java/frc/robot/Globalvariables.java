@@ -54,7 +54,9 @@ public final class Globalvariables {
     public boolean anticlog_flag;
     public boolean anticlogtimer_flag;
     public boolean shooter_lineup;
+    public boolean RPM_good;
     public Globalvariables(){
+        RPM_good = false;
         shooter_lineup= false;
         anticlogtimer_flag = false;
         anticlog_flag = false;

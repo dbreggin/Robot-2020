@@ -25,6 +25,7 @@ public final class Recursivecode{
         }
         if(!Robot.oi.lineSensor2.get() && !Globalvariables.lineloopflag[1]){
             Globalvariables.lineloopflag[1] = true;
+            Robot.oi.Limelight_timer.reset();
             Globalvariables.ball_counter--;
         }
         if(Globalvariables.lineloopflag[1] && Robot.oi.lineSensor2.get()){

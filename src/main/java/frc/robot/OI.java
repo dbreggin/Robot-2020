@@ -14,6 +14,7 @@ import com.ctre.phoenix.sensors.CANCoder;
 import com.ctre.phoenix.sensors.CANCoderConfiguration;
 import com.ctre.phoenix.sensors.CANCoderFaults;
 import com.ctre.phoenix.sensors.CANCoderStickyFaults;
+import com.ctre.phoenix.motorcontrol.FeedbackDevice;
 
 //import com.kauailabs.navx.frc.AHRS;
 //limelight
@@ -115,6 +116,7 @@ public SpeedControllerGroup rdrive;
 public Timer shotclock_timer;
 public Timer intake_timer;
 public Timer anitclog_timer;
+public Timer Limelight_timer;
 
 
 //public AHRS navx;
@@ -127,10 +129,16 @@ public OI() {
     motor2 = new WPI_TalonFX(13);
     motor3 = new WPI_TalonFX(15);
     motor4 = new WPI_TalonFX(11);
-    motor2.follow(motor1);
-    motor4.follow(motor3);
-    //ldrive = new SpeedControllerGroup(motor1, motor2);
-    //rdrive = new SpeedControllerGroup(motor3, motor4);
+    motor1.configFactoryDefault();
+    motor2.configFactoryDefault();
+    motor3.configFactoryDefault();
+    motor4.configFactoryDefault();
+    motor1.configSelectedFeedbackSensor(FeedbackDevice.IntegratedSensor);
+    motor2.configSelectedFeedbackSensor(FeedbackDevice.IntegratedSensor);
+    motor3.configSelectedFeedbackSensor(FeedbackDevice.IntegratedSensor);
+    motor4.configSelectedFeedbackSensor(FeedbackDevice.IntegratedSensor);
+    ldrive = new SpeedControllerGroup(motor1, motor2);
+    rdrive = new SpeedControllerGroup(motor3, motor4);
     revolver = new WPI_TalonSRX(1);
     hopper = new WPI_TalonSRX(3);
     shooter_motor1 = new CANSparkMax(14, MotorType.kBrushless);
@@ -143,10 +151,6 @@ public OI() {
     cl_moveL = new TalonSRX(11);
     cl_moveR = new TalonSRX(10);
     cl_lift = new TalonSRX(12);
-    drive_encoder1 = new CANCoder(12);
-    drive_encoder2 = new CANCoder(13);
-    drive_encoder3 = new CANCoder(15);
-    drive_encoder4 = new CANCoder(11);
     swivle = new Servo(0);
 
 
@@ -175,14 +179,14 @@ public OI() {
     automode.addOption("Automode 5", 4);
     SmartDashboard.putData("Automode 1", automode);
 
-    shooterPIDcontroller1.setP(5e-5);
-    shooterPIDcontroller1.setI(1e-6);
+    shooterPIDcontroller1.setP(7e-5);
+    shooterPIDcontroller1.setI(.35e-6);
     shooterPIDcontroller1.setD(0);
     shooterPIDcontroller1.setIZone(0);
     shooterPIDcontroller1.setFF(0);
     shooterPIDcontroller1.setOutputRange(-1, 1);
-    shooterPIDcontroller2.setP(5e-5);
-    shooterPIDcontroller2.setI(1e-6);
+    shooterPIDcontroller2.setP(7e-5);
+    shooterPIDcontroller2.setI(.35e-6);
     shooterPIDcontroller2.setD(0);
     shooterPIDcontroller2.setIZone(0);
     shooterPIDcontroller2.setFF(0);
@@ -208,7 +212,7 @@ public OI() {
     //rmotor1.configSelectedFeedbackSensor(FeedbackDevice.QuadEncoder,0,30);
     //lmotor1.configSelectedFeedbackSensor(FeedbackDevice.QuadEncoder,0,30);
 
-    drive = new DifferentialDrive(motor1, motor3);
+    drive = new DifferentialDrive(ldrive, rdrive);
     table = NetworkTableInstance.getDefault().getTable("limelight");
     tx = table.getEntry("tx");
     ty = table.getEntry("ty");
@@ -233,6 +237,8 @@ public OI() {
     shotclock_timer = new Timer();
     intake_timer = new Timer();
     anitclog_timer = new Timer();
+    Limelight_timer = new Timer();
+
 
     }
 }

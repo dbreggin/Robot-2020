@@ -9,7 +9,16 @@ public final class Buttoncontrols {
     public static AngleCall angleCall;
     public Shooter shooter;
     public Buttoncontrols() {
-
+        if(Robot.oi.gamepad.getRawButton(6)){
+            Robot.oi.swivle.setPosition(1);
+        }
+        if(Robot.oi.gamepad.getRawButton(5)){
+            Robot.oi.swivle.setPosition(0);
+        }
+        if(Robot.oi.gamepad.getRawButton(Robotmap.Xbutton)){
+            Robot.oi.motor1.setSelectedSensorPosition(0, 0, 30);
+            Robot.oi.motor3.setSelectedSensorPosition(0, 0, 30);
+        }
 
 
 
@@ -27,10 +36,5 @@ public final class Buttoncontrols {
         // } else if(Robot.oi.gamepad.getRawButton(Robotmap.Bbutton)){
         //     Robot.oi.testmotor.set(ControlMode.PercentOutput, (-1));
         // }
-        if(Robot.oi.rjoystick.getRawButton(Robotmap.JoyBotFB)){
-            Robot.oi.motor1.setSelectedSensorPosition(0, 0, 30);
-            Robot.oi.motor1.setSelectedSensorPosition(0, 0, 30);
-            Robot.oi.navx.reset();
-        }
     }     
 }
