@@ -81,8 +81,9 @@ public final class Globalvariables {
         reverse = false;
         angle_flag = false;
         automode = 0;
-        autonomous_stage = 0;
-        ball_counter = 3; //use slider to change
+        ball_counter = 3;
+        autonomous_stage = 0; //use slider to change
+
     }    
 
 }
