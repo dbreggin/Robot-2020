@@ -26,7 +26,6 @@ public final class Vision {
             if(dA>-.1 && dA<.1 && sA>-.05 && sA<.05){
                 // Globalvariables.Shootflag = true;
                 Globalvariables.LEDmode = 10;
-                Globalvariables.ball_counter++;
             } else{
                 // Globalvariables.Shootflag = false;
                 Globalvariables.LEDmode = 6;

@@ -16,6 +16,7 @@ import frc.robot.commands.Vision;
 import frc.robot.commands.VisionRange;
 
 
+
 public final class Joystickcontrols {
     // public Vision visionFunction;
     public VisionRange visionFunction;
@@ -26,12 +27,18 @@ public final class Joystickcontrols {
     Joystickcontrol();
     }
     public void Joystickcontrol(){
-        Robot.oi.revolver.set(Robot.oi.gamepad.getRawAxis(Robotmap.LeftY) / 2);
-        Robot.oi.shooter_intake.set(Robot.oi.gamepad.getRawAxis(Robotmap.LeftY) / 2);
+        if(Robot.oi.gamepad.getRawButtonPressed(5)){
+            Robot.oi.swivle.setAngle(41);
+        }
+        if (Robot.oi.gamepad.getRawButtonPressed(6)) {
+            Robot.oi.swivle.setAngle(180);
+        }
+        Robot.oi.revolver.set(Robot.oi.gamepad.getRawAxis(1));
+        Robot.oi.shooter_intake.set(-Robot.oi.gamepad.getRawAxis(1));
         // Robot.oi.shooter_motor1.set(Robot.oi.gamepad.getRawAxis(Robotmap.LeftY));
         // Robot.oi.shooter_motor2.set(-Robot.oi.gamepad.getRawAxis(Robotmap.LeftY));
         // Robot.oi.shooter_intake.set(-Robot.oi.gamepad.getRawAxis(Robotmap.LeftY));
-        Robot.oi.hopper.set(Robot.oi.gamepad.getRawAxis(Robotmap.RightY));
+        Robot.oi.hopper.set(Robot.oi.gamepad.getRawAxis(1));
         if(Robot.oi.gamepad.getRawButton(1)){
             vision = new Vision(.975,0,1.0, -3);
             Globalvariables.UserControl = false;
@@ -82,8 +89,8 @@ public final class Joystickcontrols {
             Globalvariables.UserControl = true; 
             Robot.oi.shooter_motor1.set(0);
             Robot.oi.shooter_motor2.set(0);
-            Robot.oi.shooter_intake.set(0);
-            Robot.oi.revolver.set(0);
+            //Robot.oi.shooter_intake.set(0);
+            //Robot.oi.revolver.set(0);
         }
         
 

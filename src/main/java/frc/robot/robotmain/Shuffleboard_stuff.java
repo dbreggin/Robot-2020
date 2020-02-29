@@ -10,6 +10,7 @@ import frc.robot.Robot;
 import edu.wpi.first.networktables.NetworkTableEntry;
 import edu.wpi.first.wpilibj.shuffleboard.BuiltInWidgets;
 import java.util.Map;
+import frc.robot.subsystems.Shooter;
 
 public final class Shuffleboard_stuff {
     public Shuffleboard_stuff(){
@@ -36,8 +37,9 @@ public final class Shuffleboard_stuff {
         SmartDashboard.putNumber("TIMER", Robot.oi.shotclock_timer.get());
         SmartDashboard.putNumber("FALCONencoder", Robot.oi.drive_encoder1.getPosition());
         SmartDashboard.putNumber("FALCONencoder2", Robot.oi.drive_encoder3.getPosition());
-        SmartDashboard.putNumber("swivlepos", Robot.oi.swivle.getAngle());
+        SmartDashboard.putNumber("swivleangle", Robot.oi.swivle.getAngle());
         SmartDashboard.putNumber("swivlepos", Robot.oi.swivle.get());
+
     }
     public double getMaxSpeed(){
         return Robot.oi.maxSpeed.getDouble(1.0);

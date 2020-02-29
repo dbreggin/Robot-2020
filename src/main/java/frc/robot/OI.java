@@ -127,10 +127,10 @@ public OI() {
     motor2 = new WPI_TalonFX(13);
     motor3 = new WPI_TalonFX(15);
     motor4 = new WPI_TalonFX(11);
-    motor2.follow(motor1);
-    motor4.follow(motor3);
-    //ldrive = new SpeedControllerGroup(motor1, motor2);
-    //rdrive = new SpeedControllerGroup(motor3, motor4);
+    //motor2.follow(motor1);
+    //motor4.follow(motor3);
+    ldrive = new SpeedControllerGroup(motor1, motor2);
+    rdrive = new SpeedControllerGroup(motor3, motor4);
     revolver = new WPI_TalonSRX(1);
     hopper = new WPI_TalonSRX(3);
     shooter_motor1 = new CANSparkMax(14, MotorType.kBrushless);
@@ -208,7 +208,7 @@ public OI() {
     //rmotor1.configSelectedFeedbackSensor(FeedbackDevice.QuadEncoder,0,30);
     //lmotor1.configSelectedFeedbackSensor(FeedbackDevice.QuadEncoder,0,30);
 
-    drive = new DifferentialDrive(motor1, motor3);
+    drive = new DifferentialDrive(ldrive, rdrive);
     table = NetworkTableInstance.getDefault().getTable("limelight");
     tx = table.getEntry("tx");
     ty = table.getEntry("ty");
