@@ -117,6 +117,7 @@ public Timer shotclock_timer;
 public Timer intake_timer;
 public Timer anitclog_timer;
 public Timer Limelight_timer;
+public Timer ball_timer;
 
 
 //public AHRS navx;
@@ -240,6 +241,7 @@ public OI() {
     intake_timer = new Timer();
     anitclog_timer = new Timer();
     Limelight_timer = new Timer();
+    ball_timer = new Timer();
 
 
     }

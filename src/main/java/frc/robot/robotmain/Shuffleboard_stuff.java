@@ -32,18 +32,19 @@ public final class Shuffleboard_stuff {
         SmartDashboard.putNumber("Intake Revolver", getrevolverintakeSpeed());
         SmartDashboard.putNumber("SPEEED RPM", getshooterSpeed());
         SmartDashboard.putNumber("key", getautomodeNumber());
-        SmartDashboard.putNumber("Servo ANGLLEEE", Robot.oi.swivle.getAngle());
+        //SmartDashboard.putNumber("Servo ANGLLEEE", Robot.oi.swivle.getAngle());
         SmartDashboard.putNumber("Navx Roll", Robot.oi.navx.getRoll());
-        SmartDashboard.putNumber("Navx Pitch", Robot.oi.navx.getPitch());
-        SmartDashboard.putNumber("Navx Yaw", Robot.oi.navx.getYaw());
-        SmartDashboard.putNumber("Navx Rotating", Robot.oi.navx.getRawGyroY());
+        SmartDashboard.putNumber("Gyro X",Robot.oi.navx.getRawGyroX());
+        SmartDashboard.putNumber("Gyro Y",Robot.oi.navx.getRawGyroY());
+        SmartDashboard.putNumber("Gyro Z",Robot.oi.navx.getRawGyroZ());
+        SmartDashboard.putNumber("Gyro ROLLLL",Robot.oi.navx.getRoll());
         SmartDashboard.putBoolean("User Control", Globalvariables.UserControl);
         SmartDashboard.putNumber("SHOOOTER REALPLEAM ARJUN GOD MODE", Robot.oi.shooter_encoder1.getVelocity());
         SmartDashboard.putNumber("TIMER", Robot.oi.shotclock_timer.get());
         SmartDashboard.putNumber("FALCONencoder", Robot.oi.motor1.getSelectedSensorPosition(0));
         SmartDashboard.putNumber("FALCONencoder2", Robot.oi.motor3.getSelectedSensorPosition(0));
-        SmartDashboard.putNumber("swivlepos", Robot.oi.swivle.getAngle());
-        SmartDashboard.putNumber("swivlepos", Robot.oi.swivle.get());
+        //SmartDashboard.putNumber("swivlepos", Robot.oi.swivle.getAngle());
+        //SmartDashboard.putNumber("swivlepos", Robot.oi.swivle.get());
 
     }
     public double getMaxSpeed(){
