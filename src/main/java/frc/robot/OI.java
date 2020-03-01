@@ -118,7 +118,8 @@ public Timer intake_timer;
 public Timer anitclog_timer;
 public Timer Limelight_timer;
 public Timer ball_timer;
-
+public Timer revolver_timer;
+public Timer revolver_timer_delay;
 
 //public AHRS navx;
 
@@ -242,6 +243,8 @@ public OI() {
     anitclog_timer = new Timer();
     Limelight_timer = new Timer();
     ball_timer = new Timer();
+    revolver_timer = new Timer();
+    revolver_timer_delay = new Timer();
 
 
     }

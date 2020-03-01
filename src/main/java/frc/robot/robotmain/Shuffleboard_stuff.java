@@ -33,9 +33,8 @@ public final class Shuffleboard_stuff {
         SmartDashboard.putNumber("SPEEED RPM", getshooterSpeed());
         SmartDashboard.putNumber("key", getautomodeNumber());
         //SmartDashboard.putNumber("Servo ANGLLEEE", Robot.oi.swivle.getAngle());
-        SmartDashboard.putNumber("Navx Roll", Robot.oi.navx.getRoll());
-        SmartDashboard.putNumber("Gyro X",Robot.oi.navx.getRawGyroX());
-        SmartDashboard.putNumber("Gyro Y",Robot.oi.navx.getRawGyroY());
+        SmartDashboard.putNumber("Gyro X",Robot.oi.navx.getYaw());
+        SmartDashboard.putNumber("Gyro Y",Robot.oi.navx.getPitch());
         SmartDashboard.putNumber("Gyro Z",Robot.oi.navx.getRawGyroZ());
         SmartDashboard.putNumber("Gyro ROLLLL",Robot.oi.navx.getRoll());
         SmartDashboard.putBoolean("User Control", Globalvariables.UserControl);
@@ -45,6 +44,8 @@ public final class Shuffleboard_stuff {
         SmartDashboard.putNumber("FALCONencoder2", Robot.oi.motor3.getSelectedSensorPosition(0));
         //SmartDashboard.putNumber("swivlepos", Robot.oi.swivle.getAngle());
         //SmartDashboard.putNumber("swivlepos", Robot.oi.swivle.get());
+        SmartDashboard.putNumber("distance", Robot.recursivecode.distance);
+        SmartDashboard.putNumber("Vilocity3", Robot.globalvariables.Vilocity3);
 
     }
     public double getMaxSpeed(){

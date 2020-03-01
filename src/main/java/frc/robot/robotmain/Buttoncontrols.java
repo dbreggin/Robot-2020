@@ -10,10 +10,10 @@ public final class Buttoncontrols {
     public Shooter shooter;
     public Buttoncontrols() {
         if(Robot.oi.gamepad.getRawButton(6)){
-            Robot.oi.swivle.setAngle(180);
+            Robot.oi.swivle.setAngle(175);
         }
         if(Robot.oi.gamepad.getRawButton(5)){
-            Robot.oi.swivle.setAngle(0);
+            Robot.oi.swivle.setAngle(5);
         }
         if(Robot.oi.gamepad.getRawButton(Robotmap.Xbutton)){
             Robot.oi.motor1.setSelectedSensorPosition(0, 0, 30);

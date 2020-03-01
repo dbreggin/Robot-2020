@@ -28,15 +28,14 @@ public final class Shooter{
         Robot.oi.la = Robot.oi.ta.getDouble(0.0);
         Robot.oi.lv = Robot.oi.tv.getDouble(0.0);
 
-
-
         k = 9*Math.sqrt(2.91);
         distance = k/Math.sqrt(Robot.oi.la); 
-        shooter_height = 12;
-        shooter_angle = 38;
+        shooter_height = 1.166;
+        shooter_angle = 49;
         Vilocity1 = Math.sqrt((19.6*(8.1875 - shooter_height))/(Math.sin(shooter_angle)));
+        Vilocity2 = Math.sqrt(4.9*(Math.pow((distance),2))/(Math.pow(Math.cos(shooter_angle),2))*(distance*Math.tan(shooter_angle)-8.1875));
        // Vilocity2 = (())
-        SmartDashboard.putNumber("Distance", distance);
     }   
+
 }
 

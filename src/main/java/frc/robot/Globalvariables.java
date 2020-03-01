@@ -7,6 +7,9 @@
 package frc.robot;
 import frc.robot.Robot;
 import frc.robot.OI;
+import java.lang.Math;
+
+
 /**
  * The Constants class provides a convenient place for teams to hold robot-wide numerical or boolean
  * constants.  This class should not be used for any other purpose.  All constants should be
@@ -59,7 +62,15 @@ public final class Globalvariables {
     public double origonal_ball;
     public int ball_stage_count;
     public boolean ball_reset;
+    public double Vilocity3;
+    public boolean target_covered;
+    public boolean ball_intheintake;
+    public boolean revolver_delay_flag;
     public Globalvariables(){
+        revolver_delay_flag = false;
+        ball_intheintake = false;
+        target_covered = false;
+        Vilocity3 = 0;
         ball_reset = false;
         origonal_ball = 0;
         ball_stage_count = 0;
