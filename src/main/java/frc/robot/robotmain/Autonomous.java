@@ -16,7 +16,22 @@ public final class Autonomous {
             case 0:
                 //1 foot = 9464.56 on left
                 if(Robot.oi.motor1.getSelectedSensorPosition(0) > -9464.7*5){
-                    Robot.oi.drive.tankDrive(-.5, -.5);
+                    Robot.oi.drive.arcadeDrive(-.5, sA);
+                    Robot.oi.ta = Robot.oi.table.getEntry("ta");
+                    Robot.oi.la = Robot.oi.ta.getDouble(0.0);
+                    sA = Robot.oi.navx.getAngle()*.09;
+                    if(Robot.oi.navx.getAngle()<1.75 && Robot.oi.navx.getAngle()>-1.75){
+                        sA*=4.20;
+                        Globalvariables.LEDmode=10;
+                    } else {
+                        Globalvariables.LEDmode=2;
+                    }
+        
+                    if(sA>1){
+                        sA = 1;
+                    } else if (sA<-1){
+                        sA = -1;   
+                    } 
                 }else {
                     visionFunction = new Vision(.975,0,1.0, -3);
                     Robot.oi.shooterPIDcontroller1.setReference(2425, ControlType.kVelocity);
@@ -65,8 +80,27 @@ public final class Autonomous {
             break;
         case 1:
             Robot.oi.drive.tankDrive(0, 0);
+            Globalvariables.autonomous_stage++;
+            break;
+        // case 2:
+        //     sA = 140-Robot.oi.navx.getAngle()*.09;
+        //     if(Robot.oi.navx.getAngle()<-20-2){
+        //         Robot.oi.drive.arcadeDrive(0, -.6);
+        //         Globalvariables.LEDmode=2;
+        //     } else if(Robot.oi.navx.getAngle()>-20+2){
+        //         Robot.oi.drive.arcadeDrive(0, .6);
+        //         Globalvariables.LEDmode=2;
+        //     } else {
+        //         Robot.oi.drive.tankDrive(0, 0);
+        //         Globalvariables.LEDmode=10;
+        //         Globalvariables.autonomous_stage++;
+        //     }
+        //         break;
+        // case 3:
+        //         ball_cycle=new ball cycle;        
+        default:
+            Robot.oi.drive.tankDrive(0, 0);
 
-        
     ////////MOVE BACK, TURN TO BALL, TURN TO TARGET, SHOOT AT TARGET/////////////
     /*
     if(Globalvariables.automode == 0){
@@ -349,7 +383,8 @@ public final class Autonomous {
     */
         }
     }
-}
+}  
+
 
 
 

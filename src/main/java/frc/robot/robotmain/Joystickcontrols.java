@@ -95,12 +95,17 @@ public final class Joystickcontrols {
         // }
         //     //visionFunction = new VisionRange(0.75, 0.4,0,1);
         
-
+        if(Robot.oi.rjoystick.getRawButton(Robotmap.JoyTrigger) && !Robot.globalvariables.flip_flag){
+            Robot.globalvariables.flip_flag = true;
+            Globalvariables.driveDirection = !Globalvariables.driveDirection;
+        } else if(!Robot.oi.ljoystick.getRawButton(Robotmap.JoyTrigger) && Robot.globalvariables.flip_flag){
+            Robot.globalvariables.flip_flag = false;
+        }
         if(Globalvariables.UserControl){
-            if(Robot.oi.ljoystick.getRawButton(Robotmap.JoyTrigger)){
-                Robot.oi.drive.tankDrive(-Robot.oi.ljoystick.getRawAxis(Robotmap.joyY)*Robot.oi.maxSpeed.getDouble(1.0),-Robot.oi.rjoystick.getRawAxis(Robotmap.joyY)*Robot.oi.maxSpeed.getDouble(1.0));   
-            }else{
-               Robot.oi.drive.tankDrive((Robot.oi.ljoystick.getRawAxis(Robotmap.joyY)*Robot.oi.maxSpeed.getDouble(1.0)),(Robot.oi.rjoystick.getRawAxis(Robotmap.joyY)*Robot.oi.maxSpeed.getDouble(1.0)));
+            if(Globalvariables.driveDirection){
+                Robot.oi.drive.tankDrive(-Robot.oi.rjoystick.getRawAxis(Robotmap.joyY)*Robot.oi.maxSpeed.getDouble(1.0),-Robot.oi.ljoystick.getRawAxis(Robotmap.joyY)*Robot.oi.maxSpeed.getDouble(1.0));   
+            } else {
+                Robot.oi.drive.tankDrive((Robot.oi.ljoystick.getRawAxis(Robotmap.joyY)*Robot.oi.maxSpeed.getDouble(1.0)),(Robot.oi.rjoystick.getRawAxis(Robotmap.joyY)*Robot.oi.maxSpeed.getDouble(1.0)));
             }
         }
         // if(Globalvariables.UserControl){

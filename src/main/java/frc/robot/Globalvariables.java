@@ -19,6 +19,7 @@ import java.lang.Math;
  * constants are needed, to reduce verbosity.
  */
 public final class Globalvariables {
+    public static boolean driveDirection;
     public static int ball_counter;
     public static double LEDoffset=-.06;
     public static int LEDmode = 22;
@@ -58,6 +59,7 @@ public final class Globalvariables {
     public boolean anticlogtimer_flag;
     public boolean shooter_lineup;
     public boolean RPM_good;
+    public boolean flip_flag;
     public boolean ball_pickedup;
     public double origonal_ball;
     public int ball_stage_count;
@@ -75,6 +77,7 @@ public final class Globalvariables {
         origonal_ball = 0;
         ball_stage_count = 0;
         RPM_good = false;
+        driveDirection = false;
         shooter_lineup= false;
         anticlogtimer_flag = false;
         anticlog_flag = false;
@@ -98,7 +101,8 @@ public final class Globalvariables {
         driveType = false;
         reverse = false;
         angle_flag = false;
-        automode = 0;
+        automode = 0;        
+        flip_flag = false;
         ball_counter = 3;
         autonomous_stage = 0; //use slider to change
 
