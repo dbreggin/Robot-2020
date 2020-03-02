@@ -7,7 +7,6 @@ import com.ctre.phoenix.motorcontrol.ControlMode;
 public final class Vision {
     double dA;
     double sA; 
-
     public Vision(double distance,  int pipeline, double scaler,float offset) {
         Robot.oi.table = NetworkTableInstance.getDefault().getTable("limelight");
         NetworkTableInstance.getDefault().getTable("limelight").getEntry("pipeline").setNumber(pipeline);
@@ -27,6 +26,7 @@ public final class Vision {
             if(dA>-.1 && dA<.1 && sA>-.05 && sA<.05){
                 // Globalvariables.Shootflag = true;
                 Globalvariables.LEDmode = 10;
+                Globalvariables.ball_counter++;
             } else{
                 // Globalvariables.Shootflag = false;
                 Globalvariables.LEDmode = 6;
@@ -40,10 +40,10 @@ public final class Vision {
                 sA = -.3;
             }else if(Robot.oi.lx < -.5 && Robot.oi.lx > -4){
                 Robot.globalvariables.shooter_lineup = false;
-                sA = .295;
+                sA = .29;
             }else if(Robot.oi.lx > .5 && Robot.oi.lx < 4){
                 Robot.globalvariables.shooter_lineup = false;
-                sA = -.295;
+                sA = -.29;
             }else if(Robot.oi.lx < .5 && Robot.oi.lx > -.5 ){
                 Robot.globalvariables.shooter_lineup = true;
                 sA = 0;
@@ -79,18 +79,17 @@ public final class Vision {
             // }else if((Robot.oi.lx > 5 && Robot.oi.lx < 4 )||(Robot.oi.lx > -5 && Robot.oi.lx < -7)){
             //     sA = .3;
             // }
+
             if(sA > .5){
                 sA = .5;
             }else if (sA < -.5){
                 sA = -.5;
             }
-            dA*= -2;
+            dA*= -1.5;
             dA*=scaler;
             
             if(Robot.oi.Limelight_timer.get() < .5){
                 dA = 0;
-            }else{
-                
             }
             Robot.oi.drive.arcadeDrive(dA,sA);
             SmartDashboard.putNumber("sAAAA", sA);
@@ -119,4 +118,3 @@ public final class Vision {
     //     }
     // }
 }
-

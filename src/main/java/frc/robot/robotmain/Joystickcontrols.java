@@ -29,37 +29,53 @@ public final class Joystickcontrols {
     }
     public void Joystickcontrol(){
         
-        if(Robot.oi.gamepad.getRawButton(4)){
-             Ball_intake();
-        }else{
-        }
+        
         if(Robot.oi.gamepad.getRawButton(3)){
-            Robot.oi.hopper.set(ControlMode.PercentOutput, .75);
-            if(!Robot.oi.lineSensor.get()){
-                if(!Robot.globalvariables.revolver_delay_flag){
-                    Robot.oi.revolver_timer_delay.start();
-                    Robot.oi.revolver_timer_delay.reset();
-                    Robot.globalvariables.revolver_delay_flag = true;
-                }
-                if(!Robot.globalvariables.ball_intheintake){
-                    if(Robot.oi.revolver_timer_delay.get() > .3){
-                        Robot.oi.revolver.set(.75);
-                        Robot.oi.revolver_timer.start();
-                        Robot.oi.revolver_timer.reset();
-                        Robot.globalvariables.ball_intheintake = true;
-                        Robot.globalvariables.revolver_delay_flag = false;
+            /*
+            if(!Robot.globalvariables.reset_ball_cycle){
+                Robot.oi.revolver_timer_delay.reset();
+                Robot.oi.revolver_timer.reset();
+                Robot.globalvariables.reset_ball_cycle = true;
+                Robot.globalvariables.revolver_delay_flag = false;
+                Robot.globalvariables.ball_intheintake = true;
+            }else{
+                Robot.oi.hopper.set(ControlMode.PercentOutput, .75);
+                if(!Robot.oi.lineSensor.get()){
+                    if(!Robot.globalvariables.revolver_delay_flag){
+                        Robot.oi.revolver_timer_delay.start();
+                        Robot.oi.revolver_timer_delay.reset();
+                        Robot.globalvariables.revolver_delay_flag = true;
+                    }
+                    if(!Robot.globalvariables.ball_intheintake){
+                        if(Robot.oi.revolver_timer_delay.get() > 1){
+                            Robot.oi.revolver.set(.4);
+                            Robot.oi.revolver_timer.start();
+                            Robot.oi.revolver_timer.reset();
+                            Robot.globalvariables.ball_intheintake = true;
+                            Robot.globalvariables.revolver_delay_flag = false;
+                        }
                     }
                 }
+                if(Robot.oi.revolver_timer.get() > .87){
+                    Robot.oi.revolver.set(0);
+                    Robot.globalvariables.ball_intheintake = false;
+                }
             }
-            if(Robot.oi.revolver_timer.get() > .7){
-                Robot.oi.revolver.set(0);
-                Robot.oi.revolver_timer.stop();
-                Robot.globalvariables.ball_intheintake = false;
-            }
+            */
+            Ball_intake2();
         }else if(!Robot.oi.gamepad.getRawButton(1) && !Robot.oi.gamepad.getRawButton(3)){
             //NEEDED TO BE BOUND FOR BALL CYCLE 
+     
             Robot.oi.hopper.set(ControlMode.PercentOutput, 0);
             Robot.oi.revolver.set(0);
+        }
+        if(!Robot.oi.gamepad.getRawButton(1) && Robot.oi.gamepad.getRawButton(4)){
+            Robot.oi.shooter_intake.set(.5);
+        }else if(!Robot.oi.gamepad.getRawButton(1) && !Robot.oi.gamepad.getRawButton(4)){
+            Robot.oi.shooter_intake.set(0);
+        }
+        if(!Robot.oi.gamepad.getRawButton(3)){
+            Ball_intake2_reset();
         }
         // Robot.oi.shooter_motor1.set(Robot.oi.gamepad.getRawAxis(Robotmap.LeftY));
         // Robot.oi.shooter_motor2.set(-Robot.oi.gamepad.getRawAxis(Robotmap.LeftY));
@@ -94,7 +110,13 @@ public final class Joystickcontrols {
         //     angleFunction = new AngleCall(90.0,0.0);
         // }
         //     //visionFunction = new VisionRange(0.75, 0.4,0,1);
-        
+        if(Robot.oi.gamepad.getRawButton(2)&& !Robot.oi.gamepad.getRawButton(3) && !Robot.oi.gamepad.getRawButton(1)){
+            Robot.oi.hopper.set(-.5);
+            Robot.oi.revolver.set(.75);
+        }else if(!Robot.oi.gamepad.getRawButton(2)&& !Robot.oi.gamepad.getRawButton(3) && !Robot.oi.gamepad.getRawButton(1)){
+            Robot.oi.hopper.set(0);
+            Robot.oi.revolver.set(0);
+        }
         if(Robot.oi.rjoystick.getRawButton(Robotmap.JoyTrigger) && !Robot.globalvariables.flip_flag){
             Robot.globalvariables.flip_flag = true;
             Globalvariables.driveDirection = !Globalvariables.driveDirection;
@@ -147,6 +169,37 @@ public final class Joystickcontrols {
         //     Robot.oi.cl_moveR.set(ControlMode.PercentOutput, (0));
         // }       
     
+    }
+    public void Ball_intake2(){
+        Robot.oi.hopper.set(ControlMode.PercentOutput, .75);
+        if(!Robot.oi.lineSensor.get()){
+            if(!Robot.globalvariables.ball_intheintake){
+                Robot.oi.revolver_timer_delay.start();
+                Robot.oi.revolver_timer_delay.reset();
+                Robot.globalvariables.ball_intheintake = true;
+            }
+        }
+        if(Robot.oi.revolver_timer_delay.get() > .5) {
+            if(!Robot.globalvariables.revolver_delay_flag){
+                Robot.oi.revolver_timer.start();
+                Robot.oi.revolver_timer.reset();
+                Robot.globalvariables.revolver_delay_flag = true;
+            }
+            if(Robot.oi.revolver_timer.get() > 1.5) {
+                Robot.oi.revolver.set(0);
+                Ball_intake2_reset();
+            } else {
+                Robot.oi.revolver.set(.33);
+            }
+        }
+    }
+    public void Ball_intake2_reset(){
+        Robot.globalvariables.ball_intheintake = false;
+        Robot.globalvariables.revolver_delay_flag = false;
+        Robot.oi.revolver_timer_delay.stop();
+        Robot.oi.revolver_timer_delay.reset();
+        Robot.oi.revolver_timer.stop();
+        Robot.oi.revolver_timer.reset();
     }
     public void Ball_intake(){
         Robot.oi.swivle.setAngle(41);
@@ -216,7 +269,7 @@ public final class Joystickcontrols {
        Globalvariables.UserControl = false;
        Robot.oi.shooterPIDcontroller1.setReference(Robot.globalvariables.Vilocity3,  ControlType.kVelocity);
        Robot.oi.shooterPIDcontroller2.setReference(-Robot.globalvariables.Vilocity3, ControlType.kVelocity);
-       if(Robot.oi.shooter_encoder1.getVelocity() + 300 > Robot.globalvariables.Vilocity3 && Robot.oi.shooter_encoder1.getVelocity() - 300 < Robot.globalvariables.Vilocity3){
+       if(Robot.oi.shooter_encoder1.getVelocity() + 50 > Robot.globalvariables.Vilocity3 && Robot.oi.shooter_encoder1.getVelocity() - 50 < Robot.globalvariables.Vilocity3){
            if(!Robot.globalvariables.intake_flag){
                Robot.oi.Limelight_timer.start();
                Robot.oi.shotclock_timer.start();
@@ -224,11 +277,22 @@ public final class Joystickcontrols {
            }
            if(Robot.oi.shotclock_timer.get() > .5){
                if(Robot.globalvariables.shooter_lineup){
+                   
                    Robot.globalvariables.anticlogtimer_flag = false;
                    Robot.oi.anitclog_timer.reset();
                    Robot.globalvariables.RPM_good = true;
                    Robot.globalvariables.target_covered = true;
-                   Robot.oi.shooter_intake.set(-.9);
+                   if(!Robot.globalvariables.anticlogtimer_flag){
+                        if(!Robot.globalvariables.antianti_flag){
+                            Robot.oi.shooter_intake.set(.2);
+                            Robot.oi.anitclog_timer.start();
+                            Robot.globalvariables.antianti_flag = true;
+                        }else{
+                            Robot.oi.shooter_intake.set(-1);
+                        }
+                        
+                    }
+                   
                    if(!Robot.globalvariables.intaketimer_flag){
                        Robot.oi.intake_timer.start();
                        Robot.globalvariables.intaketimer_flag = true;
@@ -240,6 +304,8 @@ public final class Joystickcontrols {
            }else{
                Robot.globalvariables.RPM_good = false;
                Robot.oi.shooter_intake.set(0);
+               Robot.globalvariables.anticlogtimer_flag = false;
+               Robot.globalvariables.antianti_flag = false;
                //Robot.oi.revolver.set(0);
            }
        }else{
@@ -260,10 +326,11 @@ public final class Joystickcontrols {
         Robot.globalvariables.intake_flag = false;
         Robot.globalvariables.RPM_good = false;
         Robot.oi.Limelight_timer.reset();
+        Robot.oi.anitclog_timer.reset();
         Globalvariables.UserControl = true; 
         Robot.oi.shooter_motor1.set(0);
         Robot.oi.shooter_motor2.set(0);
-        Robot.oi.shooter_intake.set(0);
+        Robot.globalvariables.antianti_flag = false;
         Robot.globalvariables.target_covered = false;
     }
 }

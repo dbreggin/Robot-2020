@@ -68,7 +68,13 @@ public final class Globalvariables {
     public boolean target_covered;
     public boolean ball_intheintake;
     public boolean revolver_delay_flag;
+    public boolean reset_ball_cycle;
+    public boolean Ball_down;
+    public boolean Ball_up;
+    public boolean antianti_flag;
     public Globalvariables(){
+        antianti_flag = false;
+        reset_ball_cycle = false;
         revolver_delay_flag = false;
         ball_intheintake = false;
         target_covered = false;
@@ -103,6 +109,8 @@ public final class Globalvariables {
         angle_flag = false;
         automode = 0;        
         flip_flag = false;
+        Ball_down = false;
+        Ball_up = false;
         ball_counter = 3;
         autonomous_stage = 0; //use slider to change
 

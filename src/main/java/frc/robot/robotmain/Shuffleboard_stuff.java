@@ -46,6 +46,8 @@ public final class Shuffleboard_stuff {
         //SmartDashboard.putNumber("swivlepos", Robot.oi.swivle.get());
         SmartDashboard.putNumber("distance", Robot.recursivecode.distance);
         SmartDashboard.putNumber("Vilocity3", Robot.globalvariables.Vilocity3);
+        SmartDashboard.putBoolean("Chedck flag", Globalvariables.check_flag);
+        SmartDashboard.putNumber("Delay timer", Robot.oi.revolver_timer_delay.get());
 
     }
     public double getMaxSpeed(){

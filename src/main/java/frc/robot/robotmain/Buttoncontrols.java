@@ -1,6 +1,7 @@
 package frc.robot.robotmain;
 import frc.robot.*;
 import frc.robot.commands.*;
+import frc.robot.subsystems.Climber;
 import frc.robot.subsystems.Shooter;
 import com.ctre.phoenix.motorcontrol.ControlMode;
 
@@ -15,11 +16,27 @@ public final class Buttoncontrols {
         if(Robot.oi.gamepad.getRawButton(5)){
             Robot.oi.swivle.setAngle(5);
         }
-        if(Robot.oi.gamepad.getRawButton(Robotmap.Xbutton)){
-            Robot.oi.motor1.setSelectedSensorPosition(0, 0, 30);
-            Robot.oi.motor3.setSelectedSensorPosition(0, 0, 30);
+        if(Robot.oi.gamepad.getRawButton(Robotmap.Start) && !Robot.globalvariables.Ball_up){
+            Robot.globalvariables.Ball_up = true;
+            Globalvariables.ball_counter--;
         }
-
+        else if(!Robot.oi.gamepad.getRawButton(Robotmap.Start) && Robot.globalvariables.Ball_up){
+            Robot.globalvariables.Ball_up = false;
+        }
+        if(Robot.oi.gamepad.getRawButton(Robotmap.Select) && !Robot.globalvariables.Ball_down){
+            Robot.globalvariables.Ball_down = true;
+            Globalvariables.ball_counter++;
+        } else if(!Robot.oi.gamepad.getRawButton(Robotmap.Select)){
+            Robot.globalvariables.Ball_down = false;
+        }
+        // if(Robot.oi.gamepad.getRawButton(Robotmap.Lbumper)){
+        //     Robot.oi.cl_move.set(ControlMode.PercentOutput, -.5);
+        // } else if(Robot.oi.gamepad.getRawButton(Robotmap.Rbumper)){
+        //     Robot.oi.cl_move.set(ControlMode.PercentOutput, .5);
+        // }
+            // if(Robot.oi.gamepad.getRawButton(Robotmap.Xbutton)){
+            //     climber =new Climber();
+            // }
 
 
         

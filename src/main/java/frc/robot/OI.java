@@ -55,9 +55,9 @@ public TalonSRX intake_motor;
 public TalonSRX cp_motor;
 public TalonSRX hopper_motor;
 public TalonSRX outake_motor;
-public TalonSRX cl_lift;
-public TalonSRX cl_moveR;
-public TalonSRX cl_moveL;
+public TalonSRX cl_move;
+public TalonSRX cl_upR;
+public TalonSRX cl_upL;
 
 public CANSparkMax shooter_motor1;
 public CANSparkMax shooter_motor2;
@@ -120,6 +120,7 @@ public Timer Limelight_timer;
 public Timer ball_timer;
 public Timer revolver_timer;
 public Timer revolver_timer_delay;
+public Timer cL_timer;
 
 //public AHRS navx;
 
@@ -152,9 +153,9 @@ public OI() {
     shooterPIDcontroller2 = shooter_motor2.getPIDController();
     shooterintakePID = shooter_intake.getPIDController();
     cp_motor = new TalonSRX(9);
-    cl_moveL = new TalonSRX(11);
-    cl_moveR = new TalonSRX(10);
-    cl_lift = new TalonSRX(12);
+    cl_upL = new TalonSRX(11);
+    cl_upR = new TalonSRX(10);
+    cl_move = new TalonSRX(12);
     swivle = new Servo(0);
 
 
@@ -183,13 +184,13 @@ public OI() {
     automode.addOption("Automode 5", 4);
     SmartDashboard.putData("Automode 1", automode);
 
-    shooterPIDcontroller1.setP(7e-5);
+    shooterPIDcontroller1.setP(8e-80);
     shooterPIDcontroller1.setI(.35e-6);
     shooterPIDcontroller1.setD(0);
     shooterPIDcontroller1.setIZone(0);
     shooterPIDcontroller1.setFF(0);
     shooterPIDcontroller1.setOutputRange(-1, 1);
-    shooterPIDcontroller2.setP(7e-5);
+    shooterPIDcontroller2.setP(8e-80);
     shooterPIDcontroller2.setI(.35e-6);
     shooterPIDcontroller2.setD(0);
     shooterPIDcontroller2.setIZone(0);
@@ -211,7 +212,7 @@ public OI() {
     // rmotor3.follow(rmotor1);
     // lmotor2.follow(lmotor1);
     // lmotor3.follow(lmotor1);
-    cl_moveL.follow(cl_moveR);
+    cl_upL.follow(cl_upR);
 
     //rmotor1.configSelectedFeedbackSensor(FeedbackDevice.QuadEncoder,0,30);
     //lmotor1.configSelectedFeedbackSensor(FeedbackDevice.QuadEncoder,0,30);
@@ -244,8 +245,10 @@ public OI() {
     Limelight_timer = new Timer();
     ball_timer = new Timer();
     revolver_timer = new Timer();
+    revolver_timer.start();
     revolver_timer_delay = new Timer();
-
+    revolver_timer_delay.start();
+    cL_timer = new Timer();
 
     }
 }
