@@ -15,7 +15,7 @@ public final class Autonomous {
         switch(Globalvariables.autonomous_stage){
             case 0:
                 //1 foot = 9464.56 on left
-                if(Robot.oi.motor1.getSelectedSensorPosition(0) > -9464.7*5){
+                if(Robot.oi.motor1.getSelectedSensorPosition(0) > -9464.7*Robot.shuffleboard.getEncoderDistance()){
                     Robot.oi.drive.arcadeDrive(-.5, sA);
                     Robot.oi.ta = Robot.oi.table.getEntry("ta");
                     Robot.oi.la = Robot.oi.ta.getDouble(0.0);

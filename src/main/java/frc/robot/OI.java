@@ -99,6 +99,7 @@ public double la;
 public double lv;
 public SendableChooser<Integer> ballcount;
 public SendableChooser<Integer> automode;
+public SendableChooser<Integer> distance_back;
 //misc
 public double temp1;
 public double temp2;
@@ -183,6 +184,14 @@ public OI() {
     automode.addOption("MOVE OFF LINE AND END IT ALL", 3);
     automode.addOption("Automode 5", 4);
     SmartDashboard.putData("Automode 1", automode);
+
+    distance_back = new SendableChooser<Integer>();
+    distance_back.setDefaultOption("1ft", 1);
+    distance_back.addOption("2ft", 2);
+    distance_back.addOption("3ft", 3);
+    distance_back.addOption("4ft", 4);
+    distance_back.addOption("5ft", 5);
+    SmartDashboard.putData("Distance in auto", distance_back);
 
     shooterPIDcontroller1.setP(8e-80);
     shooterPIDcontroller1.setI(.35e-6);
