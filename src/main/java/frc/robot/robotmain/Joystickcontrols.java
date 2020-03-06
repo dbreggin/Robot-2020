@@ -81,6 +81,7 @@ public final class Joystickcontrols {
         // Robot.oi.shooter_motor2.set(-Robot.oi.gamepad.getRawAxis(Robotmap.LeftY));
         //Robot.oi.hopper.set(Robot.oi.gamepad.getRawAxis(RF));
         if(Robot.oi.gamepad.getRawButton(1)){
+            
             Shooter_cycle();
         }else if(!Robot.oi.gamepad.getRawButton(1)){
             Shooter_reset();
@@ -120,7 +121,7 @@ public final class Joystickcontrols {
         if(Robot.oi.rjoystick.getRawButton(Robotmap.JoyTrigger) && !Robot.globalvariables.flip_flag){
             Robot.globalvariables.flip_flag = true;
             Globalvariables.driveDirection = !Globalvariables.driveDirection;
-        } else if(!Robot.oi.ljoystick.getRawButton(Robotmap.JoyTrigger) && Robot.globalvariables.flip_flag){
+        } else if(!Robot.oi.rjoystick.getRawButton(Robotmap.JoyTrigger) && Robot.globalvariables.flip_flag){
             Robot.globalvariables.flip_flag = false;
         }
         if(Globalvariables.UserControl){
@@ -130,6 +131,9 @@ public final class Joystickcontrols {
                 Robot.oi.drive.tankDrive((Robot.oi.ljoystick.getRawAxis(Robotmap.joyY)*Robot.oi.maxSpeed.getDouble(1.0)),(Robot.oi.rjoystick.getRawAxis(Robotmap.joyY)*Robot.oi.maxSpeed.getDouble(1.0)));
             }
         }
+        
+    
+    
         // if(Globalvariables.UserControl){
         //     Globalvariables.LEDmode = 22;
         //     if(Robot.oi.ljoystick.getRawButton(Robotmap.JoyTrigger)){
@@ -171,6 +175,7 @@ public final class Joystickcontrols {
     
     }
     public void Ball_intake2(){
+        Robot.oi.swivle.setAngle(165);
         Robot.oi.hopper.set(ControlMode.PercentOutput, .75);
         if(!Robot.oi.lineSensor.get()){
             if(!Robot.globalvariables.ball_intheintake){
@@ -202,7 +207,7 @@ public final class Joystickcontrols {
         Robot.oi.revolver_timer.reset();
     }
     public void Ball_intake(){
-        Robot.oi.swivle.setAngle(41);
+       
         Globalvariables.UserControl = false;
         if(Robot.globalvariables.ball_stage_count == 0){
             vision = new Vision(.6,3,1,0);
@@ -264,7 +269,7 @@ public final class Joystickcontrols {
         }
     }
     public void Shooter_cycle(){
-       // Robot.oi.swivle.setAngle(180);
+       Robot.oi.swivle.setAngle(5);
        vision = new Vision(.975,0,1.0, -3);
        Globalvariables.UserControl = false;
        Robot.oi.shooterPIDcontroller1.setReference(Robot.globalvariables.Vilocity3,  ControlType.kVelocity);

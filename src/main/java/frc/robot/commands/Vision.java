@@ -85,7 +85,8 @@ public final class Vision {
             }else if (sA < -.5){
                 sA = -.5;
             }
-            dA*= -1.5;
+            dA*= -2
+            ;
             dA*=scaler;
             
             if(Robot.oi.Limelight_timer.get() < .5){

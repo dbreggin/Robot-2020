@@ -153,8 +153,8 @@ public OI() {
     shooterPIDcontroller2 = shooter_motor2.getPIDController();
     shooterintakePID = shooter_intake.getPIDController();
     cp_motor = new TalonSRX(9);
-    cl_upL = new TalonSRX(11);
-    cl_upR = new TalonSRX(10);
+    cl_upL = new TalonSRX(5);
+    cl_upR = new TalonSRX(4);
     cl_move = new TalonSRX(12);
     swivle = new Servo(0);
 
