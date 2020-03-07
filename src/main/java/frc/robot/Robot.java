@@ -48,16 +48,15 @@ public class Robot extends TimedRobot {
   }
   @Override public void autonomousInit() {
     //called when autonomous first initializes
-    //autonomous = new Autonomous();
+    autonomous = new Autonomous();
     Robot.oi.motor3.setSelectedSensorPosition(0, 0, 30);
     Robot.oi.motor1.setSelectedSensorPosition(0, 0, 30);
-    Robot.oi.navx.reset();
-    angleTurn = new AngleTurn(90, 0.5);
-    Globalvariables.turn2angle = true;
-    Globalvariables.turn1angle = 90;
-    Globalvariables.speed = .6;
-    Globalvariables.ball_counter = Robot.shuffleboard.getballNumber();
-    Robot.shuffleboard.getEncoderDistance();
+    //Robot.oi.navx.reset();
+    //angleTurn = new AngleTurn(90, 0.5);
+    //Globalvariables.turn2angle = true;
+    //Globalvariables.turn1angle = 90;
+    //Globalvariables.speed = .6;
+    //Globalvariables.ball_counter = Robot.shuffleboard.getballNumber()+1;
 
     // Globalvariables.automode = Robot.oi.automode.getSelected();
   }

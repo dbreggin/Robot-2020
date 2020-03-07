@@ -112,7 +112,7 @@ public final class Globalvariables {
         flip_flag = false;
         Ball_down = false;
         Ball_up = false;
-        ball_counter = 3;
+        ball_counter = 4;
         autonomous_stage = 0; //use slider to change
         stage_counter = 0;
     }    

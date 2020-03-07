@@ -34,10 +34,11 @@ public final class Autonomous {
                         sA = -1;   
                     } 
                 }else {
+
                     visionFunction = new Vision(.975,0,1.0, -3);
-                    Robot.oi.shooterPIDcontroller1.setReference(2425, ControlType.kVelocity);
-                    Robot.oi.shooterPIDcontroller2.setReference(-2425, ControlType.kVelocity);
-                    if(Robot.oi.shooter_encoder1.getVelocity() + 500 > 2425 && Robot.oi.shooter_encoder1.getVelocity() - 500 < 2425){
+                    Robot.oi.shooterPIDcontroller1.setReference(2800, ControlType.kVelocity);
+                    Robot.oi.shooterPIDcontroller2.setReference(-2800, ControlType.kVelocity);
+                    if(Robot.oi.shooter_encoder1.getVelocity() + 500 > 2800 && Robot.oi.shooter_encoder1.getVelocity() - 500 < 2800){
                         if(!Robot.globalvariables.intake_flag){
                             Robot.oi.Limelight_timer.start();
                             Robot.oi.shotclock_timer.start();
@@ -62,11 +63,11 @@ public final class Autonomous {
                             Robot.oi.shooter_intake.set(0);
                             Robot.oi.revolver.set(0);
                         }
-            }else{
-                if(!Robot.globalvariables.anticlogtimer_flag){
-                        Robot.oi.anitclog_timer.start();
-                        Robot.globalvariables.anticlogtimer_flag = true; 
-                }
+                }else{
+                    if(!Robot.globalvariables.anticlogtimer_flag){
+                            Robot.oi.anitclog_timer.start();
+                            Robot.globalvariables.anticlogtimer_flag = true; 
+                    }
             }
         }
         
@@ -75,6 +76,40 @@ public final class Autonomous {
                 Robot.oi.shooterPIDcontroller2.setReference(0, ControlType.kVelocity);
                 Robot.oi.shooter_intake.set(0);
                 Robot.oi.revolver.set(0);
+                Robot.oi.auto_hopper_tTimer.start();
+                //TEMPP 
+                Robot.oi.swivle.setAngle(175);
+                visionFunction = new Vision(.6,3,1,0);
+                if(Robot.globalvariables.shooter_lineup){
+                    Robot.oi.drive.tankDrive(.6,.6);
+                    Robot.oi.hopper.set(.75);
+                    if(!Robot.oi.lineSensor.get()){
+                        if(!Robot.globalvariables.ball_intheintake){
+                            Robot.oi.revolver_timer_delay.start();
+                            Robot.oi.revolver_timer_delay.reset();
+                            Robot.globalvariables.ball_intheintake = true;
+                        }
+                    }
+                    if(Robot.oi.revolver_timer_delay.get() > .5) {
+                        if(!Robot.globalvariables.revolver_delay_flag){
+                            Robot.oi.revolver_timer.start();
+                            Robot.oi.revolver_timer.reset();
+                            Robot.globalvariables.revolver_delay_flag = true;
+                        }
+                        if(Robot.oi.revolver_timer.get() > 1.5) {
+                            Robot.oi.revolver.set(0);
+                            Robot.globalvariables.ball_intheintake = false;
+                            Robot.globalvariables.revolver_delay_flag = false;
+                            Robot.oi.revolver_timer_delay.stop();
+                            Robot.oi.revolver_timer_delay.reset();
+                            Robot.oi.revolver_timer.stop();
+                            Robot.oi.revolver_timer.reset();
+                        } else {
+                            Robot.oi.revolver.set(.33);
+                        }
+                    }
+                }
+            
                 Globalvariables.autonomous_stage ++;
             }
             

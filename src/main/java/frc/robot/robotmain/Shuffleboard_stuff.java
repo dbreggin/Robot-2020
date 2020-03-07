@@ -32,7 +32,7 @@ public final class Shuffleboard_stuff {
         SmartDashboard.putNumber("Intake Revolver", getrevolverintakeSpeed());
         SmartDashboard.putNumber("SPEEED RPM", getshooterSpeed());
         SmartDashboard.putNumber("key", getautomodeNumber());
-        SmartDashboard.putNumber("Distance back", getEncoderDistance());
+        ///SmartDashboard.putNumber("Distance back", getEncoderDistance());
         //SmartDashboard.putNumber("Servo ANGLLEEE", Robot.oi.swivle.getAngle());
         SmartDashboard.putNumber("Gyro X",Robot.oi.navx.getYaw());
         SmartDashboard.putNumber("Gyro Y",Robot.oi.navx.getPitch());
@@ -51,9 +51,9 @@ public final class Shuffleboard_stuff {
         SmartDashboard.putNumber("Delay timer", Robot.oi.revolver_timer_delay.get());
 
     }
-    public double getEncoderDistance(){
-        return Robot.oi.distance_back.getSelected();
-    }
+    // public double getEncoderDistance(){
+    //     return Robot.oi.distance_back.getSelected();
+    // }
     public double getMaxSpeed(){
         return Robot.oi.maxSpeed.getDouble(1.0);
     }
