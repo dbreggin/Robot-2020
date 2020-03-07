@@ -40,10 +40,10 @@ public final class Vision {
                 sA = -.35;
             }else if(Robot.oi.lx < -.5 && Robot.oi.lx > -4){
                 Robot.globalvariables.shooter_lineup = false;
-                sA = .32;
+                sA = .3;
             }else if(Robot.oi.lx > .5 && Robot.oi.lx < 4){
                 Robot.globalvariables.shooter_lineup = false;
-                sA = -.32;
+                sA = -.3;
             }else if(Robot.oi.lx < .5 && Robot.oi.lx > -.5 ){
                 Robot.globalvariables.shooter_lineup = true;
                 sA = 0;
@@ -85,7 +85,8 @@ public final class Vision {
             }else if (sA < -.5){
                 sA = -.5;
             }
-            dA*= -1.5;
+            dA*= -2
+            ;
             dA*=scaler;
             
             if(Robot.oi.Limelight_timer.get() < .5){
