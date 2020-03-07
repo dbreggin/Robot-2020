@@ -19,12 +19,12 @@ public final class Buttoncontrols {
         //     Robot.oi.swivle.setAngle(5);
         // }
         if(Robot.oi.gamepad.getRawAxis(2)>0){
-            Robot.oi.cl_upL.set(ControlMode.PercentOutput,(-(Robot.oi.gamepad.getRawAxis(2)*.45)+ -.65));
+            Robot.oi.cl_upL.set(ControlMode.PercentOutput,(-(Robot.oi.gamepad.getRawAxis(2)*.65)+ -.45));
         }else if((Robot.oi.gamepad.getRawAxis(2)==0) && !Robot.oi.ljoystick.getRawButton(12) && !Robot.oi.rjoystick.getRawButton(12)){
             Robot.oi.cl_upL.set(ControlMode.PercentOutput,0);
         }
         if(Robot.oi.gamepad.getRawAxis(3) > 0){
-            Robot.oi.cl_upR.set(ControlMode.PercentOutput,((Robot.oi.gamepad.getRawAxis(3)*.45))+.65);
+            Robot.oi.cl_upR.set(ControlMode.PercentOutput,((Robot.oi.gamepad.getRawAxis(3)*.65))+.45);
         }else if((Robot.oi.gamepad.getRawAxis(3)==0) && !Robot.oi.ljoystick.getRawButton(12) && !Robot.oi.rjoystick.getRawButton(12)){
             Robot.oi.cl_upR.set(ControlMode.PercentOutput,0);
         }
@@ -49,7 +49,6 @@ public final class Buttoncontrols {
         }else if(!Robot.oi.rjoystick.getRawButton(12) && (Robot.oi.gamepad.getRawAxis(3)==0) &&(Robot.oi.gamepad.getRawAxis(2)==0)){
             Robot.oi.cl_upR.set(ControlMode.PercentOutput, 0);
         }
-      
         if(Robot.oi.gamepad.getRawButton(Robotmap.Start) && !Robot.globalvariables.Ball_up){
             Robot.globalvariables.Ball_up = true;
             Globalvariables.ball_counter--;

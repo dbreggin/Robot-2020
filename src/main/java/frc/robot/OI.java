@@ -122,6 +122,7 @@ public Timer ball_timer;
 public Timer revolver_timer;
 public Timer revolver_timer_delay;
 public Timer cL_timer;
+public Timer auto_hopper_tTimer;
 
 //public AHRS navx;
 
@@ -157,7 +158,7 @@ public OI() {
     cl_upL = new TalonSRX(5);
     cl_upR = new TalonSRX(4);
     cl_move = new TalonSRX(12);
-    swivle = new Servo(0);
+    swivle = new Servo(4);
 
 
 
@@ -242,6 +243,9 @@ public OI() {
 
     tab = Shuffleboard.getTab("SmartDashboard");
     maxSpeed = tab.add("Max Speed", 1).withWidget(BuiltInWidgets.kNumberSlider).withProperties(Map.of("min",0,"max",1)).getEntry();
+
+    // RightSpeed = tab.add("Left Speed", 1).withWidget(BuiltInWidgets.kNumberSlider).withProperties(Map.of("min",0,"max",1)).getEntry();
+    // LeftSpeed = tab.add("Left Speed", 1).withWidget(BuiltInWidgets.kNumberSlider).withProperties(Map.of("min",0,"max",1)).getEntry();
     revolverintakeSpeed = tab.add("Intake Speed", 1).withWidget(BuiltInWidgets.kNumberSlider).withProperties(Map.of("min",2000,"max",5676)).getEntry();
     shooterSpeed = tab.add("Shooter Speed", 1).withWidget(BuiltInWidgets.kNumberSlider).withProperties(Map.of("min",2000,"max",5676)).getEntry();
     LeDtest = tab.add("HeavyMetalTest",1).withProperties(Map.of("min",-1,"max",1)).getEntry();
@@ -258,6 +262,7 @@ public OI() {
     revolver_timer_delay = new Timer();
     revolver_timer_delay.start();
     cL_timer = new Timer();
+    auto_hopper_tTimer = new Timer();
 
     }
 }

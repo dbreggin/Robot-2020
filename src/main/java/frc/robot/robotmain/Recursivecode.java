@@ -31,7 +31,7 @@ public final class Recursivecode{
         Robot.oi.lv = Robot.oi.tv.getDouble(0.0);
         k = 9*Math.sqrt(2.91);
         distance = k/Math.sqrt(Robot.oi.la); 
-        Robot.globalvariables.Vilocity3 = 2550;
+        Robot.globalvariables.Vilocity3 = 2820;
         // if(!Robot.globalvariables.target_covered){
         //     Robot.globalvariables.Vilocity3 = ((distance/2)*323.33);
         //     if(distance < 13.5){
