@@ -122,6 +122,7 @@ public Timer ball_timer;
 public Timer revolver_timer;
 public Timer revolver_timer_delay;
 public Timer cL_timer;
+public Timer auto_timer;
 
 //public AHRS navx;
 
@@ -258,6 +259,6 @@ public OI() {
     revolver_timer_delay = new Timer();
     revolver_timer_delay.start();
     cL_timer = new Timer();
-
+    auto_timer = new Timer();
     }
 }

@@ -206,67 +206,57 @@ public final class Joystickcontrols {
         Robot.oi.revolver_timer.stop();
         Robot.oi.revolver_timer.reset();
     }
-    public void Ball_intake(){
-       
+    public void Ball_intake(){       
         Globalvariables.UserControl = false;
         if(Robot.globalvariables.ball_stage_count == 0){
-            vision = new Vision(.6,3,1,0);
+            Robot.oi.swivle.setAngle(165);
+            if(!Robot.globalvariables.ball_intheintake){
+                vision = new Vision(.6,3,1,0);
+            }
+            if(Robot.globalvariables.shooter_lineup){
+                Robot.globalvariables.ball_stage_count ++; 
+            }
         }else if(Robot.globalvariables.ball_stage_count == 1){
-
-            Robot.oi.drive.tankDrive(.6,.6);
-
             Robot.oi.hopper.set(ControlMode.PercentOutput, .75);
+            Robot.oi.drive.tankDrive(.6,.6);
             if(!Robot.oi.lineSensor.get()){
-                if(!Robot.globalvariables.revolver_delay_flag){
+                if(!Robot.globalvariables.ball_intheintake){
+                    vision = new Vision(.975,1,1.0, -3);///find which pipeline////FIX 
                     Robot.oi.revolver_timer_delay.start();
                     Robot.oi.revolver_timer_delay.reset();
+                    Robot.globalvariables.ball_intheintake = true;
+                    Robot.oi.drive.tankDrive(0,0);
+                }
+            }
+            if(Robot.oi.revolver_timer_delay.get() > .5) {
+                if(!Robot.globalvariables.revolver_delay_flag){
+                    Robot.oi.revolver_timer.start();
+                    Robot.oi.revolver_timer.reset();
                     Robot.globalvariables.revolver_delay_flag = true;
                 }
-                if(!Robot.globalvariables.ball_intheintake){
-                    if(Robot.oi.revolver_timer_delay.get() > .3){
-                        Robot.oi.revolver.set(.75);
-                        Robot.oi.revolver_timer.start();
-                        Robot.oi.revolver_timer.reset();
-                        Robot.globalvariables.ball_intheintake = true;
-                        Robot.globalvariables.revolver_delay_flag = false;
-                    }
+                if(Robot.oi.revolver_timer.get() > 1.5) {
+                    Robot.globalvariables.ball_stage_count ++;
+                    Robot.oi.revolver.set(0);
+                    Robot.globalvariables.ball_intheintake = false;
+                    Robot.globalvariables.revolver_delay_flag = false;
+                    Robot.oi.revolver_timer_delay.stop();
+                    Robot.oi.revolver_timer_delay.reset();
+                    Robot.oi.revolver_timer.stop();
+                    Robot.oi.revolver_timer.reset();
+                }else {
+                    Robot.oi.revolver.set(.33);
                 }
             }
-            if(Robot.oi.revolver_timer.get() > .7){
-                Robot.oi.revolver.set(0);
-                Robot.oi.revolver_timer.stop();
-                Robot.globalvariables.ball_intheintake = false;
-            }
-
-
-            if(!Robot.globalvariables.ball_pickedup){
-                Robot.globalvariables.origonal_ball = Globalvariables.ball_counter;
-                Robot.globalvariables.ball_pickedup = true;
-            }
-            if(Globalvariables.ball_counter > Robot.globalvariables.origonal_ball || Robot.oi.ball_timer.get() > .5){
-                Robot.globalvariables.ball_pickedup = true;
-                Robot.oi.revolver.set(.3);
-                Robot.globalvariables.ball_stage_count ++;
-            }else{
-                Robot.oi.ball_timer.stop();
-                Robot.globalvariables.ball_pickedup = false;
-                Robot.globalvariables.ball_stage_count ++;
-            }
+            
         }else if(Robot.globalvariables.ball_stage_count == 2){
-            Robot.oi.drive.tankDrive(0,0);
+            Robot.oi.hopper.set(0);
+            Robot.oi.revolver.set(0);
             Robot.oi.ball_timer.reset();
             Robot.globalvariables.ball_reset = true;
             Robot.globalvariables.ball_stage_count = 0;
 
         }
-        if(Robot.globalvariables.shooter_lineup){
-            if(!Robot.globalvariables.ball_reset){
-                Robot.oi.ball_timer.start();
-            }else{
-                Robot.oi.ball_timer.reset();
-            }
-            Robot.globalvariables.ball_stage_count ++;
-        }
+        
     }
     public void Shooter_cycle(){
        Robot.oi.swivle.setAngle(5);

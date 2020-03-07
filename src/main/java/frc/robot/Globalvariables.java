@@ -52,6 +52,7 @@ public final class Globalvariables {
     public static boolean turn2angle;
     public static double turn1angle;
     public static int autonomous_stage;
+    public static int stage_counter;
     public static double automode;
     public boolean intake_flag;
     public boolean intaketimer_flag;
@@ -113,7 +114,7 @@ public final class Globalvariables {
         Ball_up = false;
         ball_counter = 3;
         autonomous_stage = 0; //use slider to change
-
+        stage_counter = 0;
     }    
 
 }
