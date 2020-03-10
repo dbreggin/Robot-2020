@@ -83,8 +83,10 @@ public final class Joystickcontrols {
         //Robot.oi.hopper.set(Robot.oi.gamepad.getRawAxis(RF));
         if(Robot.oi.gamepad.getRawButton(1)){
             Shooter_cycle();
+
         }else if(!Robot.oi.gamepad.getRawButton(1)){
             Shooter_reset();
+
         }else if(Robot.oi.gamepad.getRawButton(8)){
             Robot.oi.shooter_intake.set(-.25);
         }else if(!Robot.oi.gamepad.getRawButton(8) && !Robot.oi.gamepad.getRawButton(1) && !Robot.oi.gamepad.getRawButton(3)){
@@ -270,17 +272,16 @@ public final class Joystickcontrols {
        Robot.oi.swivle.setAngle(5);
        vision = new Vision(.975,0,1.0, -3);
        Globalvariables.UserControl = false;
-       Robot.oi.shooterPIDcontroller1.setReference(Robot.shuffleboard.getshooterSpeed(),  ControlType.kVelocity);
-       Robot.oi.shooterPIDcontroller2.setReference(-Robot.shuffleboard.getshooterSpeed(), ControlType.kVelocity);
-       if(Robot.oi.shooter_encoder1.getVelocity() + 50 > Robot.shuffleboard.getshooterSpeed() && Robot.oi.shooter_encoder1.getVelocity() - 50 < Robot.shuffleboard.getshooterSpeed()){
+       Robot.oi.shooterPIDcontroller1.setReference(Robot.globalvariables.Vilocity1,  ControlType.kVelocity);
+       Robot.oi.shooterPIDcontroller2.setReference(-Robot.globalvariables.Vilocity1, ControlType.kVelocity);
+       if(Robot.oi.shooter_encoder1.getVelocity() + 100 >= Robot.globalvariables.Vilocity1 && Robot.oi.shooter_encoder1.getVelocity() - 100 <= Robot.globalvariables.Vilocity1){
            if(!Robot.globalvariables.intake_flag){
                Robot.oi.Limelight_timer.start();
                Robot.oi.shotclock_timer.start();
                Robot.globalvariables.intake_flag = true;
            }
-           if(Robot.oi.shotclock_timer.get() > .5){
+           if(Robot.oi.shotclock_timer.get() > .75){
                if(Robot.globalvariables.shooter_lineup){
-                   
                    Robot.globalvariables.anticlogtimer_flag = false;
                    Robot.oi.anitclog_timer.reset();
                    Robot.globalvariables.RPM_good = true;
@@ -301,7 +302,11 @@ public final class Joystickcontrols {
                        Robot.globalvariables.intaketimer_flag = true;
                    }
                    if(Robot.oi.intake_timer.get() > .1){
-                        Robot.oi.revolver.set(.4);
+                       if(Robot.globalvariables.distance_to_target > 15){
+                            Robot.oi.revolver.set(.45);
+                       }else{
+                            Robot.oi.revolver.set(1);
+                       }   
                    }
                }   
            }else{
@@ -312,6 +317,9 @@ public final class Joystickcontrols {
                //Robot.oi.revolver.set(0);
            }
        }else{
+           if(Robot.globalvariables.distance_to_target > 15){
+            Robot.oi.shotclock_timer.reset();
+           }
            if(!Robot.globalvariables.anticlogtimer_flag){
                Robot.oi.anitclog_timer.start();
                Robot.globalvariables.anticlogtimer_flag = true; 

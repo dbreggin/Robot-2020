@@ -124,6 +124,7 @@ public Timer revolver_timer_delay;
 public Timer cL_timer;
 public Timer auto_timer;
 public Timer auto_hopper_tTimer;
+public Timer target_blocked_Timer;
 
 //public AHRS navx;
 
@@ -196,16 +197,16 @@ public OI() {
     SmartDashboard.putData("Distance in auto", distance_back);
 
     shooterPIDcontroller1.setP(8e-80);
-    shooterPIDcontroller1.setI(.35e-6);
+    shooterPIDcontroller1.setI(.25e-6);
     shooterPIDcontroller1.setD(0);
     shooterPIDcontroller1.setIZone(0);
-    shooterPIDcontroller1.setFF(0);
+    shooterPIDcontroller1.setFF(.000015);
     shooterPIDcontroller1.setOutputRange(-1, 1);
     shooterPIDcontroller2.setP(8e-80);
-    shooterPIDcontroller2.setI(.35e-6);
+    shooterPIDcontroller2.setI(.25e-6);
     shooterPIDcontroller2.setD(0);
     shooterPIDcontroller2.setIZone(0);
-    shooterPIDcontroller2.setFF(0);
+    shooterPIDcontroller2.setFF(.000015);
     shooterPIDcontroller2.setOutputRange(-1, 1);
     shooterintakePID.setP(5e-5);
     shooterintakePID.setI(1e-6);
@@ -265,6 +266,7 @@ public OI() {
     cL_timer = new Timer();
     auto_timer = new Timer();
     auto_hopper_tTimer = new Timer();
+    target_blocked_Timer = new Timer();
 
     }
 }

@@ -137,7 +137,8 @@ public final class Autonomous {
         default:
             Robot.oi.drive.tankDrive(0, 0);
         }
-    }else if(Globalvariables.stage_counter == 1){
+    }
+    if(Globalvariables.stage_counter == 1){
         switch(Globalvariables.autonomous_stage){
             case 0:
                 Robot.oi.auto_timer.start();
@@ -195,65 +196,62 @@ public final class Autonomous {
                 }
             }
         }
-        
-            if(Robot.oi.auto_timer.get() > 9){
-                Robot.oi.shooterPIDcontroller1.setReference(0, ControlType.kVelocity);
-                Robot.oi.shooterPIDcontroller2.setReference(0, ControlType.kVelocity);
-                Robot.oi.shooter_intake.set(0);
-                Robot.oi.revolver.set(0);
-                Globalvariables.autonomous_stage ++;
-            }
+        if(Robot.oi.auto_timer.get() > 9){
+            Robot.oi.shooterPIDcontroller1.setReference(0, ControlType.kVelocity);
+            Robot.oi.shooterPIDcontroller2.setReference(0, ControlType.kVelocity);
+            Robot.oi.shooter_intake.set(0);
+            Robot.oi.revolver.set(0);
+            Globalvariables.autonomous_stage ++;
+        }
             
             break;
         case 1:
-        if(Robot.globalvariables.ball_stage_count == 0){
-            Robot.oi.swivle.setAngle(165);
-            if(!Robot.globalvariables.ball_intheintake){
-                visionFunction = new Vision(.6,3,1,0);
-            }
-            if(Robot.globalvariables.shooter_lineup){
-                Robot.globalvariables.ball_stage_count ++; 
-            }
-        }else if(Robot.globalvariables.ball_stage_count == 1){
-            Robot.oi.hopper.set(.75);
-            Robot.oi.drive.tankDrive(.6,.6);
-            if(!Robot.oi.lineSensor.get()){
+            if(Robot.globalvariables.ball_stage_count == 0){
+                Robot.oi.swivle.setAngle(165);
                 if(!Robot.globalvariables.ball_intheintake){
-                    visionFunction = new Vision(.975,1,1.0, -3);///find which pipeline////FIX 
-                    Robot.oi.revolver_timer_delay.start();
-                    Robot.oi.revolver_timer_delay.reset();
-                    Robot.globalvariables.ball_intheintake = true;
-                    Robot.oi.drive.tankDrive(0,0);
+                    visionFunction = new Vision(.6,3,1,0);
                 }
+                if(Robot.globalvariables.shooter_lineup){
+                    Robot.globalvariables.ball_stage_count ++; 
+                }
+            }else if(Robot.globalvariables.ball_stage_count == 1){
+                Robot.oi.hopper.set(.75);
+                Robot.oi.drive.tankDrive(.6,.6);
+                if(!Robot.oi.lineSensor.get()){
+                    if(!Robot.globalvariables.ball_intheintake){
+                        Robot.oi.revolver_timer_delay.start();
+                        Robot.oi.revolver_timer_delay.reset();
+                        Robot.globalvariables.ball_intheintake = true;
+                        Robot.oi.drive.tankDrive(0,0);
+                    }
+                }
+                if(Robot.oi.revolver_timer_delay.get() > .5){
+                    if(!Robot.globalvariables.revolver_delay_flag){
+                        Robot.oi.revolver_timer.start();
+                        Robot.oi.revolver_timer.reset();
+                        Robot.globalvariables.revolver_delay_flag = true;
+                    }
+                    if(Robot.oi.revolver_timer.get() > 1.5) {
+                        Robot.globalvariables.ball_stage_count ++;
+                        Robot.oi.revolver.set(0);
+                        Robot.globalvariables.ball_intheintake = false;
+                        Robot.globalvariables.revolver_delay_flag = false;
+                        Robot.oi.revolver_timer_delay.stop();
+                        Robot.oi.revolver_timer_delay.reset();
+                        Robot.oi.revolver_timer.stop();
+                        Robot.oi.revolver_timer.reset();
+                    }else {
+                        Robot.oi.revolver.set(.33);
+                    }
+                }
+                
+            }else if(Robot.globalvariables.ball_stage_count == 2){
+                Robot.oi.hopper.set(0);
+                Robot.oi.revolver.set(0);
+                Robot.oi.ball_timer.reset();
+                Robot.globalvariables.ball_reset = true;
+                Robot.globalvariables.ball_stage_count = 0;
             }
-            if(Robot.oi.revolver_timer_delay.get() > .5) {
-                if(!Robot.globalvariables.revolver_delay_flag){
-                    Robot.oi.revolver_timer.start();
-                    Robot.oi.revolver_timer.reset();
-                    Robot.globalvariables.revolver_delay_flag = true;
-                }
-                if(Robot.oi.revolver_timer.get() > 1.5) {
-                    Robot.globalvariables.ball_stage_count ++;
-                    Robot.oi.revolver.set(0);
-                    Robot.globalvariables.ball_intheintake = false;
-                    Robot.globalvariables.revolver_delay_flag = false;
-                    Robot.oi.revolver_timer_delay.stop();
-                    Robot.oi.revolver_timer_delay.reset();
-                    Robot.oi.revolver_timer.stop();
-                    Robot.oi.revolver_timer.reset();
-                }else {
-                    Robot.oi.revolver.set(.33);
-                }
-            }
-            
-        }else if(Robot.globalvariables.ball_stage_count == 2){
-            Robot.oi.hopper.set(0);
-            Robot.oi.revolver.set(0);
-            Robot.oi.ball_timer.reset();
-            Robot.globalvariables.ball_reset = true;
-            Robot.globalvariables.ball_stage_count = 0;
-
-        }
             break;      
         default:
             Robot.oi.drive.tankDrive(0, 0);

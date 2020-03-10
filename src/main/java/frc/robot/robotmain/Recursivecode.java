@@ -10,10 +10,15 @@ import frc.robot.commands.Vision;
 import com.ctre.phoenix.motorcontrol.ControlMode;
 import edu.wpi.first.networktables.NetworkTableEntry;
 import edu.wpi.first.networktables.NetworkTableInstance;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 public final class Recursivecode{
+    public double shooter_angle;
+    public double shooter_height;
+    public double Vilocity1;
     public double distance;
     public double k;
+    public double v;
     public double Vilocity3;
     public Recursivecode(){
         recursivecode();
@@ -31,27 +36,18 @@ public final class Recursivecode{
         Robot.oi.lv = Robot.oi.tv.getDouble(0.0);
         k = 9*Math.sqrt(2.91);
         distance = k/Math.sqrt(Robot.oi.la); 
-        Robot.globalvariables.Vilocity3 = 2820;
-        // if(!Robot.globalvariables.target_covered){
-        //     Robot.globalvariables.Vilocity3 = ((distance/2)*323.33);
-        //     if(distance < 13.5){
-        //         Robot.globalvariables.Vilocity3 = (distance/2)*430.40;
-        //     }
-        //     if(distance > 16){
-        //         Robot.globalvariables.Vilocity3 = (distance/2)*280.40;
-        //     }
-        //     if(Robot.globalvariables.Vilocity3 > 5556){
-        //         Robot.globalvariables.Vilocity3 = 5556;
-        //     }else if(Robot.globalvariables.Vilocity3 < 2200){
-        //         Robot.globalvariables.Vilocity3 = 2200;
-        //     }
-        //     Robot.globalvariables.Vilocity3 = 2425;
-        // }
-        // shooter_height = 1.166;
-        // shooter_angle = 49;
-        // Vilocity1 = Math.sqrt((19.6*(8.1875 - 1.166))/(Math.sin(49.0)));
-        // Vilocity2 = Math.sqrt(4.9*(Math.pow((distance),2))/(Math.pow(Math.cos(shooter_angle),2))*(distance*Math.tan(shooter_angle)-8.1875));
-       
+        shooter_height = 1.166;
+        shooter_angle = 49;
+        v = 11.307;
+        if(!Robot.oi.gamepad.getRawButton(1)){
+            Robot.globalvariables.distance_to_target = distance;
+            Vilocity1 = ((60*(900+v*Robot.globalvariables.distance_to_target))/(8*(Math.PI)));
+            Robot.globalvariables.Vilocity1 = Vilocity1 + 100;
+        
+        }
+           
+        
+        SmartDashboard.putNumber("Vilocity Calc", Robot.globalvariables.Vilocity1);
         //ball counter code
         if(!Robot.oi.lineSensor.get() && !Globalvariables.lineloopflag[0]){
             Globalvariables.lineloopflag[0] = true;

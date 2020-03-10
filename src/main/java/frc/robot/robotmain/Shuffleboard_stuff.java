@@ -45,8 +45,7 @@ public final class Shuffleboard_stuff {
         SmartDashboard.putNumber("FALCONencoder2", Robot.oi.motor3.getSelectedSensorPosition(0));
         //SmartDashboard.putNumber("swivlepos", Robot.oi.swivle.getAngle());
         //SmartDashboard.putNumber("swivlepos", Robot.oi.swivle.get());
-        SmartDashboard.putNumber("distance", Robot.recursivecode.distance);
-        SmartDashboard.putNumber("Vilocity3", Robot.globalvariables.Vilocity3);
+        SmartDashboard.putNumber("distance", Robot.globalvariables.distance_to_target);
         SmartDashboard.putBoolean("Chedck flag", Globalvariables.check_flag);
         SmartDashboard.putNumber("Delay timer", Robot.oi.revolver_timer_delay.get());
 

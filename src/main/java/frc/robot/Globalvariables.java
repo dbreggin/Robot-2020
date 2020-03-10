@@ -65,7 +65,7 @@ public final class Globalvariables {
     public double origonal_ball;
     public int ball_stage_count;
     public boolean ball_reset;
-    public double Vilocity3;
+    public double Vilocity1;
     public boolean target_covered;
     public boolean ball_intheintake;
     public boolean revolver_delay_flag;
@@ -73,13 +73,15 @@ public final class Globalvariables {
     public boolean Ball_down;
     public boolean Ball_up;
     public boolean antianti_flag;
+    public double distance_to_target;
     public Globalvariables(){
+        distance_to_target = 0;
         antianti_flag = false;
         reset_ball_cycle = false;
         revolver_delay_flag = false;
         ball_intheintake = false;
         target_covered = false;
-        Vilocity3 = 0;
+        Vilocity1 = 0;
         ball_reset = false;
         origonal_ball = 0;
         ball_stage_count = 0;
@@ -115,6 +117,7 @@ public final class Globalvariables {
         ball_counter = 4;
         autonomous_stage = 0; //use slider to change
         stage_counter = 0;
+
     }    
 
 }

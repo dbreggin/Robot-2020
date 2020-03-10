@@ -91,6 +91,7 @@ public final class Vision {
             if(Robot.oi.Limelight_timer.get() < .5){
                 dA = 0;
             }
+            dA = 0;
             Robot.oi.drive.arcadeDrive(dA,sA);
             SmartDashboard.putNumber("sAAAA", sA);
         }else{
