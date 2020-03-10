@@ -48,15 +48,16 @@ public class Robot extends TimedRobot {
   }
   @Override public void autonomousInit() {
     //called when autonomous first initializes
-    autonomous = new Autonomous();
+    //autonomous = new Autonomous();
     Robot.oi.motor3.setSelectedSensorPosition(0, 0, 30);
     Robot.oi.motor1.setSelectedSensorPosition(0, 0, 30);
-    //Robot.oi.navx.reset();
+    Robot.oi.navx.reset();
     //angleTurn = new AngleTurn(90, 0.5);
     //Globalvariables.turn2angle = true;
-    //Globalvariables.turn1angle = 90;
-    //Globalvariables.speed = .6;
-    //Globalvariables.ball_counter = Robot.shuffleboard.getballNumber()+1;
+   // Globalvariables.turn1angle = 90;
+    Globalvariables.speed = .6;
+    //Globalvariables.ball_counter = Robot.shuffleboard.getballNumber();
+    //Robot.shuffleboard.getEncoderDistance();
 
     // Globalvariables.automode = Robot.oi.automode.getSelected();
   }
@@ -64,8 +65,6 @@ public class Robot extends TimedRobot {
     //called during autonomous
     autonomous = new Autonomous();
     recursivecode = new Recursivecode();
-    SmartDashboard.putNumber("FALCONencoder", Robot.oi.motor1.getSelectedSensorPosition(0));
-
   }
   @Override public void teleopInit() {
     recursivecode = new Recursivecode();
@@ -76,7 +75,7 @@ public class Robot extends TimedRobot {
     joysticks = new Joystickcontrols();
     recursivecode = new Recursivecode();
     buttoncontrols = new Buttoncontrols();
-   shuffleboard = new Shuffleboard_stuff();
+    shuffleboard = new Shuffleboard_stuff();
 
   }
   @Override public void testInit() {
