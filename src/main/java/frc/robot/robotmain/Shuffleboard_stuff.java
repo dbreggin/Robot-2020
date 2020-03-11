@@ -57,7 +57,7 @@ public final class Shuffleboard_stuff {
         return Robot.oi.maxSpeed.getDouble(1.0);
     }
     public double getrevolverintakeSpeed(){
-        return Robot.oi.revolverintakeSpeed.getDouble(3000.0);
+        return 0;//Robot.oi.revolverintakeSpeed.getDouble(3000.0);
     }
     public double getshooterSpeed(){
         return Robot.oi.shooterSpeed.getDouble(3000.0);

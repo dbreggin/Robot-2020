@@ -264,13 +264,13 @@ public final class Joystickcontrols {
        Globalvariables.UserControl = false;
        Robot.oi.shooterPIDcontroller1.setReference(Robot.globalvariables.Vilocity1,  ControlType.kVelocity);
        Robot.oi.shooterPIDcontroller2.setReference(-Robot.globalvariables.Vilocity1, ControlType.kVelocity);
-       if(Robot.oi.shooter_encoder1.getVelocity() + 100 >= Robot.globalvariables.Vilocity1 && Robot.oi.shooter_encoder1.getVelocity() - 100 <= Robot.globalvariables.Vilocity1){
+       if(Robot.oi.shooter_encoder1.getVelocity() + 75 >= Robot.globalvariables.Vilocity1 && Robot.oi.shooter_encoder1.getVelocity() - 75 <= Robot.globalvariables.Vilocity1){
            if(!Robot.globalvariables.intake_flag){
                Robot.oi.Limelight_timer.start();
                Robot.oi.shotclock_timer.start();
                Robot.globalvariables.intake_flag = true;
            }
-           if(Robot.oi.shotclock_timer.get() > .75){
+           if(Robot.oi.shotclock_timer.get() > 2){
                if(Robot.globalvariables.shooter_lineup){
                    Robot.globalvariables.anticlogtimer_flag = false;
                    Robot.oi.anitclog_timer.reset();
@@ -291,9 +291,9 @@ public final class Joystickcontrols {
                        Robot.oi.intake_timer.start();
                        Robot.globalvariables.intaketimer_flag = true;
                    }
-                   if(Robot.oi.intake_timer.get() > .1){
+                   if(Robot.oi.intake_timer.get() > 1){
                        if(Robot.globalvariables.distance_to_target > 15){
-                            Robot.oi.revolver.set(.45);
+                            Robot.oi.revolver.set(.4);
                        }else{
                             Robot.oi.revolver.set(1);
                        }   
@@ -304,7 +304,7 @@ public final class Joystickcontrols {
                Robot.oi.shooter_intake.set(0);
                Robot.globalvariables.anticlogtimer_flag = false;
                Robot.globalvariables.antianti_flag = false;
-               //Robot.oi.revolver.set(0);
+               Robot.oi.revolver.set(0);
            }
        }else{
            if(Robot.globalvariables.distance_to_target > 15){

@@ -42,7 +42,7 @@ public final class Recursivecode{
         if(!Robot.oi.gamepad.getRawButton(1)){
             Robot.globalvariables.distance_to_target = distance;
             Vilocity1 = ((60*(900+v*Robot.globalvariables.distance_to_target))/(8*(Math.PI)));
-            Robot.globalvariables.Vilocity1 = Vilocity1 + 100;
+            Robot.globalvariables.Vilocity1 = Vilocity1 + 20;
         
         }
            
