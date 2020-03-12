@@ -25,6 +25,19 @@ public final class Recursivecode{
     }
     LEDmode ledmode;
     public void recursivecode(){
+        /*
+        Robot.oi.shooterPIDcontroller1.setP(Robot.oi.P.getDouble(0.0));
+        Robot.oi.shooterPIDcontroller1.setI(Robot.oi.I.getDouble(0.0));
+        Robot.oi.shooterPIDcontroller1.setD(Robot.oi.D.getDouble(10.0));
+        Robot.oi.shooterPIDcontroller1.setIZone(Robot.oi.IZone.getDouble(0.0));
+        Robot.oi.shooterPIDcontroller1.setFF(Robot.oi.FF.getDouble(0.0));   
+        Robot.oi.shooterPIDcontroller2.setP(Robot.oi.P.getDouble(0.0));
+        Robot.oi.shooterPIDcontroller2.setI(Robot.oi.I.getDouble(0.0));
+        Robot.oi.shooterPIDcontroller2.setD(Robot.oi.D.getDouble(0.0));
+        Robot.oi.shooterPIDcontroller2.setIZone(Robot.oi.IZone.getDouble(0.0));
+        Robot.oi.shooterPIDcontroller2.setFF(Robot.oi.FF.getDouble(0.0));   
+        */
+
         Robot.oi.table = NetworkTableInstance.getDefault().getTable("limelight");
         Robot.oi.tx = Robot.oi.table.getEntry("tx");
         Robot.oi.ty = Robot.oi.table.getEntry("ty");
@@ -42,7 +55,7 @@ public final class Recursivecode{
         if(!Robot.oi.gamepad.getRawButton(1)){
             Robot.globalvariables.distance_to_target = distance;
             Vilocity1 = ((60*(900+v*Robot.globalvariables.distance_to_target))/(8*(Math.PI)));
-            Robot.globalvariables.Vilocity1 = Vilocity1 + 20;
+            Robot.globalvariables.Vilocity1 = Vilocity1 + 20 + Robot.oi.shooterSpeed.getDouble(0.0);
         
         }
            

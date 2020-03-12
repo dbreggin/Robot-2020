@@ -108,6 +108,11 @@ public NetworkTableEntry maxSpeed;
 public NetworkTableEntry revolverintakeSpeed;
 public NetworkTableEntry shooterSpeed;
 public NetworkTableEntry LeDtest;
+public NetworkTableEntry P;
+public NetworkTableEntry I;
+public NetworkTableEntry D;
+public NetworkTableEntry FF;
+public NetworkTableEntry IZone;
 public NetworkTableEntry ballNumber;
 public DigitalInput lineSensor;
 public DigitalInput lineSensor2;
@@ -196,18 +201,18 @@ public OI() {
     distance_back.addOption("5ft", 5);
     SmartDashboard.putData("Distance in auto", distance_back);
 
-    shooterPIDcontroller1.setP(8e-80);
-    shooterPIDcontroller1.setI(.25e-6);
-    shooterPIDcontroller1.setD(0);
-    shooterPIDcontroller1.setIZone(0);
-    shooterPIDcontroller1.setFF(.000015);
-    shooterPIDcontroller1.setOutputRange(-1, 1);
-    shooterPIDcontroller2.setP(8e-80);
-    shooterPIDcontroller2.setI(.25e-6);
-    shooterPIDcontroller2.setD(0);
+    shooterPIDcontroller1.setP(0.0012000000);      //8e-80
+    shooterPIDcontroller1.setI(.0000016);     //.25e-6
+    shooterPIDcontroller1.setD(0.2);          //0
+    shooterPIDcontroller1.setIZone(0);      //0
+    shooterPIDcontroller1.setFF(.0005);         //.000015
+    shooterPIDcontroller1.setOutputRange(0, 1);
+    shooterPIDcontroller2.setP(0.0012000000);
+    shooterPIDcontroller2.setI(.0000016);
+    shooterPIDcontroller2.setD(0.2);
     shooterPIDcontroller2.setIZone(0);
-    shooterPIDcontroller2.setFF(.000015);
-    shooterPIDcontroller2.setOutputRange(-1, 1);
+    shooterPIDcontroller2.setFF(.0005);
+    shooterPIDcontroller2.setOutputRange(-1, 0);
     shooterintakePID.setP(5e-5);
     shooterintakePID.setI(1e-6);
     shooterintakePID.setD(0);
@@ -246,9 +251,13 @@ public OI() {
     tab = Shuffleboard.getTab("SmartDashboard");
     maxSpeed = tab.add("Max Speed", 1).withWidget(BuiltInWidgets.kNumberSlider).withProperties(Map.of("min",0,"max",1)).getEntry();
     //revolverintakeSpeed = tab.add("Intake Speed", 1).withWidget(BuiltInWidgets.kNumberSlider).withProperties(Map.of("min",2000,"max",5676)).getEntry();
-    shooterSpeed = tab.add("Shooter Speed", 1).withWidget(BuiltInWidgets.kNumberSlider).withProperties(Map.of("min",2000,"max",5676)).getEntry();
+    shooterSpeed = tab.add("Shooter Speed", 1).withWidget(BuiltInWidgets.kNumberSlider).withProperties(Map.of("min",0,"max",1000)).getEntry();
     LeDtest = tab.add("HeavyMetalTest",1).withProperties(Map.of("min",-1,"max",1)).getEntry();
-
+    //P = tab.add("P", 1).withWidget(BuiltInWidgets.kNumberSlider).withProperties(Map.of("min",0,"max",1)).getEntry();
+    //I = tab.add("I", 1).withWidget(BuiltInWidgets.kNumberSlider).withProperties(Map.of("min",0,"max",1)).getEntry();
+    //D = tab.add("D", 1).withWidget(BuiltInWidgets.kNumberSlider).withProperties(Map.of("min",0,"max",1)).getEntry();
+    //FF = tab.add("FF", 1).withWidget(BuiltInWidgets.kNumberSlider).withProperties(Map.of("min",0,"max",1)).getEntry();
+    //IZone = tab.add("IZone", 1).withWidget(BuiltInWidgets.kNumberSlider).withProperties(Map.of("min",0,"max",1)).getEntry();
     navx = new AHRS();
 
     shotclock_timer = new Timer();

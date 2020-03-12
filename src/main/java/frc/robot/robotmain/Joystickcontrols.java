@@ -264,7 +264,7 @@ public final class Joystickcontrols {
        Globalvariables.UserControl = false;
        Robot.oi.shooterPIDcontroller1.setReference(Robot.globalvariables.Vilocity1,  ControlType.kVelocity);
        Robot.oi.shooterPIDcontroller2.setReference(-Robot.globalvariables.Vilocity1, ControlType.kVelocity);
-       if(Robot.oi.shooter_encoder1.getVelocity() + 75 >= Robot.globalvariables.Vilocity1 && Robot.oi.shooter_encoder1.getVelocity() - 75 <= Robot.globalvariables.Vilocity1){
+       if(Robot.oi.shooter_encoder1.getVelocity() + 300 >= Robot.globalvariables.Vilocity1 && Robot.oi.shooter_encoder1.getVelocity() - 300 <= Robot.globalvariables.Vilocity1){
            if(!Robot.globalvariables.intake_flag){
                Robot.oi.Limelight_timer.start();
                Robot.oi.shotclock_timer.start();
@@ -293,7 +293,7 @@ public final class Joystickcontrols {
                    }
                    if(Robot.oi.intake_timer.get() > 1){
                        if(Robot.globalvariables.distance_to_target > 15){
-                            Robot.oi.revolver.set(.4);
+                            Robot.oi.revolver.set(.7);
                        }else{
                             Robot.oi.revolver.set(1);
                        }   
